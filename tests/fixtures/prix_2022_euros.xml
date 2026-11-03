@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?><pdv_liste>
+<pdv id="1000001" latitude="4620100" longitude="519800" cp="01000" pop="R">
+  <adresse>596 AVENUE DE TREVOUX</adresse>
+  <ville>SAINT-DENIS-LÈS-BOURG</ville>
+  <horaires automate-24-24=""></horaires>
+  <services><service>Station de gonflage</service></services>
+  <prix nom="Gazole" id="1" maj="2022-02-24T11:02:38" valeur="1.703"/>
+  <prix nom="Gazole" id="1" maj="2022-02-25T10:08:42" valeur="0.71"/>
+  <prix nom="Gazole" id="1" maj="2022-02-25T10:32:40" valeur="1.71"/>
+  <prix nom="SP98" id="6" maj="2022-02-25T10:32:40" valeur="2"/>
+  <prix nom="SP98" id="6" maj="2022-02-26T10:32:40" valeur="9.999"/>
+  <prix/>
+</pdv>
+<pdv id="20000003" latitude="4192000" longitude="873000" cp="20000" pop="R">
+  <adresse>COURS NAPOLEON</adresse>
+  <ville>Ajaccio</ville>
+  <horaires automate-24-24="1"></horaires>
+  <services></services>
+  <prix nom="Gazole" id="1" maj="2022-02-24T09:00:00" valeur="1.799"/>
+  <prix nom="E85" id="3" maj="2022-02-24T09:00:00" valeur="0.799"/>
+</pdv>
+</pdv_liste>

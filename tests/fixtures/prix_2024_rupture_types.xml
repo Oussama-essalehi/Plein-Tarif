@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?><pdv_liste>
+<pdv id="13500010" latitude="" longitude="" cp="13500" pop="N">
+  <adresse>RN 568</adresse>
+  <ville>Martigues</ville>
+  <horaires automate-24-24=""></horaires>
+  <services></services>
+  <prix nom="Gazole" id="1" maj="2024-07-30T11:02:45" valeur="1.759"/>
+  <prix nom="GPLc" id="4" maj="2024-07-30T11:02:45" valeur="0.999"/>
+  <rupture id="6" nom="SP98" debut="2024-07-30T11:02:45" fin="2024-07-30T11:04:38" type="temporaire"/>
+  <rupture id="4" nom="GPLc" debut="2017-09-16T09:50:23" fin="" type=""/>
+</pdv>
+</pdv_liste>

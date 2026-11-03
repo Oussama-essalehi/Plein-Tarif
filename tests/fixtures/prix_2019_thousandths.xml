@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?><pdv_liste>
+<pdv id="1000001" latitude="4620114" longitude="519791" cp="01000" pop="R">
+  <adresse>596 AVENUE DE TREVOUX</adresse>
+  <ville>SAINT-DENIS-LÈS-BOURG</ville>
+  <horaires automate-24-24="1"><jour id="1" nom="Lundi" ferme=""/></horaires>
+  <services><service>Station de gonflage</service><service>DAB (Distributeur automatique de billets)</service></services>
+  <prix nom="Gazole" id="1" maj="2019-01-04T10:53:48" valeur="1328"/>
+  <prix nom="Gazole" id="1" maj="2019-01-07T10:25:25" valeur="1348"/>
+  <prix nom="E10" id="5" maj="2019-01-04T10:53:48" valeur="1399"/>
+  <prix/>
+  <rupture id="4" nom="GPLc" debut="2017-09-16T09:50:23" fin=""/>
+  <fermeture/>
+</pdv>
+<pdv id="31000002" latitude="4360093.59235" longitude="144042.024022" cp="31200" pop="A">
+  <adresse>A61 AIRE DE TOULOUSE</adresse>
+  <ville>Toulouse</ville>
+  <horaires automate-24-24=""></horaires>
+  <services></services>
+  <prix nom="Gazole" id="1" maj="2019-01-05T08:00:00" valeur="1489"/>
+  <fermeture type="T" debut="2019-03-01T00:00:00" fin="2019-03-02T12:00:00"/>
+</pdv>
+</pdv_liste>
