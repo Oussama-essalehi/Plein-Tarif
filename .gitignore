@@ -25,3 +25,4 @@ powerbi/**/.pbi/cache.abf
 # OS
 .DS_Store
 Thumbs.db
+powerbi/tools/.schema_cache/

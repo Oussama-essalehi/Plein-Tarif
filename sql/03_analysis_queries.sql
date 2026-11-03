@@ -34,7 +34,7 @@ SELECT dept.fuel_code, dept.department, dept.region, round(dept.median_ttc, 4) A
        RANK() OVER (PARTITION BY dept.fuel_code ORDER BY dept.median_ttc) AS rank_cheapest,
        dept.n_stations, dept.n_days
 FROM dept JOIN national n USING (fuel_code)
-ORDER BY dept.fuel_code, rank_cheapest;
+ORDER BY dept.fuel_code, rank_cheapest, dept.department;
 
 
 -- name: q1_department_spread
@@ -161,7 +161,7 @@ JOIN dim_station s USING (station_key)
 WHERE d.year = getvariable('analysis_year') AND f.is_main_fuel
 GROUP BY ALL
 HAVING count(*) >= getvariable('min_days')
-ORDER BY f.fuel_code, median_premium_cts DESC;
+ORDER BY f.fuel_code, median_premium_cts DESC, s.station_id;
 
 
 -- name: q3_brand_category
@@ -290,7 +290,8 @@ ORDER BY event_date, fuel_code;
 
 -- name: q6_savings_focus_city
 -- Q6 Shopping around. In the focus city, for every station and day: gap between the station's price and
--- the cheapest station within 5 km (itself included). Yearly savings = mean gap x litres per year.
+-- the cheapest station within 5 km (itself included), averaged per station; yearly savings = mean gap over
+-- stations x litres per year.
 WITH city AS (
     SELECT station_key FROM dim_station WHERE city_std = getvariable('focus_city')
 ),
@@ -304,23 +305,28 @@ cheapest AS (
     WHERE d.year = getvariable('analysis_year')
     GROUP BY ALL
 ),
-gaps AS (
-    SELECT f.fuel_code, p.station_key, p.price_ttc, ch.cheapest_nearby, p.price_ttc - ch.cheapest_nearby AS gap
+per_station AS (
+    -- one value per station (each station counts once, as in the Power BI simulator)
+    SELECT f.fuel_code, p.station_key, avg(p.price_ttc) AS price_ttc, avg(ch.cheapest_nearby) AS cheapest_nearby,
+           avg(p.price_ttc - ch.cheapest_nearby) AS gap
     FROM fact_price_daily p
     JOIN cheapest ch USING (station_key, date_key, fuel_key)
     JOIN dim_fuel f USING (fuel_key)
     WHERE f.is_main_fuel
+    GROUP BY ALL
+    HAVING count(*) >= getvariable('min_days')
 )
 SELECT fuel_code,
-       count(DISTINCT station_key)                       AS n_stations,
+       count(*)                                          AS n_stations,
        round(avg(price_ttc), 4)                          AS mean_price,
        round(avg(cheapest_nearby), 4)                    AS mean_cheapest_within_5km,
        round(100 * avg(gap), 2)                          AS mean_gap_cts,
        round(avg(gap) * getvariable('litres_per_year'), 0) AS yearly_savings_eur,
+       round(median(gap) * getvariable('litres_per_year'), 0) AS yearly_savings_median_eur,
        round(quantile_cont(gap, 0.9) * getvariable('litres_per_year'), 0) AS yearly_savings_p90_eur
-FROM gaps
+FROM per_station
 GROUP BY fuel_code
-HAVING count(DISTINCT station_key) >= getvariable('min_stations')
+HAVING count(*) >= getvariable('min_stations')
 ORDER BY fuel_code;
 
 
@@ -422,7 +428,7 @@ SELECT p.department,
 FROM prices p JOIN st USING (station_key, department) CROSS JOIN national
 GROUP BY p.department
 HAVING count(DISTINCT p.station_key) >= getvariable('min_stations')
-ORDER BY gazole_gap_vs_national_cts DESC;
+ORDER BY gazole_gap_vs_national_cts DESC, p.department;
 
 
 -- name: check_national_monthly

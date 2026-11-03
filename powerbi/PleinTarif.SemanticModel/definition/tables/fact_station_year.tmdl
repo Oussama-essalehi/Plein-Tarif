@@ -1,0 +1,109 @@
+/// Moyennes annuelles par station et carburant ; écarts à la médiane départementale, à la station la moins chère à 5 km et, pour l'autoroute, aux stations à moins de 10 km.
+table fact_station_year
+	lineageTag: a3a3d67f-6fe9-582f-a838-5e8d528adf22
+
+	column year
+		dataType: int64
+		formatString: 0
+		lineageTag: abd3d8d9-3f1b-5840-b689-2b402b1ba450
+		summarizeBy: none
+		sourceColumn: year
+
+		annotation SummarizationSetBy = Automatic
+
+	column year_date_key
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: 3e577db2-45d7-59d4-932b-5c8d6da50350
+		summarizeBy: none
+		sourceColumn: year_date_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column station_key
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: 1be4658f-7a6d-5404-8329-9c9bc157a700
+		summarizeBy: none
+		sourceColumn: station_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column fuel_key
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: 857a6462-3266-592b-ae7e-1315cc3d4738
+		summarizeBy: none
+		sourceColumn: fuel_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column n_days
+		dataType: int64
+		formatString: #,0
+		lineageTag: 1961cbb9-3808-5be2-b960-76c449cd4aae
+		summarizeBy: none
+		sourceColumn: n_days
+
+		annotation SummarizationSetBy = Automatic
+
+	column price_ttc_mean
+		dataType: double
+		formatString: #,0.000
+		lineageTag: 60e70a57-106d-54e5-9bfc-1833b63859c6
+		summarizeBy: none
+		sourceColumn: price_ttc_mean
+
+		annotation SummarizationSetBy = Automatic
+
+	column price_ht_mean
+		dataType: double
+		formatString: #,0.000
+		lineageTag: 6247b5b8-a640-537c-9013-72ad1f74b416
+		summarizeBy: none
+		sourceColumn: price_ht_mean
+
+		annotation SummarizationSetBy = Automatic
+
+	column gap_vs_department_median_cts
+		dataType: double
+		formatString: #,0.00
+		lineageTag: b67ae12e-b427-5d02-bcf1-0ceaab4399ae
+		summarizeBy: none
+		sourceColumn: gap_vs_department_median_cts
+
+		annotation SummarizationSetBy = Automatic
+
+	column gap_vs_cheapest_5km_cts
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 1d31a0ae-d877-5b46-9d12-2ca4fec5a42e
+		summarizeBy: none
+		sourceColumn: gap_vs_cheapest_5km_cts
+
+		annotation SummarizationSetBy = Automatic
+
+	column motorway_premium_10km_cts
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 4a6029eb-4f8f-5c07-bbc6-1a17b2633be5
+		summarizeBy: none
+		sourceColumn: motorway_premium_10km_cts
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_station_year = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "fact_station_year.csv"), [Delimiter=",", Columns=10, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    // culture en-US: the CSV files use '.' as decimal separator whatever the Windows locale
+				    Typed = Table.TransformColumnTypes(Promoted, {{"year", Int64.Type}, {"year_date_key", Int64.Type}, {"station_key", Int64.Type}, {"fuel_key", Int64.Type}, {"n_days", Int64.Type}, {"price_ttc_mean", type number}, {"price_ht_mean", type number}, {"gap_vs_department_median_cts", type number}, {"gap_vs_cheapest_5km_cts", type number}, {"motorway_premium_10km_cts", type number}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table

@@ -1,0 +1,124 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "p2_carte",
+  "position": {
+    "x": 20,
+    "y": 80,
+    "z": 2000,
+    "height": 620,
+    "width": 640,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "filledMap",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_department"
+                    }
+                  },
+                  "Property": "map_location"
+                }
+              },
+              "queryRef": "dim_department.map_location",
+              "nativeQueryRef": "map_location"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Mesures"
+                    }
+                  },
+                  "Property": "Prix Médian TTC"
+                }
+              },
+              "queryRef": "_Mesures.Prix Médian TTC",
+              "nativeQueryRef": "Prix Médian TTC"
+            }
+          ]
+        },
+        "Tooltips": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Mesures"
+                    }
+                  },
+                  "Property": "Écart vs Médiane Nationale (cts)"
+                }
+              },
+              "queryRef": "_Mesures.Écart vs Médiane Nationale (cts)",
+              "nativeQueryRef": "Écart vs Médiane Nationale (cts)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Mesures"
+                    }
+                  },
+                  "Property": "Rang Département"
+                }
+              },
+              "queryRef": "_Mesures.Rang Département",
+              "nativeQueryRef": "Rang Département"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Mesures"
+                    }
+                  },
+                  "Property": "Nb Stations"
+                }
+              },
+              "queryRef": "_Mesures.Nb Stations",
+              "nativeQueryRef": "Nb Stations"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Prix médian par département'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

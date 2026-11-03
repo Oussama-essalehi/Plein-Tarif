@@ -1,0 +1,128 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "p4_reponses",
+  "position": {
+    "x": 20,
+    "y": 80,
+    "z": 2000,
+    "height": 420,
+    "width": 620,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "lineChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_rockets_feathers"
+                    }
+                  },
+                  "Property": "horizon_weeks"
+                }
+              },
+              "queryRef": "fact_rockets_feathers.horizon_weeks",
+              "nativeQueryRef": "horizon_weeks"
+            }
+          ]
+        },
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_rockets_feathers"
+                    }
+                  },
+                  "Property": "direction"
+                }
+              },
+              "queryRef": "fact_rockets_feathers.direction",
+              "nativeQueryRef": "direction"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Mesures"
+                    }
+                  },
+                  "Property": "Réponse Cumulée (cts)"
+                }
+              },
+              "queryRef": "_Mesures.Réponse Cumulée (cts)",
+              "nativeQueryRef": "Réponse Cumulée (cts)"
+            }
+          ]
+        },
+        "Tooltips": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Mesures"
+                    }
+                  },
+                  "Property": "IC Bas (cts)"
+                }
+              },
+              "queryRef": "_Mesures.IC Bas (cts)",
+              "nativeQueryRef": "IC Bas (cts)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Mesures"
+                    }
+                  },
+                  "Property": "IC Haut (cts)"
+                }
+              },
+              "queryRef": "_Mesures.IC Haut (cts)",
+              "nativeQueryRef": "IC Haut (cts)"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Réponse cumulée du prix HT à 1 ct de Brent (hausse vs baisse)'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

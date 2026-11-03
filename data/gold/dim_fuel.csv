@@ -1,0 +1,7 @@
+fuel_key,fuel_code,fuel_label,is_main_fuel,display_order
+1,Gazole,Gazole,true,1
+5,E10,SP95-E10,true,2
+6,SP98,SP98,false,3
+2,SP95,SP95,false,4
+3,E85,E85,false,5
+4,GPLc,GPLc,false,6

@@ -1,0 +1,78 @@
+/// Périodes de remise et événements marquants (annotations).
+table dim_event
+	lineageTag: 1ad5cc4a-40f1-52d8-9e7f-5ce4af7d74c6
+
+	column event_key
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: d06bf925-4c04-5e05-9188-48c4151bd98c
+		summarizeBy: none
+		sourceColumn: event_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column event_type
+		dataType: string
+		lineageTag: 901caf86-6686-5b19-a400-6f79a1970b4c
+		summarizeBy: none
+		sourceColumn: event_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column label
+		dataType: string
+		lineageTag: 3b83d8db-4b1d-5e92-b847-68a097f3d875
+		summarizeBy: none
+		sourceColumn: label
+
+		annotation SummarizationSetBy = Automatic
+
+	column start_date
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: a643b06a-eb59-5c8b-93f1-f739b290796a
+		summarizeBy: none
+		sourceColumn: start_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column end_date
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: cea90cad-5e83-5db3-958d-4193c0d7bdf3
+		summarizeBy: none
+		sourceColumn: end_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column amount_ht
+		dataType: double
+		formatString: #,0.000
+		lineageTag: a95c8cac-1711-533f-a69b-67a8accab78f
+		summarizeBy: none
+		sourceColumn: amount_ht
+
+		annotation SummarizationSetBy = Automatic
+
+	column amount_ttc
+		dataType: double
+		formatString: #,0.000
+		lineageTag: 3a1d7e8e-767a-5ddd-9fd2-9df235eeb3a4
+		summarizeBy: none
+		sourceColumn: amount_ttc
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_event = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "dim_event.csv"), [Delimiter=",", Columns=7, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    // culture en-US: the CSV files use '.' as decimal separator whatever the Windows locale
+				    Typed = Table.TransformColumnTypes(Promoted, {{"event_key", Int64.Type}, {"event_type", type text}, {"label", type text}, {"start_date", type date}, {"end_date", type date}, {"amount_ht", type number}, {"amount_ttc", type number}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table

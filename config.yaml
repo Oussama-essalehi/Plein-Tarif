@@ -69,6 +69,7 @@ geography:
 brands:
   osm_source: overpass    # overpass | pbf (use pbf where the Overpass API is not reachable)
   pbf_url: "https://download.openstreetmap.fr/extracts/europe/france-latest.osm.pbf"   # ~5.9 GB
+  keep_pbf: false         # delete the extract once the fuel stations are extracted
   match_radius_m: 75
   ambiguity_ratio: 1.5    # a match is "ambiguous" when the 2nd candidate is within 1.5x the 1st distance
 

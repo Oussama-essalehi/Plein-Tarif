@@ -1,0 +1,36 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "p4_texte",
+  "position": {
+    "x": 20,
+    "y": 515,
+    "z": 4000,
+    "height": 185,
+    "width": 620,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Sur 2019-2025, une hausse du Brent est répercutée plus vite qu'une baisse sur le gazole : après une semaine, le prix HT a absorbé environ 1,8 ct par centime de hausse contre 0,7 ct par centime de baisse (écart significatif à 1 et 2 semaines). L'asymétrie disparaît hors 2022 : elle tient à la crise, quand les marges de raffinage du gazole ont flambé avec le Brent. Chiffres exacts : reports/findings.md.",
+                    "textStyle": {
+                      "fontSize": "11pt"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

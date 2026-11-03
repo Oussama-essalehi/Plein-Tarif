@@ -1,0 +1,107 @@
+/// Brent (€/L), EUR/USD, accise, TVA et remise de l'État, par jour et carburant (taux métropole).
+table dim_market
+	lineageTag: 4b03b50d-d8f8-5362-96af-823a8a9a0003
+
+	column date_key
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: b1c4ec33-15b4-5441-aec4-e4fec6ff6a17
+		summarizeBy: none
+		sourceColumn: date_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column fuel_key
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: 7b7ffa68-f55a-50cd-b315-0e02c19095ce
+		summarizeBy: none
+		sourceColumn: fuel_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column brent_usd_bbl
+		dataType: double
+		formatString: #,0.00
+		lineageTag: c7282b8e-8565-57b4-a865-4ecac1768809
+		summarizeBy: none
+		sourceColumn: brent_usd_bbl
+
+		annotation SummarizationSetBy = Automatic
+
+	column eurusd
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 6e3289e6-eb5e-5c00-8eeb-46f1579839c5
+		summarizeBy: none
+		sourceColumn: eurusd
+
+		annotation SummarizationSetBy = Automatic
+
+	column brent_eur_l
+		dataType: double
+		formatString: #,0.000
+		lineageTag: 79c59e6a-320f-5def-8d09-802f9c665252
+		summarizeBy: none
+		sourceColumn: brent_eur_l
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_trading_day
+		dataType: boolean
+		lineageTag: dedb014d-75fc-5955-89f6-ab3ca2e60bcf
+		summarizeBy: none
+		sourceColumn: is_trading_day
+
+		annotation SummarizationSetBy = Automatic
+
+	column vat
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 1f00ab60-f028-57ed-b705-eba02fb088cc
+		summarizeBy: none
+		sourceColumn: vat
+
+		annotation SummarizationSetBy = Automatic
+
+	column excise
+		dataType: double
+		formatString: #,0.000
+		lineageTag: bf6ad186-1a2d-5b3e-b5e4-354b6730738e
+		summarizeBy: none
+		sourceColumn: excise
+
+		annotation SummarizationSetBy = Automatic
+
+	column discount_ht
+		dataType: double
+		formatString: #,0.000
+		lineageTag: 1d77a284-b06b-5e00-ba56-5e8466bbcb03
+		summarizeBy: none
+		sourceColumn: discount_ht
+
+		annotation SummarizationSetBy = Automatic
+
+	column discount_ttc
+		dataType: double
+		formatString: #,0.000
+		lineageTag: 2268f29f-400c-5dec-bc5f-722ed605b9ab
+		summarizeBy: none
+		sourceColumn: discount_ttc
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_market = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "dim_market.csv"), [Delimiter=",", Columns=10, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    // culture en-US: the CSV files use '.' as decimal separator whatever the Windows locale
+				    Typed = Table.TransformColumnTypes(Promoted, {{"date_key", Int64.Type}, {"fuel_key", Int64.Type}, {"brent_usd_bbl", type number}, {"eurusd", type number}, {"brent_eur_l", type number}, {"is_trading_day", type logical}, {"vat", type number}, {"excise", type number}, {"discount_ht", type number}, {"discount_ttc", type number}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table

@@ -1,0 +1,28 @@
+/// Paramètre de simulation : kilomètres parcourus par an (5 000 à 40 000).
+table 'Km par an'
+	lineageTag: 5446632e-16c4-50d9-99b4-dfbc7b1fe5a9
+
+	measure 'Valeur Km par an' = SELECTEDVALUE ( 'Km par an'[Km par an], 15000 )
+		formatString: #,0
+		lineageTag: c74a33dd-7f24-5731-8e0f-359dab1f86d9
+
+	column 'Km par an'
+		dataType: int64
+		formatString: #,0
+		lineageTag: 192f6f11-526e-552a-9bce-4a07f6515b45
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition 'Km par an' = calculated
+		mode: import
+		source = GENERATESERIES ( 5000, 40000, 1000 )
+
+	annotation PBI_Id = 09764fe7b73751b7bb991826a3d2d956
