@@ -1,0 +1,407 @@
+{
+  "national_mean_gazole": {
+    "2019-06": {
+      "sql": 1.44189,
+      "pandas": 1.44189,
+      "abs_diff": 0.0
+    },
+    "2022-06": {
+      "sql": 2.09764,
+      "pandas": 2.09764,
+      "abs_diff": 0.0
+    },
+    "2025-06": {
+      "sql": 1.61419,
+      "pandas": 1.61419,
+      "abs_diff": 0.0
+    }
+  },
+  "department_median_gazole": {
+    "31": {
+      "sql": 1.622,
+      "pandas": 1.622,
+      "abs_diff": 0.0
+    },
+    "75": {
+      "sql": 1.779,
+      "pandas": 1.779,
+      "abs_diff": 0.0
+    }
+  },
+  "official_monthly_comparison": {
+    "E10": {
+      "months": 72,
+      "mean_gap_cts": 1.315,
+      "min_gap_cts": -0.027,
+      "max_gap_cts": 3.117,
+      "mean_gap_median_cts": -0.823,
+      "correlation": 1.0
+    },
+    "E85": {
+      "months": 72,
+      "mean_gap_cts": 1.831,
+      "min_gap_cts": -1.12,
+      "max_gap_cts": 3.283,
+      "mean_gap_median_cts": 0.632,
+      "correlation": 0.999
+    },
+    "GPLc": {
+      "months": 72,
+      "mean_gap_cts": 2.038,
+      "min_gap_cts": 0.543,
+      "max_gap_cts": 3.541,
+      "mean_gap_median_cts": 1.068,
+      "correlation": 0.997
+    },
+    "Gazole": {
+      "months": 72,
+      "mean_gap_cts": 2.068,
+      "min_gap_cts": 0.412,
+      "max_gap_cts": 3.592,
+      "mean_gap_median_cts": -0.086,
+      "correlation": 1.0
+    },
+    "SP95": {
+      "months": 72,
+      "mean_gap_cts": 1.885,
+      "min_gap_cts": 0.332,
+      "max_gap_cts": 4.003,
+      "mean_gap_median_cts": 0.713,
+      "correlation": 0.999
+    },
+    "SP98": {
+      "months": 72,
+      "mean_gap_cts": 1.221,
+      "min_gap_cts": -0.05,
+      "max_gap_cts": 2.565,
+      "mean_gap_median_cts": -1.121,
+      "correlation": 1.0
+    }
+  },
+  "tax_validation": [
+    {
+      "fuel": "E10",
+      "year": 2020,
+      "weeks": 52,
+      "excise_model": 0.6714,
+      "excise_implied": 0.6718,
+      "gap_cts_mean": 0.042,
+      "gap_cts_max_abs": 0.0501
+    },
+    {
+      "fuel": "E10",
+      "year": 2021,
+      "weeks": 53,
+      "excise_model": 0.6714,
+      "excise_implied": 0.6717,
+      "gap_cts_mean": 0.0326,
+      "gap_cts_max_abs": 0.0401
+    },
+    {
+      "fuel": "E10",
+      "year": 2022,
+      "weeks": 52,
+      "excise_model": 0.6714,
+      "excise_implied": 0.6717,
+      "gap_cts_mean": 0.0322,
+      "gap_cts_max_abs": 0.0401
+    },
+    {
+      "fuel": "E10",
+      "year": 2023,
+      "weeks": 52,
+      "excise_model": 0.6714,
+      "excise_implied": 0.6716,
+      "gap_cts_mean": 0.0209,
+      "gap_cts_max_abs": 0.0301
+    },
+    {
+      "fuel": "E10",
+      "year": 2024,
+      "weeks": 52,
+      "excise_model": 0.6714,
+      "excise_implied": 0.6715,
+      "gap_cts_mean": 0.0116,
+      "gap_cts_max_abs": 0.0184
+    },
+    {
+      "fuel": "E10",
+      "year": 2025,
+      "weeks": 52,
+      "excise_model": 0.6714,
+      "excise_implied": 0.6717,
+      "gap_cts_mean": 0.0309,
+      "gap_cts_max_abs": 0.0384
+    },
+    {
+      "fuel": "E85",
+      "year": 2020,
+      "weeks": 52,
+      "excise_model": 0.1183,
+      "excise_implied": 0.1183,
+      "gap_cts_mean": 0.0003,
+      "gap_cts_max_abs": 0.0083
+    },
+    {
+      "fuel": "E85",
+      "year": 2021,
+      "weeks": 53,
+      "excise_model": 0.1183,
+      "excise_implied": 0.1183,
+      "gap_cts_mean": 0.0001,
+      "gap_cts_max_abs": 0.0083
+    },
+    {
+      "fuel": "E85",
+      "year": 2022,
+      "weeks": 52,
+      "excise_model": 0.1183,
+      "excise_implied": 0.1183,
+      "gap_cts_mean": 0.0005,
+      "gap_cts_max_abs": 0.0067
+    },
+    {
+      "fuel": "E85",
+      "year": 2023,
+      "weeks": 52,
+      "excise_model": 0.1183,
+      "excise_implied": 0.1183,
+      "gap_cts_mean": -0.0003,
+      "gap_cts_max_abs": 0.0083
+    },
+    {
+      "fuel": "E85",
+      "year": 2024,
+      "weeks": 52,
+      "excise_model": 0.1183,
+      "excise_implied": 0.1183,
+      "gap_cts_mean": 0.0,
+      "gap_cts_max_abs": 0.0067
+    },
+    {
+      "fuel": "E85",
+      "year": 2025,
+      "weeks": 52,
+      "excise_model": 0.1183,
+      "excise_implied": 0.1183,
+      "gap_cts_mean": 0.0004,
+      "gap_cts_max_abs": 0.0083
+    },
+    {
+      "fuel": "GPLc",
+      "year": 2020,
+      "weeks": 52,
+      "excise_model": 0.1154,
+      "excise_implied": 0.1154,
+      "gap_cts_mean": 0.0048,
+      "gap_cts_max_abs": 0.0117
+    },
+    {
+      "fuel": "GPLc",
+      "year": 2021,
+      "weeks": 53,
+      "excise_model": 0.1154,
+      "excise_implied": 0.1154,
+      "gap_cts_mean": 0.0053,
+      "gap_cts_max_abs": 0.0133
+    },
+    {
+      "fuel": "GPLc",
+      "year": 2022,
+      "weeks": 52,
+      "excise_model": 0.1154,
+      "excise_implied": 0.1154,
+      "gap_cts_mean": 0.0054,
+      "gap_cts_max_abs": 0.0133
+    },
+    {
+      "fuel": "GPLc",
+      "year": 2023,
+      "weeks": 52,
+      "excise_model": 0.1154,
+      "excise_implied": 0.1154,
+      "gap_cts_mean": 0.0052,
+      "gap_cts_max_abs": 0.0133
+    },
+    {
+      "fuel": "GPLc",
+      "year": 2024,
+      "weeks": 52,
+      "excise_model": 0.1154,
+      "excise_implied": 0.1154,
+      "gap_cts_mean": 0.0051,
+      "gap_cts_max_abs": 0.0133
+    },
+    {
+      "fuel": "GPLc",
+      "year": 2025,
+      "weeks": 52,
+      "excise_model": 0.1154,
+      "excise_implied": 0.1154,
+      "gap_cts_mean": 0.0062,
+      "gap_cts_max_abs": 0.0117
+    },
+    {
+      "fuel": "Gazole",
+      "year": 2020,
+      "weeks": 52,
+      "excise_model": 0.6097,
+      "excise_implied": 0.6091,
+      "gap_cts_mean": -0.0591,
+      "gap_cts_max_abs": 0.0657
+    },
+    {
+      "fuel": "Gazole",
+      "year": 2021,
+      "weeks": 53,
+      "excise_model": 0.6097,
+      "excise_implied": 0.6091,
+      "gap_cts_mean": -0.0596,
+      "gap_cts_max_abs": 0.0674
+    },
+    {
+      "fuel": "Gazole",
+      "year": 2022,
+      "weeks": 52,
+      "excise_model": 0.6097,
+      "excise_implied": 0.6091,
+      "gap_cts_mean": -0.06,
+      "gap_cts_max_abs": 0.0674
+    },
+    {
+      "fuel": "Gazole",
+      "year": 2023,
+      "weeks": 52,
+      "excise_model": 0.6097,
+      "excise_implied": 0.609,
+      "gap_cts_mean": -0.0691,
+      "gap_cts_max_abs": 0.0774
+    },
+    {
+      "fuel": "Gazole",
+      "year": 2024,
+      "weeks": 52,
+      "excise_model": 0.6097,
+      "excise_implied": 0.6089,
+      "gap_cts_mean": -0.0798,
+      "gap_cts_max_abs": 0.0857
+    },
+    {
+      "fuel": "Gazole",
+      "year": 2025,
+      "weeks": 52,
+      "excise_model": 0.6097,
+      "excise_implied": 0.6092,
+      "gap_cts_mean": -0.0501,
+      "gap_cts_max_abs": 0.0574
+    },
+    {
+      "fuel": "SP95",
+      "year": 2020,
+      "weeks": 52,
+      "excise_model": 0.6914,
+      "excise_implied": 0.6913,
+      "gap_cts_mean": -0.0082,
+      "gap_cts_max_abs": 0.0149
+    },
+    {
+      "fuel": "SP95",
+      "year": 2021,
+      "weeks": 53,
+      "excise_model": 0.6914,
+      "excise_implied": 0.6913,
+      "gap_cts_mean": -0.0087,
+      "gap_cts_max_abs": 0.0166
+    },
+    {
+      "fuel": "SP95",
+      "year": 2022,
+      "weeks": 52,
+      "excise_model": 0.6914,
+      "excise_implied": 0.6913,
+      "gap_cts_mean": -0.0078,
+      "gap_cts_max_abs": 0.0166
+    },
+    {
+      "fuel": "SP95",
+      "year": 2023,
+      "weeks": 52,
+      "excise_model": 0.6914,
+      "excise_implied": 0.6913,
+      "gap_cts_mean": -0.0084,
+      "gap_cts_max_abs": 0.0166
+    },
+    {
+      "fuel": "SP95",
+      "year": 2024,
+      "weeks": 52,
+      "excise_model": 0.6914,
+      "excise_implied": 0.6913,
+      "gap_cts_mean": -0.0077,
+      "gap_cts_max_abs": 0.0166
+    },
+    {
+      "fuel": "SP95",
+      "year": 2025,
+      "weeks": 52,
+      "excise_model": 0.6914,
+      "excise_implied": 0.6916,
+      "gap_cts_mean": 0.0225,
+      "gap_cts_max_abs": 0.0301
+    },
+    {
+      "fuel": "SP98",
+      "year": 2020,
+      "weeks": 52,
+      "excise_model": 0.6914,
+      "excise_implied": 0.6913,
+      "gap_cts_mean": -0.0082,
+      "gap_cts_max_abs": 0.0166
+    },
+    {
+      "fuel": "SP98",
+      "year": 2021,
+      "weeks": 53,
+      "excise_model": 0.6914,
+      "excise_implied": 0.6913,
+      "gap_cts_mean": -0.0079,
+      "gap_cts_max_abs": 0.0166
+    },
+    {
+      "fuel": "SP98",
+      "year": 2022,
+      "weeks": 52,
+      "excise_model": 0.6914,
+      "excise_implied": 0.6913,
+      "gap_cts_mean": -0.0084,
+      "gap_cts_max_abs": 0.0149
+    },
+    {
+      "fuel": "SP98",
+      "year": 2023,
+      "weeks": 52,
+      "excise_model": 0.6914,
+      "excise_implied": 0.6913,
+      "gap_cts_mean": -0.0081,
+      "gap_cts_max_abs": 0.0166
+    },
+    {
+      "fuel": "SP98",
+      "year": 2024,
+      "weeks": 52,
+      "excise_model": 0.6914,
+      "excise_implied": 0.6913,
+      "gap_cts_mean": -0.0086,
+      "gap_cts_max_abs": 0.0149
+    },
+    {
+      "fuel": "SP98",
+      "year": 2025,
+      "weeks": 52,
+      "excise_model": 0.6914,
+      "excise_implied": 0.6916,
+      "gap_cts_mean": 0.0222,
+      "gap_cts_max_abs": 0.0301
+    }
+  ]
+}

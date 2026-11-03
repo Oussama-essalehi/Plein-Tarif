@@ -1,0 +1,15 @@
+fuel_code,weekday_num,weekday,mean_gap_vs_week_cts,n_days
+E10,1,lundi,0.035,365
+E10,2,mardi,0.114,366
+E10,3,mercredi,0.167,366
+E10,4,jeudi,0.107,365
+E10,5,vendredi,-0.18,365
+E10,6,samedi,-0.139,365
+E10,7,dimanche,-0.103,365
+Gazole,1,lundi,0.009,365
+Gazole,2,mardi,0.094,366
+Gazole,3,mercredi,0.16,366
+Gazole,4,jeudi,0.119,365
+Gazole,5,vendredi,-0.141,365
+Gazole,6,samedi,-0.132,365
+Gazole,7,dimanche,-0.107,365

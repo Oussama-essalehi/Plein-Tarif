@@ -77,9 +77,10 @@ corsica_minoration:
   essences: 0.0100        # 1,125 EUR/MWh * 0.8889
   source: "Guide 2026, section 1.2, CIBS L312-41"
 
-# GPLc is taxed per 100 kg. LPG density at 15 °C is about 0.51-0.58 kg/l depending on the butane/propane mix;
-# 0.55 kg/l is used, and the result is checked against the official weekly series in docs/methodology.md.
-gplc_density_kg_per_l: 0.55
+# GPLc is taxed per 100 kg. LPG density at 15 °C is about 0.51-0.58 kg/l depending on the butane/propane mix.
+# The ministry's weekly series implies 0.1154 EUR/l of excise every year (TTC/1.2 - HTT, 2020-2025), i.e.
+# 20.71 EUR/100 kg at 0.557 kg/l: this calibrated density is used (see docs/methodology.md, "Taxes").
+gplc_density_kg_per_l: 0.557
 
 # Overseas departments: no TICPE (a separate regional tax applies) and no VAT on petroleum products;
 # prices there are administratively capped. They are excluded from all comparisons.

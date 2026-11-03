@@ -1,0 +1,9 @@
+fuel_code,competition,n_stations,mean_gap_vs_department_cts
+E10,0 concurrent,726,1.32
+E10,1-2 concurrents,1626,1.24
+E10,3-5 concurrents,1587,1.24
+E10,6+ concurrents,3420,1.06
+Gazole,0 concurrent,1174,1.78
+Gazole,1-2 concurrents,2321,1.64
+Gazole,3-5 concurrents,2029,1.49
+Gazole,6+ concurrents,3874,1.13
