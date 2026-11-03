@@ -1,0 +1,3324 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_6a041c2960e58e94639078e3c2dc259d {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+</head>
+<body>
+    
+    <div style='position:fixed;bottom:30px;left:10px;z-index:9999;background:rgba(252,252,251,0.95);padding:8px 12px;border-radius:6px;max-width:560px;font-family:Inter,Segoe UI,Arial,sans-serif;box-shadow:0 1px 4px rgba(0,0,0,0.2)'><div style='font-size:16px;font-weight:600;color:#0b0b0b'>Toulouse et alentours (15 km) : qui est cher, qui ne l'est pas ? (2025)</div><div style='font-size:12px;color:#52514e;margin-top:4px'>96 stations ; cercle cerclé de noir = autoroute. Médianes locales : Gazole 1.614 €, SP95-E10 1.686 €. Sources : prix-carburants.gouv.fr ; enseignes et fond de carte © contributeurs OpenStreetMap (ODbL).</div></div>
+    
+            <div class="folium-map" id="map_6a041c2960e58e94639078e3c2dc259d" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_6a041c2960e58e94639078e3c2dc259d = L.map(
+                "map_6a041c2960e58e94639078e3c2dc259d",
+                {
+                    center: [43.6045, 1.444],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 11,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+            L.control.scale().addTo(map_6a041c2960e58e94639078e3c2dc259d);
+
+            
+
+        
+    
+            var tile_layer_5b47b0e578249a80e7c2a7a7920d16f3 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_5b47b0e578249a80e7c2a7a7920d16f3.addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+            var circle_marker_0ff2d50ada717ef75dc998521e054a10 = L.circleMarker(
+                [43.58797, 1.41048],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#eb6834ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_339b3264ed622c1c5fb11b4cfca0459a = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_f65c6896a0c5a0ee68fcbd726c993e3a = $(`<div id="html_f65c6896a0c5a0ee68fcbd726c993e3a" style="width: 100.0%; height: 100.0%;"><b>TotalEnergies</b><br>328 Route de Saint-Simon, Toulouse<br>Type de route : Route<br>Gazole 2025 : 1.697 €<br>SP95-E10 2025 : n.d.<br>Écart à la médiane : +8.3 cts</div>`)[0];
+                popup_339b3264ed622c1c5fb11b4cfca0459a.setContent(html_f65c6896a0c5a0ee68fcbd726c993e3a);
+            
+        
+
+        circle_marker_0ff2d50ada717ef75dc998521e054a10.bindPopup(popup_339b3264ed622c1c5fb11b4cfca0459a)
+        ;
+
+        
+    
+    
+            circle_marker_0ff2d50ada717ef75dc998521e054a10.bindTooltip(
+                `<div>
+                     TotalEnergies : +8.3 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f55f39796b3a3eddb8e9f74e48627efe = L.circleMarker(
+                [43.636, 1.433],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#86b6efff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_a70ad71bf77589b37f849b0d350bcb48 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_7aac5b3b4d7287affa46dc0a59b88cbb = $(`<div id="html_7aac5b3b4d7287affa46dc0a59b88cbb" style="width: 100.0%; height: 100.0%;"><b>Non identifiée</b><br>138 Avenue de Fronton, Toulouse<br>Type de route : Route<br>Gazole 2025 : 1.594 €<br>SP95-E10 2025 : 1.659 €<br>Écart à la médiane : -2.4 cts</div>`)[0];
+                popup_a70ad71bf77589b37f849b0d350bcb48.setContent(html_7aac5b3b4d7287affa46dc0a59b88cbb);
+            
+        
+
+        circle_marker_f55f39796b3a3eddb8e9f74e48627efe.bindPopup(popup_a70ad71bf77589b37f849b0d350bcb48)
+        ;
+
+        
+    
+    
+            circle_marker_f55f39796b3a3eddb8e9f74e48627efe.bindTooltip(
+                `<div>
+                     Non identifiée : -2.4 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_98ac8dbfeae3849a60e887feecab4895 = L.circleMarker(
+                [43.62771, 1.47973],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e6e5e1ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_798e182ec22e23d86b291154d26508b5 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_26697b754830e831ce1c2c622a96fe6f = $(`<div id="html_26697b754830e831ce1c2c622a96fe6f" style="width: 100.0%; height: 100.0%;"><b>Non identifiée</b><br>65 ROUTE D AGDE, TOULOUSE<br>Type de route : Route<br>Gazole 2025 : 1.614 €<br>SP95-E10 2025 : 1.686 €<br>Écart à la médiane : +0.0 cts</div>`)[0];
+                popup_798e182ec22e23d86b291154d26508b5.setContent(html_26697b754830e831ce1c2c622a96fe6f);
+            
+        
+
+        circle_marker_98ac8dbfeae3849a60e887feecab4895.bindPopup(popup_798e182ec22e23d86b291154d26508b5)
+        ;
+
+        
+    
+    
+            circle_marker_98ac8dbfeae3849a60e887feecab4895.bindTooltip(
+                `<div>
+                     Non identifiée : +0.0 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_7865cc70d10c40baafd8969e27357e5c = L.circleMarker(
+                [43.632, 1.483],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e6e5e1ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_e525c829713e5217958e45d2ed559d90 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_8be2b1793d16b5dccfcaa588e906729b = $(`<div id="html_8be2b1793d16b5dccfcaa588e906729b" style="width: 100.0%; height: 100.0%;"><b>Auchan</b><br>92 Chemin de Gabardie, TOULOUSE<br>Type de route : Route<br>Gazole 2025 : 1.631 €<br>SP95-E10 2025 : 1.694 €<br>Écart à la médiane : +1.2 cts</div>`)[0];
+                popup_e525c829713e5217958e45d2ed559d90.setContent(html_8be2b1793d16b5dccfcaa588e906729b);
+            
+        
+
+        circle_marker_7865cc70d10c40baafd8969e27357e5c.bindPopup(popup_e525c829713e5217958e45d2ed559d90)
+        ;
+
+        
+    
+    
+            circle_marker_7865cc70d10c40baafd8969e27357e5c.bindTooltip(
+                `<div>
+                     Auchan : +1.2 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_c41f11d7feb7e7124b033ad184d23818 = L.circleMarker(
+                [43.609, 1.397],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e6e5e1ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_90e5e3819cd7fb1585004a7c7ff635bf = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_d0972090a4708dc208191dfd8b8a0624 = $(`<div id="html_d0972090a4708dc208191dfd8b8a0624" style="width: 100.0%; height: 100.0%;"><b>Carrefour</b><br>36 route de bayonne, TOULOUSE<br>Type de route : Route<br>Gazole 2025 : 1.604 €<br>SP95-E10 2025 : 1.670 €<br>Écart à la médiane : -1.3 cts</div>`)[0];
+                popup_90e5e3819cd7fb1585004a7c7ff635bf.setContent(html_d0972090a4708dc208191dfd8b8a0624);
+            
+        
+
+        circle_marker_c41f11d7feb7e7124b033ad184d23818.bindPopup(popup_90e5e3819cd7fb1585004a7c7ff635bf)
+        ;
+
+        
+    
+    
+            circle_marker_c41f11d7feb7e7124b033ad184d23818.bindTooltip(
+                `<div>
+                     Carrefour : -1.3 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_4df00aa7e646f4741288fa37c4ef7b5a = L.circleMarker(
+                [43.553, 1.404],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#eb6834ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_cc8772374f7262e1447b4cbe7175cf79 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_0fefeb8d229adcbf6ce9886341f58fcb = $(`<div id="html_0fefeb8d229adcbf6ce9886341f58fcb" style="width: 100.0%; height: 100.0%;"><b>TotalEnergies</b><br>10 Boulevard de Thibaud, TOULOUSE<br>Type de route : Route<br>Gazole 2025 : 1.697 €<br>SP95-E10 2025 : n.d.<br>Écart à la médiane : +8.3 cts</div>`)[0];
+                popup_cc8772374f7262e1447b4cbe7175cf79.setContent(html_0fefeb8d229adcbf6ce9886341f58fcb);
+            
+        
+
+        circle_marker_4df00aa7e646f4741288fa37c4ef7b5a.bindPopup(popup_cc8772374f7262e1447b4cbe7175cf79)
+        ;
+
+        
+    
+    
+            circle_marker_4df00aa7e646f4741288fa37c4ef7b5a.bindTooltip(
+                `<div>
+                     TotalEnergies : +8.3 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8872fbd09a23d19d39d20280b8197817 = L.circleMarker(
+                [43.584, 1.372],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e6e5e1ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_4a1e37a89cbba05a08744c271f50222c = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_4cb2b454f07e5e8e3c8078a7e674e65c = $(`<div id="html_4cb2b454f07e5e8e3c8078a7e674e65c" style="width: 100.0%; height: 100.0%;"><b>Non identifiée</b><br>30 Chemin de Ferro-Lébrès, TOULOUSE<br>Type de route : Route<br>Gazole 2025 : 1.597 €<br>SP95-E10 2025 : 1.665 €<br>Écart à la médiane : -1.9 cts</div>`)[0];
+                popup_4a1e37a89cbba05a08744c271f50222c.setContent(html_4cb2b454f07e5e8e3c8078a7e674e65c);
+            
+        
+
+        circle_marker_8872fbd09a23d19d39d20280b8197817.bindPopup(popup_4a1e37a89cbba05a08744c271f50222c)
+        ;
+
+        
+    
+    
+            circle_marker_8872fbd09a23d19d39d20280b8197817.bindTooltip(
+                `<div>
+                     Non identifiée : -1.9 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ade0ea121d0e7d44748c61ba31146de0 = L.circleMarker(
+                [43.558831492299994, 1.40298833631],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#86b6efff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_4417438ea3beabd30e29c1188c0e6acf = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_065e03f926fd5783e0b69fb759de3e4e = $(`<div id="html_065e03f926fd5783e0b69fb759de3e4e" style="width: 100.0%; height: 100.0%;"><b>Non identifiée</b><br>138 bis Route de Seysses, TOULOUSE<br>Type de route : Route<br>Gazole 2025 : 1.586 €<br>SP95-E10 2025 : n.d.<br>Écart à la médiane : -2.8 cts</div>`)[0];
+                popup_4417438ea3beabd30e29c1188c0e6acf.setContent(html_065e03f926fd5783e0b69fb759de3e4e);
+            
+        
+
+        circle_marker_ade0ea121d0e7d44748c61ba31146de0.bindPopup(popup_4417438ea3beabd30e29c1188c0e6acf)
+        ;
+
+        
+    
+    
+            circle_marker_ade0ea121d0e7d44748c61ba31146de0.bindTooltip(
+                `<div>
+                     Non identifiée : -2.8 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_00fb21e429337061cf47f97b64bec783 = L.circleMarker(
+                [43.58, 1.395],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#86b6efff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_146fa5ed1cb255893ab1837f985de625 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_71d1d0459ff1cce3066faece1d3fc43b = $(`<div id="html_71d1d0459ff1cce3066faece1d3fc43b" style="width: 100.0%; height: 100.0%;"><b>Non identifiée</b><br>222 ROUTE DE SAINT SIMON, TOULOUSE<br>Type de route : Route<br>Gazole 2025 : 1.597 €<br>SP95-E10 2025 : 1.663 €<br>Écart à la médiane : -2.0 cts</div>`)[0];
+                popup_146fa5ed1cb255893ab1837f985de625.setContent(html_71d1d0459ff1cce3066faece1d3fc43b);
+            
+        
+
+        circle_marker_00fb21e429337061cf47f97b64bec783.bindPopup(popup_146fa5ed1cb255893ab1837f985de625)
+        ;
+
+        
+    
+    
+            circle_marker_00fb21e429337061cf47f97b64bec783.bindTooltip(
+                `<div>
+                     Non identifiée : -2.0 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8d14d3c9f8d7f5a3747cf6e7fe4cc608 = L.circleMarker(
+                [43.57416, 1.42405],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e6e5e1ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_7a5c10984a62b47e2bd7c7b7e3b36571 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_ce46409873cca6f37ba6a9495feaf896 = $(`<div id="html_ce46409873cca6f37ba6a9495feaf896" style="width: 100.0%; height: 100.0%;"><b>TotalEnergies</b><br>80 ROUTE D ESPAGNE, TOULOUSE<br>Type de route : Route<br>Gazole 2025 : 1.601 €<br>SP95-E10 2025 : 1.670 €<br>Écart à la médiane : -1.5 cts</div>`)[0];
+                popup_7a5c10984a62b47e2bd7c7b7e3b36571.setContent(html_ce46409873cca6f37ba6a9495feaf896);
+            
+        
+
+        circle_marker_8d14d3c9f8d7f5a3747cf6e7fe4cc608.bindPopup(popup_7a5c10984a62b47e2bd7c7b7e3b36571)
+        ;
+
+        
+    
+    
+            circle_marker_8d14d3c9f8d7f5a3747cf6e7fe4cc608.bindTooltip(
+                `<div>
+                     TotalEnergies : -1.5 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_bb4a24126c1b4273fdceded03eb6a1e8 = L.circleMarker(
+                [43.533484665133, 1.4004176073702],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2a78d6ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_239f998c67dac4a599986725dcefd044 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_cb44f90878546bdfa52b498d8e60aaf9 = $(`<div id="html_cb44f90878546bdfa52b498d8e60aaf9" style="width: 100.0%; height: 100.0%;"><b>Carrefour</b><br>Boulevard de l'Europe, PORTET-SUR-GARONNE<br>Type de route : Route<br>Gazole 2025 : 1.549 €<br>SP95-E10 2025 : 1.622 €<br>Écart à la médiane : -6.5 cts</div>`)[0];
+                popup_239f998c67dac4a599986725dcefd044.setContent(html_cb44f90878546bdfa52b498d8e60aaf9);
+            
+        
+
+        circle_marker_bb4a24126c1b4273fdceded03eb6a1e8.bindPopup(popup_239f998c67dac4a599986725dcefd044)
+        ;
+
+        
+    
+    
+            circle_marker_bb4a24126c1b4273fdceded03eb6a1e8.bindTooltip(
+                `<div>
+                     Carrefour : -6.5 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f633b9fc6fc461c33e4fbcfb4fa57618 = L.circleMarker(
+                [43.518, 1.418],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#eb6834ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_94793d017aa3a4127834d147d2dfee74 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_9c543d7d32309158a75d580ab2aadc61 = $(`<div id="html_9c543d7d32309158a75d580ab2aadc61" style="width: 100.0%; height: 100.0%;"><b>TotalEnergies</b><br>RTE DE LA CROIX FALGARDE, PORTET-SUR-GARONNE<br>Type de route : Route<br>Gazole 2025 : 1.692 €<br>SP95-E10 2025 : 1.761 €<br>Écart à la médiane : +7.7 cts</div>`)[0];
+                popup_94793d017aa3a4127834d147d2dfee74.setContent(html_9c543d7d32309158a75d580ab2aadc61);
+            
+        
+
+        circle_marker_f633b9fc6fc461c33e4fbcfb4fa57618.bindPopup(popup_94793d017aa3a4127834d147d2dfee74)
+        ;
+
+        
+    
+    
+            circle_marker_f633b9fc6fc461c33e4fbcfb4fa57618.bindTooltip(
+                `<div>
+                     TotalEnergies : +7.7 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_296f45c84d22080462c5c7190195d86e = L.circleMarker(
+                [43.543, 1.416],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e6e5e1ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_7027c02ac5612b52211ebc5be7f7ac6c = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_f6d016bb646c98861c98e47e55e2d372 = $(`<div id="html_f6d016bb646c98861c98e47e55e2d372" style="width: 100.0%; height: 100.0%;"><b>Esso</b><br>50 Route d'Espagne, Portet-sur-Garonne<br>Type de route : Route<br>Gazole 2025 : 1.600 €<br>SP95-E10 2025 : 1.667 €<br>Écart à la médiane : -1.7 cts</div>`)[0];
+                popup_7027c02ac5612b52211ebc5be7f7ac6c.setContent(html_f6d016bb646c98861c98e47e55e2d372);
+            
+        
+
+        circle_marker_296f45c84d22080462c5c7190195d86e.bindPopup(popup_7027c02ac5612b52211ebc5be7f7ac6c)
+        ;
+
+        
+    
+    
+            circle_marker_296f45c84d22080462c5c7190195d86e.bindTooltip(
+                `<div>
+                     Esso : -1.7 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_75baacb62584968a71e4dd64a1aaf91c = L.circleMarker(
+                [43.512, 1.369],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#86b6efff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_de0b57159a5f4d3524d9dc86de881cb9 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_cced7d4967e35c5356a4dd63675c4205 = $(`<div id="html_cced7d4967e35c5356a4dd63675c4205" style="width: 100.0%; height: 100.0%;"><b>E.Leclerc</b><br>1 Allée de Fraïxinet, Roques<br>Type de route : Route<br>Gazole 2025 : 1.567 €<br>SP95-E10 2025 : 1.644 €<br>Écart à la médiane : -4.5 cts</div>`)[0];
+                popup_de0b57159a5f4d3524d9dc86de881cb9.setContent(html_cced7d4967e35c5356a4dd63675c4205);
+            
+        
+
+        circle_marker_75baacb62584968a71e4dd64a1aaf91c.bindPopup(popup_de0b57159a5f4d3524d9dc86de881cb9)
+        ;
+
+        
+    
+    
+            circle_marker_75baacb62584968a71e4dd64a1aaf91c.bindTooltip(
+                `<div>
+                     E.Leclerc : -4.5 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_91f8ff16d15ba582879e43ba9d057d41 = L.circleMarker(
+                [43.504, 1.391],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#86b6efff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_c5a9716e5b6b24698f086fd58919a9ba = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_a2934bcf1bd167848db0ff8bb86cd20e = $(`<div id="html_a2934bcf1bd167848db0ff8bb86cd20e" style="width: 100.0%; height: 100.0%;"><b>Non identifiée</b><br>99 Rue d'Andorre, PINSAGUEL<br>Type de route : Route<br>Gazole 2025 : 1.573 €<br>SP95-E10 2025 : 1.640 €<br>Écart à la médiane : -4.4 cts</div>`)[0];
+                popup_c5a9716e5b6b24698f086fd58919a9ba.setContent(html_a2934bcf1bd167848db0ff8bb86cd20e);
+            
+        
+
+        circle_marker_91f8ff16d15ba582879e43ba9d057d41.bindPopup(popup_c5a9716e5b6b24698f086fd58919a9ba)
+        ;
+
+        
+    
+    
+            circle_marker_91f8ff16d15ba582879e43ba9d057d41.bindTooltip(
+                `<div>
+                     Non identifiée : -4.4 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_5097b5b073e9a26938808071665f4fe7 = L.circleMarker(
+                [43.525, 1.399],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#eb6834ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_48a4d051484f8b2dac3041a532e69880 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_54b5f6ac27268eca4392fae999e0351b = $(`<div id="html_54b5f6ac27268eca4392fae999e0351b" style="width: 100.0%; height: 100.0%;"><b>TotalEnergies</b><br>106 ROUTE D'ESPAGNE, Portet-sur-Garonne<br>Type de route : Route<br>Gazole 2025 : 1.688 €<br>SP95-E10 2025 : 1.753 €<br>Écart à la médiane : +7.0 cts</div>`)[0];
+                popup_48a4d051484f8b2dac3041a532e69880.setContent(html_54b5f6ac27268eca4392fae999e0351b);
+            
+        
+
+        circle_marker_5097b5b073e9a26938808071665f4fe7.bindPopup(popup_48a4d051484f8b2dac3041a532e69880)
+        ;
+
+        
+    
+    
+            circle_marker_5097b5b073e9a26938808071665f4fe7.bindTooltip(
+                `<div>
+                     TotalEnergies : +7.0 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_307f433a0b200be9215cf68fcc794956 = L.circleMarker(
+                [43.52465, 1.39971],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#86b6efff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_74f56cbad17f187f68edd8b3f6fcd869 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_a7b718e35c165d54f66cd15b0f52b0fe = $(`<div id="html_a7b718e35c165d54f66cd15b0f52b0fe" style="width: 100.0%; height: 100.0%;"><b>Non identifiée</b><br>43 ROUTE D ESPAGNE, PORTET SUR GARONNE<br>Type de route : Route<br>Gazole 2025 : 1.590 €<br>SP95-E10 2025 : 1.656 €<br>Écart à la médiane : -2.7 cts</div>`)[0];
+                popup_74f56cbad17f187f68edd8b3f6fcd869.setContent(html_a7b718e35c165d54f66cd15b0f52b0fe);
+            
+        
+
+        circle_marker_307f433a0b200be9215cf68fcc794956.bindPopup(popup_74f56cbad17f187f68edd8b3f6fcd869)
+        ;
+
+        
+    
+    
+            circle_marker_307f433a0b200be9215cf68fcc794956.bindTooltip(
+                `<div>
+                     Non identifiée : -2.7 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_cd12ea5ceec7175dc47b766cb6f14b0f = L.circleMarker(
+                [43.609, 1.489],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e6e5e1ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_e8b07bba20ea93f5cb8387c69b98fcaf = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_a5a4b3490de6270e8d4682b3e5838dbd = $(`<div id="html_a5a4b3490de6270e8d4682b3e5838dbd" style="width: 100.0%; height: 100.0%;"><b>Esso</b><br>23 Avenue des Aérostiers, Balma<br>Type de route : Route<br>Gazole 2025 : 1.618 €<br>SP95-E10 2025 : 1.687 €<br>Écart à la médiane : +0.2 cts</div>`)[0];
+                popup_e8b07bba20ea93f5cb8387c69b98fcaf.setContent(html_a5a4b3490de6270e8d4682b3e5838dbd);
+            
+        
+
+        circle_marker_cd12ea5ceec7175dc47b766cb6f14b0f.bindPopup(popup_e8b07bba20ea93f5cb8387c69b98fcaf)
+        ;
+
+        
+    
+    
+            circle_marker_cd12ea5ceec7175dc47b766cb6f14b0f.bindTooltip(
+                `<div>
+                     Esso : +0.2 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_0d155390448c70bc3c7bd50b79b3a06d = L.circleMarker(
+                [43.613, 1.488],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e6e5e1ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_655aaa4293c4349256342386cf3aa0d5 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_9fec0b6e6fed5fbee6f6bfaa0b08d7a8 = $(`<div id="html_9fec0b6e6fed5fbee6f6bfaa0b08d7a8" style="width: 100.0%; height: 100.0%;"><b>Intermarché</b><br>Chemin des Arènes, Balma<br>Type de route : Route<br>Gazole 2025 : 1.637 €<br>SP95-E10 2025 : 1.695 €<br>Écart à la médiane : +1.6 cts</div>`)[0];
+                popup_655aaa4293c4349256342386cf3aa0d5.setContent(html_9fec0b6e6fed5fbee6f6bfaa0b08d7a8);
+            
+        
+
+        circle_marker_0d155390448c70bc3c7bd50b79b3a06d.bindPopup(popup_655aaa4293c4349256342386cf3aa0d5)
+        ;
+
+        
+    
+    
+            circle_marker_0d155390448c70bc3c7bd50b79b3a06d.bindTooltip(
+                `<div>
+                     Intermarché : +1.6 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8430825b9056c332be4ea083d9ff9dcf = L.circleMarker(
+                [43.588337374, 1.5782397856300001],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e6e5e1ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_7789924c8d8c2e6ff91bb2287cfdf617 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_4a9cecce11756c8ce079d5c869fa951b = $(`<div id="html_4a9cecce11756c8ce079d5c869fa951b" style="width: 100.0%; height: 100.0%;"><b>Non identifiée</b><br>Lieu dit MOUSSARD  Route de Castres, FLOURENS<br>Type de route : Route<br>Gazole 2025 : 1.598 €<br>SP95-E10 2025 : 1.690 €<br>Écart à la médiane : -0.6 cts</div>`)[0];
+                popup_7789924c8d8c2e6ff91bb2287cfdf617.setContent(html_4a9cecce11756c8ce079d5c869fa951b);
+            
+        
+
+        circle_marker_8430825b9056c332be4ea083d9ff9dcf.bindPopup(popup_7789924c8d8c2e6ff91bb2287cfdf617)
+        ;
+
+        
+    
+    
+            circle_marker_8430825b9056c332be4ea083d9ff9dcf.bindTooltip(
+                `<div>
+                     Non identifiée : -0.6 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_a1e83023bd1f90d8f0914f27a5b716e9 = L.circleMarker(
+                [43.60917, 1.49007],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e6e5e1ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_09c9e6ad2dae6f83f1f28a4adbaff002 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_982b376f9f527958dfaf03e7a2255dc8 = $(`<div id="html_982b376f9f527958dfaf03e7a2255dc8" style="width: 100.0%; height: 100.0%;"><b>Non identifiée</b><br>43 AVENUE DES AEROSTIERS, BALMA<br>Type de route : Route<br>Gazole 2025 : 1.617 €<br>SP95-E10 2025 : 1.686 €<br>Écart à la médiane : +0.2 cts</div>`)[0];
+                popup_09c9e6ad2dae6f83f1f28a4adbaff002.setContent(html_982b376f9f527958dfaf03e7a2255dc8);
+            
+        
+
+        circle_marker_a1e83023bd1f90d8f0914f27a5b716e9.bindPopup(popup_09c9e6ad2dae6f83f1f28a4adbaff002)
+        ;
+
+        
+    
+    
+            circle_marker_a1e83023bd1f90d8f0914f27a5b716e9.bindTooltip(
+                `<div>
+                     Non identifiée : +0.2 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_0ffbc9758848db841ebd2f3de01eac55 = L.circleMarker(
+                [43.589381615946, 1.5140018981476],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#eb6834ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_7ee4ff7be4443e4e3726172e01eef959 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_116e2ac3f6f266b947a82ea32428e688 = $(`<div id="html_116e2ac3f6f266b947a82ea32428e688" style="width: 100.0%; height: 100.0%;"><b>TotalEnergies</b><br>104 ROUTE DE CASTRES, BALMA<br>Type de route : Route<br>Gazole 2025 : 1.795 €<br>SP95-E10 2025 : 1.782 €<br>Écart à la médiane : +13.9 cts</div>`)[0];
+                popup_7ee4ff7be4443e4e3726172e01eef959.setContent(html_116e2ac3f6f266b947a82ea32428e688);
+            
+        
+
+        circle_marker_0ffbc9758848db841ebd2f3de01eac55.bindPopup(popup_7ee4ff7be4443e4e3726172e01eef959)
+        ;
+
+        
+    
+    
+            circle_marker_0ffbc9758848db841ebd2f3de01eac55.bindTooltip(
+                `<div>
+                     TotalEnergies : +13.9 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_51c233af73b7a1d261863828048b052b = L.circleMarker(
+                [43.707, 1.466],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#86b6efff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_98a3a96666f11b41886b6ffc22eea476 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_c48bf550be25fb809b4ed9a5181cfeb0 = $(`<div id="html_c48bf550be25fb809b4ed9a5181cfeb0" style="width: 100.0%; height: 100.0%;"><b>Carrefour</b><br>2, rue du 8 mai 1945, PECHBONNIEU<br>Type de route : Route<br>Gazole 2025 : 1.573 €<br>SP95-E10 2025 : 1.648 €<br>Écart à la médiane : -4.0 cts</div>`)[0];
+                popup_98a3a96666f11b41886b6ffc22eea476.setContent(html_c48bf550be25fb809b4ed9a5181cfeb0);
+            
+        
+
+        circle_marker_51c233af73b7a1d261863828048b052b.bindPopup(popup_98a3a96666f11b41886b6ffc22eea476)
+        ;
+
+        
+    
+    
+            circle_marker_51c233af73b7a1d261863828048b052b.bindTooltip(
+                `<div>
+                     Carrefour : -4.0 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_cece47018016f712e81ca9182c2c6ae6 = L.circleMarker(
+                [43.708, 1.397],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e6e5e1ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_add938ae391ad3656272d05b37146f73 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_88cad60444d898afceb9c7fca352679b = $(`<div id="html_88cad60444d898afceb9c7fca352679b" style="width: 100.0%; height: 100.0%;"><b>Aire C</b><br>Rue Jean Rouquette, Saint-Alban<br>Type de route : Route<br>Gazole 2025 : 1.613 €<br>SP95-E10 2025 : 1.723 €<br>Écart à la médiane : +1.8 cts</div>`)[0];
+                popup_add938ae391ad3656272d05b37146f73.setContent(html_88cad60444d898afceb9c7fca352679b);
+            
+        
+
+        circle_marker_cece47018016f712e81ca9182c2c6ae6.bindPopup(popup_add938ae391ad3656272d05b37146f73)
+        ;
+
+        
+    
+    
+            circle_marker_cece47018016f712e81ca9182c2c6ae6.bindTooltip(
+                `<div>
+                     Aire C : +1.8 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_bf6bfdd9fca8a51e2c4deaa613f53362 = L.circleMarker(
+                [43.65903142745, 1.45595643018],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e6e5e1ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_757286adb65d65c6ec92e8643c39c2a6 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_89446efe3712c631d7c36a88b134b9d7 = $(`<div id="html_89446efe3712c631d7c36a88b134b9d7" style="width: 100.0%; height: 100.0%;"><b>Auchan</b><br>Rue Benjamin Franklin, LAUNAGUET<br>Type de route : Route<br>Gazole 2025 : 1.611 €<br>SP95-E10 2025 : 1.678 €<br>Écart à la médiane : -0.6 cts</div>`)[0];
+                popup_757286adb65d65c6ec92e8643c39c2a6.setContent(html_89446efe3712c631d7c36a88b134b9d7);
+            
+        
+
+        circle_marker_bf6bfdd9fca8a51e2c4deaa613f53362.bindPopup(popup_757286adb65d65c6ec92e8643c39c2a6)
+        ;
+
+        
+    
+    
+            circle_marker_bf6bfdd9fca8a51e2c4deaa613f53362.bindTooltip(
+                `<div>
+                     Auchan : -0.6 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_a117093d4abd51759800354203cc5ba8 = L.circleMarker(
+                [43.69, 1.452],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#86b6efff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_a9f69eac1a8a9de223a20471002b869a = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_a8f6af1f6ed31df1c14db598b95688fd = $(`<div id="html_a8f6af1f6ed31df1c14db598b95688fd" style="width: 100.0%; height: 100.0%;"><b>Non identifiée</b><br>Route de Béssières, Fonbeauzard<br>Type de route : Route<br>Gazole 2025 : 1.574 €<br>SP95-E10 2025 : 1.650 €<br>Écart à la médiane : -3.8 cts</div>`)[0];
+                popup_a9f69eac1a8a9de223a20471002b869a.setContent(html_a8f6af1f6ed31df1c14db598b95688fd);
+            
+        
+
+        circle_marker_a117093d4abd51759800354203cc5ba8.bindPopup(popup_a9f69eac1a8a9de223a20471002b869a)
+        ;
+
+        
+    
+    
+            circle_marker_a117093d4abd51759800354203cc5ba8.bindTooltip(
+                `<div>
+                     Non identifiée : -3.8 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_00a5b12362de97ad1e5e2462dd07d8e4 = L.circleMarker(
+                [43.67109, 1.42731],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e6e5e1ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_b9e33b30e58230fac2be50e6a4a2528f = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_004bed85dedfbddc4ed4a43615513921 = $(`<div id="html_004bed85dedfbddc4ed4a43615513921" style="width: 100.0%; height: 100.0%;"><b>Non identifiée</b><br>16 AVENUE DE FRONTON, Saint-Alban<br>Type de route : Route<br>Gazole 2025 : 1.598 €<br>SP95-E10 2025 : 1.666 €<br>Écart à la médiane : -1.8 cts</div>`)[0];
+                popup_b9e33b30e58230fac2be50e6a4a2528f.setContent(html_004bed85dedfbddc4ed4a43615513921);
+            
+        
+
+        circle_marker_00a5b12362de97ad1e5e2462dd07d8e4.bindPopup(popup_b9e33b30e58230fac2be50e6a4a2528f)
+        ;
+
+        
+    
+    
+            circle_marker_00a5b12362de97ad1e5e2462dd07d8e4.bindTooltip(
+                `<div>
+                     Non identifiée : -1.8 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_70490a2ab889bdda4759063cf1e5a30b = L.circleMarker(
+                [43.66, 1.431],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e6e5e1ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_9953f53b3e6ee14f2a9987fd52584e20 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_9388f3e6bdaad6de17dded38da3948f7 = $(`<div id="html_9388f3e6bdaad6de17dded38da3948f7" style="width: 100.0%; height: 100.0%;"><b>Esso</b><br>15 ROUTE DE FRONTON, Aucamville<br>Type de route : Route<br>Gazole 2025 : 1.609 €<br>SP95-E10 2025 : 1.683 €<br>Écart à la médiane : -0.4 cts</div>`)[0];
+                popup_9953f53b3e6ee14f2a9987fd52584e20.setContent(html_9388f3e6bdaad6de17dded38da3948f7);
+            
+        
+
+        circle_marker_70490a2ab889bdda4759063cf1e5a30b.bindPopup(popup_9953f53b3e6ee14f2a9987fd52584e20)
+        ;
+
+        
+    
+    
+            circle_marker_70490a2ab889bdda4759063cf1e5a30b.bindTooltip(
+                `<div>
+                     Esso : -0.4 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_474377645177016c38f6e1cf6ea6006e = L.circleMarker(
+                [43.721, 1.415],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#86b6efff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_9505009300dc9f2eab01ae7010b523be = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_5a0a68e26403f097872bdfc84d74cb31 = $(`<div id="html_5a0a68e26403f097872bdfc84d74cb31" style="width: 100.0%; height: 100.0%;"><b>Système U</b><br>Avenue du Bruguet, Bruguières<br>Type de route : Route<br>Gazole 2025 : 1.574 €<br>SP95-E10 2025 : 1.651 €<br>Écart à la médiane : -3.7 cts</div>`)[0];
+                popup_9505009300dc9f2eab01ae7010b523be.setContent(html_5a0a68e26403f097872bdfc84d74cb31);
+            
+        
+
+        circle_marker_474377645177016c38f6e1cf6ea6006e.bindPopup(popup_9505009300dc9f2eab01ae7010b523be)
+        ;
+
+        
+    
+    
+            circle_marker_474377645177016c38f6e1cf6ea6006e.bindTooltip(
+                `<div>
+                     Système U : -3.7 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_87d417bfad9c045e558d86df49b0591c = L.circleMarker(
+                [43.71359, 1.41736],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#86b6efff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_3af921d68f86388f18c003f157628f23 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_f9837314a874e75e08d803060faa227b = $(`<div id="html_f9837314a874e75e08d803060faa227b" style="width: 100.0%; height: 100.0%;"><b>Non identifiée</b><br>Rue de la Gravette, GRATENTOUR<br>Type de route : Route<br>Gazole 2025 : 1.577 €<br>SP95-E10 2025 : 1.649 €<br>Écart à la médiane : -3.7 cts</div>`)[0];
+                popup_3af921d68f86388f18c003f157628f23.setContent(html_f9837314a874e75e08d803060faa227b);
+            
+        
+
+        circle_marker_87d417bfad9c045e558d86df49b0591c.bindPopup(popup_3af921d68f86388f18c003f157628f23)
+        ;
+
+        
+    
+    
+            circle_marker_87d417bfad9c045e558d86df49b0591c.bindTooltip(
+                `<div>
+                     Non identifiée : -3.7 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_456bb5032ac88a808ec53ae60311aada = L.circleMarker(
+                [43.72428, 1.41013],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#eb6834ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_a7dd439b4e714a2f17a72e5b2a2f2adf = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_e3bcd2c54e4d1e456ebaa7514955c8f5 = $(`<div id="html_e3bcd2c54e4d1e456ebaa7514955c8f5" style="width: 100.0%; height: 100.0%;"><b>TotalEnergies</b><br>38 RTE DE TOULOUSE, BRUGUIERES<br>Type de route : Route<br>Gazole 2025 : 1.692 €<br>SP95-E10 2025 : 1.758 €<br>Écart à la médiane : +7.5 cts</div>`)[0];
+                popup_a7dd439b4e714a2f17a72e5b2a2f2adf.setContent(html_e3bcd2c54e4d1e456ebaa7514955c8f5);
+            
+        
+
+        circle_marker_456bb5032ac88a808ec53ae60311aada.bindPopup(popup_a7dd439b4e714a2f17a72e5b2a2f2adf)
+        ;
+
+        
+    
+    
+            circle_marker_456bb5032ac88a808ec53ae60311aada.bindTooltip(
+                `<div>
+                     TotalEnergies : +7.5 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_83d16c3d055a83723464f4718354061c = L.circleMarker(
+                [43.721, 1.399],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#86b6efff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_c0cbba0f6798aa0ba6ceb2ee3660476c = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_685d4429611c81be758cb59e5744db11 = $(`<div id="html_685d4429611c81be758cb59e5744db11" style="width: 100.0%; height: 100.0%;"><b>E.Leclerc</b><br>5 rue Gutenberg, Bruguières<br>Type de route : Route<br>Gazole 2025 : 1.575 €<br>SP95-E10 2025 : 1.652 €<br>Écart à la médiane : -3.6 cts</div>`)[0];
+                popup_c0cbba0f6798aa0ba6ceb2ee3660476c.setContent(html_685d4429611c81be758cb59e5744db11);
+            
+        
+
+        circle_marker_83d16c3d055a83723464f4718354061c.bindPopup(popup_c0cbba0f6798aa0ba6ceb2ee3660476c)
+        ;
+
+        
+    
+    
+            circle_marker_83d16c3d055a83723464f4718354061c.bindTooltip(
+                `<div>
+                     E.Leclerc : -3.6 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_81631ad5fe65f2268fe3f98206f7e914 = L.circleMarker(
+                [43.706, 1.378],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#86b6efff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_c4331063bc3914480ec55506b7bf7ffc = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_924b4b1e78d44cbb231b6c9576f612ae = $(`<div id="html_924b4b1e78d44cbb231b6c9576f612ae" style="width: 100.0%; height: 100.0%;"><b>Système U</b><br>Lieu dit l'Espagnoulet, Gagnac-sur-Garonne<br>Type de route : Route<br>Gazole 2025 : 1.569 €<br>SP95-E10 2025 : 1.652 €<br>Écart à la médiane : -4.0 cts</div>`)[0];
+                popup_c4331063bc3914480ec55506b7bf7ffc.setContent(html_924b4b1e78d44cbb231b6c9576f612ae);
+            
+        
+
+        circle_marker_81631ad5fe65f2268fe3f98206f7e914.bindPopup(popup_c4331063bc3914480ec55506b7bf7ffc)
+        ;
+
+        
+    
+    
+            circle_marker_81631ad5fe65f2268fe3f98206f7e914.bindTooltip(
+                `<div>
+                     Système U : -4.0 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_5d48c47c5ddb8bcd7c953d3d24dd04ad = L.circleMarker(
+                [43.687548, 1.404265747],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#86b6efff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_783d4ef95ebd0d6cd3287d0c1b4da22c = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_fa27935a001ebebebd0fb14da2da4fcb = $(`<div id="html_fa27935a001ebebebd0fb14da2da4fcb" style="width: 100.0%; height: 100.0%;"><b>Non identifiée</b><br>RUE DES USINESCC TOULOUSE NORD, FENOUILLET<br>Type de route : Route<br>Gazole 2025 : 1.574 €<br>SP95-E10 2025 : 1.657 €<br>Écart à la médiane : -3.4 cts</div>`)[0];
+                popup_783d4ef95ebd0d6cd3287d0c1b4da22c.setContent(html_fa27935a001ebebebd0fb14da2da4fcb);
+            
+        
+
+        circle_marker_5d48c47c5ddb8bcd7c953d3d24dd04ad.bindPopup(popup_783d4ef95ebd0d6cd3287d0c1b4da22c)
+        ;
+
+        
+    
+    
+            circle_marker_5d48c47c5ddb8bcd7c953d3d24dd04ad.bindTooltip(
+                `<div>
+                     Non identifiée : -3.4 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_4e026001bbb0f3631c52c5fe5f05652c = L.circleMarker(
+                [43.57552, 1.31989],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e6e5e1ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_55120b6222d2d08f12e096c36f5f58b6 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_e6807473bca2dadc23b118001502170d = $(`<div id="html_e6807473bca2dadc23b118001502170d" style="width: 100.0%; height: 100.0%;"><b>Non identifiée</b><br>Route de Tarbes, Tournefeuille<br>Type de route : Route<br>Gazole 2025 : 1.630 €<br>SP95-E10 2025 : 1.700 €<br>Écart à la médiane : +1.5 cts</div>`)[0];
+                popup_55120b6222d2d08f12e096c36f5f58b6.setContent(html_e6807473bca2dadc23b118001502170d);
+            
+        
+
+        circle_marker_4e026001bbb0f3631c52c5fe5f05652c.bindPopup(popup_55120b6222d2d08f12e096c36f5f58b6)
+        ;
+
+        
+    
+    
+            circle_marker_4e026001bbb0f3631c52c5fe5f05652c.bindTooltip(
+                `<div>
+                     Non identifiée : +1.5 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_972c99b20ea87c84f0512d1ff3660fb6 = L.circleMarker(
+                [43.582, 1.344],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e6e5e1ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_fa0709a9ac7b6b3915b88d6876aec84c = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_8829cdd5d74179cab8a5d5e679183dc7 = $(`<div id="html_8829cdd5d74179cab8a5d5e679183dc7" style="width: 100.0%; height: 100.0%;"><b>Auchan</b><br>5 Rue Bertrand Panouse, TOURNEFEUILLE<br>Type de route : Route<br>Gazole 2025 : 1.631 €<br>SP95-E10 2025 : 1.699 €<br>Écart à la médiane : +1.5 cts</div>`)[0];
+                popup_fa0709a9ac7b6b3915b88d6876aec84c.setContent(html_8829cdd5d74179cab8a5d5e679183dc7);
+            
+        
+
+        circle_marker_972c99b20ea87c84f0512d1ff3660fb6.bindPopup(popup_fa0709a9ac7b6b3915b88d6876aec84c)
+        ;
+
+        
+    
+    
+            circle_marker_972c99b20ea87c84f0512d1ff3660fb6.bindTooltip(
+                `<div>
+                     Auchan : +1.5 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_c2e363df3bd1d24005a088be250a8c10 = L.circleMarker(
+                [43.578, 1.327],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#eb6834ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_47a99306beda023d9981d01b2cee0da4 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_f797d4dab74fb485d0c2c71cae818173 = $(`<div id="html_f797d4dab74fb485d0c2c71cae818173" style="width: 100.0%; height: 100.0%;"><b>TotalEnergies</b><br>CENTRE COMMERCIAL BORDENEUVE, TOURNEFEUILLE<br>Type de route : Route<br>Gazole 2025 : 1.722 €<br>SP95-E10 2025 : 1.781 €<br>Écart à la médiane : +10.1 cts</div>`)[0];
+                popup_47a99306beda023d9981d01b2cee0da4.setContent(html_f797d4dab74fb485d0c2c71cae818173);
+            
+        
+
+        circle_marker_c2e363df3bd1d24005a088be250a8c10.bindPopup(popup_47a99306beda023d9981d01b2cee0da4)
+        ;
+
+        
+    
+    
+            circle_marker_c2e363df3bd1d24005a088be250a8c10.bindTooltip(
+                `<div>
+                     TotalEnergies : +10.1 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_fe55c882d787766ac18a66afc85673d7 = L.circleMarker(
+                [43.58635099999999, 1.3479720000000002],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#eb6834ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_4244bc6bc0887a9206908fe71b99c358 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_215441ed4ff1e2ef28dd8ed77ff05b6c = $(`<div id="html_215441ed4ff1e2ef28dd8ed77ff05b6c" style="width: 100.0%; height: 100.0%;"><b>Avia</b><br>20 boulevard Vincent Auriol, TOURNEFEUILLE<br>Type de route : Route<br>Gazole 2025 : 1.706 €<br>SP95-E10 2025 : 1.752 €<br>Écart à la médiane : +7.9 cts</div>`)[0];
+                popup_4244bc6bc0887a9206908fe71b99c358.setContent(html_215441ed4ff1e2ef28dd8ed77ff05b6c);
+            
+        
+
+        circle_marker_fe55c882d787766ac18a66afc85673d7.bindPopup(popup_4244bc6bc0887a9206908fe71b99c358)
+        ;
+
+        
+    
+    
+            circle_marker_fe55c882d787766ac18a66afc85673d7.bindTooltip(
+                `<div>
+                     Avia : +7.9 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_506f040b8c40d5dcfd2839f8381cc17f = L.circleMarker(
+                [43.669, 1.516],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#86b6efff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_1ecdbb98c6efd6f6a68d9f49f88963f6 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_68516ffdc71596d0fc30eaf5fa6e7d1c = $(`<div id="html_68516ffdc71596d0fc30eaf5fa6e7d1c" style="width: 100.0%; height: 100.0%;"><b>E.Leclerc</b><br>Route d'Albi - RN 88, ROUFFIAC-TOLOSAN<br>Type de route : Route<br>Gazole 2025 : 1.590 €<br>SP95-E10 2025 : 1.662 €<br>Écart à la médiane : -2.4 cts</div>`)[0];
+                popup_1ecdbb98c6efd6f6a68d9f49f88963f6.setContent(html_68516ffdc71596d0fc30eaf5fa6e7d1c);
+            
+        
+
+        circle_marker_506f040b8c40d5dcfd2839f8381cc17f.bindPopup(popup_1ecdbb98c6efd6f6a68d9f49f88963f6)
+        ;
+
+        
+    
+    
+            circle_marker_506f040b8c40d5dcfd2839f8381cc17f.bindTooltip(
+                `<div>
+                     E.Leclerc : -2.4 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_7b65f909d24a76c01a806ce0c10c82d3 = L.circleMarker(
+                [43.643, 1.467],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#eb6834ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_0a9770fb918188248d6e3274e9dcad04 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_2b25f76287dbb720c6b2aee9bbf5b335 = $(`<div id="html_2b25f76287dbb720c6b2aee9bbf5b335" style="width: 100.0%; height: 100.0%;"><b>TotalEnergies</b><br>211 Route d'Albi, Toulouse<br>Type de route : Route<br>Gazole 2025 : 1.714 €<br>SP95-E10 2025 : 1.778 €<br>Écart à la médiane : +9.6 cts</div>`)[0];
+                popup_0a9770fb918188248d6e3274e9dcad04.setContent(html_2b25f76287dbb720c6b2aee9bbf5b335);
+            
+        
+
+        circle_marker_7b65f909d24a76c01a806ce0c10c82d3.bindPopup(popup_0a9770fb918188248d6e3274e9dcad04)
+        ;
+
+        
+    
+    
+            circle_marker_7b65f909d24a76c01a806ce0c10c82d3.bindTooltip(
+                `<div>
+                     TotalEnergies : +9.6 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_049ad8368cf814905bcd864d72420a79 = L.circleMarker(
+                [43.64, 1.429],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e6e5e1ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_715314e24858c35ad6120257392c4ec6 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_a71671cd8e5228e284a419baf0997616 = $(`<div id="html_a71671cd8e5228e284a419baf0997616" style="width: 100.0%; height: 100.0%;"><b>Esso</b><br>168 Avenue des États-Unis, Toulouse<br>Type de route : Route<br>Gazole 2025 : 1.600 €<br>SP95-E10 2025 : 1.669 €<br>Écart à la médiane : -1.6 cts</div>`)[0];
+                popup_715314e24858c35ad6120257392c4ec6.setContent(html_a71671cd8e5228e284a419baf0997616);
+            
+        
+
+        circle_marker_049ad8368cf814905bcd864d72420a79.bindPopup(popup_715314e24858c35ad6120257392c4ec6)
+        ;
+
+        
+    
+    
+            circle_marker_049ad8368cf814905bcd864d72420a79.bindTooltip(
+                `<div>
+                     Esso : -1.6 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_6eb990c6b024f3c10117ece204f37917 = L.circleMarker(
+                [43.654, 1.424],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#eb6834ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_99b7eb7a18d6d41e84c9187293b121b0 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_854f169d627fe38c0eae06ca104f3cff = $(`<div id="html_854f169d627fe38c0eae06ca104f3cff" style="width: 100.0%; height: 100.0%;"><b>Non identifiée</b><br>AVENUE DES ETATS-UNIS, TOULOUSE<br>Type de route : Route<br>Gazole 2025 : 1.721 €<br>SP95-E10 2025 : 1.783 €<br>Écart à la médiane : +10.2 cts</div>`)[0];
+                popup_99b7eb7a18d6d41e84c9187293b121b0.setContent(html_854f169d627fe38c0eae06ca104f3cff);
+            
+        
+
+        circle_marker_6eb990c6b024f3c10117ece204f37917.bindPopup(popup_99b7eb7a18d6d41e84c9187293b121b0)
+        ;
+
+        
+    
+    
+            circle_marker_6eb990c6b024f3c10117ece204f37917.bindTooltip(
+                `<div>
+                     Non identifiée : +10.2 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_292417e3937b51e43d8bc540b44f4370 = L.circleMarker(
+                [43.619, 1.423],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#eb6834ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_bc2853dd42102a12b4f8254de72f838d = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_5abf0c0af5ebd943820bb1fdb12671a2 = $(`<div id="html_5abf0c0af5ebd943820bb1fdb12671a2" style="width: 100.0%; height: 100.0%;"><b>TotalEnergies</b><br>103 BOULEVARD DE SUISSE, TOULOUSE<br>Type de route : Route<br>Gazole 2025 : 1.704 €<br>SP95-E10 2025 : 1.767 €<br>Écart à la médiane : +8.6 cts</div>`)[0];
+                popup_bc2853dd42102a12b4f8254de72f838d.setContent(html_5abf0c0af5ebd943820bb1fdb12671a2);
+            
+        
+
+        circle_marker_292417e3937b51e43d8bc540b44f4370.bindPopup(popup_bc2853dd42102a12b4f8254de72f838d)
+        ;
+
+        
+    
+    
+            circle_marker_292417e3937b51e43d8bc540b44f4370.bindTooltip(
+                `<div>
+                     TotalEnergies : +8.6 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_d28872eb36b83c2497000c51eb27201c = L.circleMarker(
+                [43.615752278442, 1.4211219560111],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e6e5e1ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_5146876c3204b5457c335bd144d8ecdc = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_ee61b224f62f6cc04c9c91f15e96ed8d = $(`<div id="html_ee61b224f62f6cc04c9c91f15e96ed8d" style="width: 100.0%; height: 100.0%;"><b>TotalEnergies</b><br>55 BOULEVARD DE SUISSE, TOULOUSE<br>Type de route : Route<br>Gazole 2025 : 1.599 €<br>SP95-E10 2025 : 1.668 €<br>Écart à la médiane : -1.7 cts</div>`)[0];
+                popup_5146876c3204b5457c335bd144d8ecdc.setContent(html_ee61b224f62f6cc04c9c91f15e96ed8d);
+            
+        
+
+        circle_marker_d28872eb36b83c2497000c51eb27201c.bindPopup(popup_5146876c3204b5457c335bd144d8ecdc)
+        ;
+
+        
+    
+    
+            circle_marker_d28872eb36b83c2497000c51eb27201c.bindTooltip(
+                `<div>
+                     TotalEnergies : -1.7 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ce121a82a7827537f2df389aae693ba2 = L.circleMarker(
+                [43.658, 1.419],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e6e5e1ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_5a45287e95e6eabca94c07fb1c0790a9 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_2d5c599d27ad64ef94d744336078e378 = $(`<div id="html_2d5c599d27ad64ef94d744336078e378" style="width: 100.0%; height: 100.0%;"><b>TotalEnergies</b><br>353 AVENUE DES ETATS UNIS, TOULOUSE<br>Type de route : Route<br>Gazole 2025 : 1.599 €<br>SP95-E10 2025 : 1.674 €<br>Écart à la médiane : -1.4 cts</div>`)[0];
+                popup_5a45287e95e6eabca94c07fb1c0790a9.setContent(html_2d5c599d27ad64ef94d744336078e378);
+            
+        
+
+        circle_marker_ce121a82a7827537f2df389aae693ba2.bindPopup(popup_5a45287e95e6eabca94c07fb1c0790a9)
+        ;
+
+        
+    
+    
+            circle_marker_ce121a82a7827537f2df389aae693ba2.bindTooltip(
+                `<div>
+                     TotalEnergies : -1.4 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_80a856a37420f634d4668872b1f532a7 = L.circleMarker(
+                [43.649, 1.484],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#eb6834ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_cc46e555b5bc8b53ff1643125e1a62b0 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_1b7cec344fdb8b152a2904e7ec5ee08c = $(`<div id="html_1b7cec344fdb8b152a2904e7ec5ee08c" style="width: 100.0%; height: 100.0%;"><b>TotalEnergies</b><br>AVENUE DE BAYONNE, L'UNION<br>Type de route : Route<br>Gazole 2025 : 1.723 €<br>SP95-E10 2025 : 1.782 €<br>Écart à la médiane : +10.2 cts</div>`)[0];
+                popup_cc46e555b5bc8b53ff1643125e1a62b0.setContent(html_1b7cec344fdb8b152a2904e7ec5ee08c);
+            
+        
+
+        circle_marker_80a856a37420f634d4668872b1f532a7.bindPopup(popup_cc46e555b5bc8b53ff1643125e1a62b0)
+        ;
+
+        
+    
+    
+            circle_marker_80a856a37420f634d4668872b1f532a7.bindTooltip(
+                `<div>
+                     TotalEnergies : +10.2 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_763bfd222264d11cc42de2ebf36adb0e = L.circleMarker(
+                [43.649, 1.506],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f4a582ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_1dcb0e568cd32aace2b01e88acbcdc71 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_f0ec3ce417e496aa37eebeb7c1fd1c07 = $(`<div id="html_f0ec3ce417e496aa37eebeb7c1fd1c07" style="width: 100.0%; height: 100.0%;"><b>Non identifiée</b><br>6 AVENUE DE DANCELLE, SAINT-JEAN<br>Type de route : Route<br>Gazole 2025 : 1.653 €<br>SP95-E10 2025 : 1.706 €<br>Écart à la médiane : +2.9 cts</div>`)[0];
+                popup_1dcb0e568cd32aace2b01e88acbcdc71.setContent(html_f0ec3ce417e496aa37eebeb7c1fd1c07);
+            
+        
+
+        circle_marker_763bfd222264d11cc42de2ebf36adb0e.bindPopup(popup_1dcb0e568cd32aace2b01e88acbcdc71)
+        ;
+
+        
+    
+    
+            circle_marker_763bfd222264d11cc42de2ebf36adb0e.bindTooltip(
+                `<div>
+                     Non identifiée : +2.9 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_fb3f72fc477aae579edc07b575ff720c = L.circleMarker(
+                [43.65517, 1.47066],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f4a582ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_98aeb90fecc74efdecd2a1f43ea5d815 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_0d8f62a72e163e01e2dc9d5377fb1c6e = $(`<div id="html_0d8f62a72e163e01e2dc9d5377fb1c6e" style="width: 100.0%; height: 100.0%;"><b>Intermarché</b><br>42 Route de Bessières, L'UNION<br>Type de route : Route<br>Gazole 2025 : 1.658 €<br>SP95-E10 2025 : 1.710 €<br>Écart à la médiane : +3.4 cts</div>`)[0];
+                popup_98aeb90fecc74efdecd2a1f43ea5d815.setContent(html_0d8f62a72e163e01e2dc9d5377fb1c6e);
+            
+        
+
+        circle_marker_fb3f72fc477aae579edc07b575ff720c.bindPopup(popup_98aeb90fecc74efdecd2a1f43ea5d815)
+        ;
+
+        
+    
+    
+            circle_marker_fb3f72fc477aae579edc07b575ff720c.bindTooltip(
+                `<div>
+                     Intermarché : +3.4 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_943cb8dc9ed0995e4779c3a74bbc9bc4 = L.circleMarker(
+                [43.525, 1.323],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e6e5e1ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_4351a1da1050092a76188598d24ffcb5 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_8ea88fa95affc6f7c69aa460412256d4 = $(`<div id="html_8ea88fa95affc6f7c69aa460412256d4" style="width: 100.0%; height: 100.0%;"><b>Carrefour</b><br>CHEMIN MAILHEAUX, FROUZINS<br>Type de route : Route<br>Gazole 2025 : 1.602 €<br>SP95-E10 2025 : 1.679 €<br>Écart à la médiane : -0.9 cts</div>`)[0];
+                popup_4351a1da1050092a76188598d24ffcb5.setContent(html_8ea88fa95affc6f7c69aa460412256d4);
+            
+        
+
+        circle_marker_943cb8dc9ed0995e4779c3a74bbc9bc4.bindPopup(popup_4351a1da1050092a76188598d24ffcb5)
+        ;
+
+        
+    
+    
+            circle_marker_943cb8dc9ed0995e4779c3a74bbc9bc4.bindTooltip(
+                `<div>
+                     Carrefour : -0.9 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_3ea322a29bfab30548b96c911004290e = L.circleMarker(
+                [43.529, 1.35],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e6e5e1ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_042ed87aa5f0d4f7a5956dbccf43e4bf = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_3874acfd93c8ebf29cc7822f3048bc18 = $(`<div id="html_3874acfd93c8ebf29cc7822f3048bc18" style="width: 100.0%; height: 100.0%;"><b>Intermarché</b><br>34 Rue de la Vimona, CUGNAUX<br>Type de route : Route<br>Gazole 2025 : 1.608 €<br>SP95-E10 2025 : 1.680 €<br>Écart à la médiane : -0.6 cts</div>`)[0];
+                popup_042ed87aa5f0d4f7a5956dbccf43e4bf.setContent(html_3874acfd93c8ebf29cc7822f3048bc18);
+            
+        
+
+        circle_marker_3ea322a29bfab30548b96c911004290e.bindPopup(popup_042ed87aa5f0d4f7a5956dbccf43e4bf)
+        ;
+
+        
+    
+    
+            circle_marker_3ea322a29bfab30548b96c911004290e.bindTooltip(
+                `<div>
+                     Intermarché : -0.6 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_2e8a6a1995b4d16241d9dd171fb45be6 = L.circleMarker(
+                [43.546, 1.353],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e6e5e1ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_42dd774fb6077eb3f8a0abd5a1150abe = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_7dabd3719008ea089627b7ce733c7bd9 = $(`<div id="html_7dabd3719008ea089627b7ce733c7bd9" style="width: 100.0%; height: 100.0%;"><b>Non identifiée</b><br>Rue Henry Gladi, CUGNAUX<br>Type de route : Route<br>Gazole 2025 : 1.595 €<br>SP95-E10 2025 : 1.672 €<br>Écart à la médiane : -1.7 cts</div>`)[0];
+                popup_42dd774fb6077eb3f8a0abd5a1150abe.setContent(html_7dabd3719008ea089627b7ce733c7bd9);
+            
+        
+
+        circle_marker_2e8a6a1995b4d16241d9dd171fb45be6.bindPopup(popup_42dd774fb6077eb3f8a0abd5a1150abe)
+        ;
+
+        
+    
+    
+            circle_marker_2e8a6a1995b4d16241d9dd171fb45be6.bindTooltip(
+                `<div>
+                     Non identifiée : -1.7 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_824629ce39d4f4088b05147a0e3ccbd2 = L.circleMarker(
+                [43.524, 1.343],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e6e5e1ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_54fb5e87d40082015b0e890f561a2c34 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_cc549fee91c78e786344d8af242a114b = $(`<div id="html_cc549fee91c78e786344d8af242a114b" style="width: 100.0%; height: 100.0%;"><b>Non identifiée</b><br>8 AVENUE DE FRANCAZAL, Villeneuve-Tolosane<br>Type de route : Route<br>Gazole 2025 : 1.623 €<br>SP95-E10 2025 : 1.689 €<br>Écart à la médiane : +0.6 cts</div>`)[0];
+                popup_54fb5e87d40082015b0e890f561a2c34.setContent(html_cc549fee91c78e786344d8af242a114b);
+            
+        
+
+        circle_marker_824629ce39d4f4088b05147a0e3ccbd2.bindPopup(popup_54fb5e87d40082015b0e890f561a2c34)
+        ;
+
+        
+    
+    
+            circle_marker_824629ce39d4f4088b05147a0e3ccbd2.bindTooltip(
+                `<div>
+                     Non identifiée : +0.6 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ffade4cd5319be4157af985877e5941f = L.circleMarker(
+                [43.589, 1.4],
+                {"bubblingMouseEvents": true, "color": "#0b0b0b", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#eb6834ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_f5fce0a8c61df73b571c107a2c524e8a = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_0c9e916e186a655b699aa8f24bb5bc1e = $(`<div id="html_0c9e916e186a655b699aa8f24bb5bc1e" style="width: 100.0%; height: 100.0%;"><b>Non identifiée</b><br>5 AVENUE DU GOUPE MORHANGE, TOULOUSE<br>Type de route : Autoroute<br>Gazole 2025 : 1.704 €<br>SP95-E10 2025 : 1.768 €<br>Écart à la médiane : +8.6 cts</div>`)[0];
+                popup_f5fce0a8c61df73b571c107a2c524e8a.setContent(html_0c9e916e186a655b699aa8f24bb5bc1e);
+            
+        
+
+        circle_marker_ffade4cd5319be4157af985877e5941f.bindPopup(popup_f5fce0a8c61df73b571c107a2c524e8a)
+        ;
+
+        
+    
+    
+            circle_marker_ffade4cd5319be4157af985877e5941f.bindTooltip(
+                `<div>
+                     Non identifiée : +8.6 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_238b01e341013e9261192e452601978d = L.circleMarker(
+                [43.59914, 1.41729],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#eb6834ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_8a85c40bfc8f5828a3af68acb36039d8 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_f4397c59e745595b4e02b901ea269915 = $(`<div id="html_f4397c59e745595b4e02b901ea269915" style="width: 100.0%; height: 100.0%;"><b>TotalEnergies</b><br>104 AV GDE BRETAGNE, TOULOUSE<br>Type de route : Route<br>Gazole 2025 : 1.705 €<br>SP95-E10 2025 : 1.768 €<br>Écart à la médiane : +8.7 cts</div>`)[0];
+                popup_8a85c40bfc8f5828a3af68acb36039d8.setContent(html_f4397c59e745595b4e02b901ea269915);
+            
+        
+
+        circle_marker_238b01e341013e9261192e452601978d.bindPopup(popup_8a85c40bfc8f5828a3af68acb36039d8)
+        ;
+
+        
+    
+    
+            circle_marker_238b01e341013e9261192e452601978d.bindTooltip(
+                `<div>
+                     TotalEnergies : +8.7 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_516fec1e1d980bfdbd0fd14cb1b3e060 = L.circleMarker(
+                [43.601, 1.399],
+                {"bubblingMouseEvents": true, "color": "#0b0b0b", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#eb6834ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_1427b308f995352e6ee9045472205dd3 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_6e3116f8eba1329a6d6f12e657cedbf6 = $(`<div id="html_6e3116f8eba1329a6d6f12e657cedbf6" style="width: 100.0%; height: 100.0%;"><b>TotalEnergies</b><br>6 AVENUE DU GOUPE MORHANGE, TOULOUSE<br>Type de route : Autoroute<br>Gazole 2025 : 1.702 €<br>SP95-E10 2025 : 1.766 €<br>Écart à la médiane : +8.4 cts</div>`)[0];
+                popup_1427b308f995352e6ee9045472205dd3.setContent(html_6e3116f8eba1329a6d6f12e657cedbf6);
+            
+        
+
+        circle_marker_516fec1e1d980bfdbd0fd14cb1b3e060.bindPopup(popup_1427b308f995352e6ee9045472205dd3)
+        ;
+
+        
+    
+    
+            circle_marker_516fec1e1d980bfdbd0fd14cb1b3e060.bindTooltip(
+                `<div>
+                     TotalEnergies : +8.4 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ce9ae9c69467cec496a62031abd1bef2 = L.circleMarker(
+                [43.521, 1.512],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#86b6efff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_713055339dfdc5c82a3970be89774815 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_74d281f92f0b1c0e261e226d2f7fdeda = $(`<div id="html_74d281f92f0b1c0e261e226d2f7fdeda" style="width: 100.0%; height: 100.0%;"><b>Intermarché</b><br>Route de Labège, CASTANET-TOLOSAN<br>Type de route : Route<br>Gazole 2025 : 1.585 €<br>SP95-E10 2025 : 1.654 €<br>Écart à la médiane : -3.0 cts</div>`)[0];
+                popup_713055339dfdc5c82a3970be89774815.setContent(html_74d281f92f0b1c0e261e226d2f7fdeda);
+            
+        
+
+        circle_marker_ce9ae9c69467cec496a62031abd1bef2.bindPopup(popup_713055339dfdc5c82a3970be89774815)
+        ;
+
+        
+    
+    
+            circle_marker_ce9ae9c69467cec496a62031abd1bef2.bindTooltip(
+                `<div>
+                     Intermarché : -3.0 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_b8fc0103f46f40364084ea718d3d33bc = L.circleMarker(
+                [43.575, 1.49],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#eb6834ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_e8c6f325308a9668bf414f0888c6c091 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_1933ca8b69e517b790958f89abb04610 = $(`<div id="html_1933ca8b69e517b790958f89abb04610" style="width: 100.0%; height: 100.0%;"><b>Esso</b><br>68 Route de Revel, TOULOUSE<br>Type de route : Route<br>Gazole 2025 : 1.699 €<br>SP95-E10 2025 : 1.771 €<br>Écart à la médiane : +8.5 cts</div>`)[0];
+                popup_e8c6f325308a9668bf414f0888c6c091.setContent(html_1933ca8b69e517b790958f89abb04610);
+            
+        
+
+        circle_marker_b8fc0103f46f40364084ea718d3d33bc.bindPopup(popup_e8c6f325308a9668bf414f0888c6c091)
+        ;
+
+        
+    
+    
+            circle_marker_b8fc0103f46f40364084ea718d3d33bc.bindTooltip(
+                `<div>
+                     Esso : +8.5 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_2458ccfa92f11316053663bcdfdf3740 = L.circleMarker(
+                [43.566, 1.459],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e6e5e1ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_4c0ad2d770a129c5ab79bd9f4027c00a = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_1779d7f983464adc8396dbda527aa4b2 = $(`<div id="html_1779d7f983464adc8396dbda527aa4b2" style="width: 100.0%; height: 100.0%;"><b>Esso</b><br>105 Route de Narbonne, Toulouse<br>Type de route : Route<br>Gazole 2025 : 1.614 €<br>SP95-E10 2025 : 1.684 €<br>Écart à la médiane : -0.1 cts</div>`)[0];
+                popup_4c0ad2d770a129c5ab79bd9f4027c00a.setContent(html_1779d7f983464adc8396dbda527aa4b2);
+            
+        
+
+        circle_marker_2458ccfa92f11316053663bcdfdf3740.bindPopup(popup_4c0ad2d770a129c5ab79bd9f4027c00a)
+        ;
+
+        
+    
+    
+            circle_marker_2458ccfa92f11316053663bcdfdf3740.bindTooltip(
+                `<div>
+                     Esso : -0.1 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ab8c7cd885a79b62e1d3fda6db4cedbf = L.circleMarker(
+                [43.575, 1.49],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e6e5e1ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_76cb424cbb67fb40aedbea31213d77df = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_f336505bf09fd2f67c48109b28238a7f = $(`<div id="html_f336505bf09fd2f67c48109b28238a7f" style="width: 100.0%; height: 100.0%;"><b>Esso</b><br>90 Route de Revel, TOULOUSE<br>Type de route : Route<br>Gazole 2025 : 1.618 €<br>SP95-E10 2025 : 1.687 €<br>Écart à la médiane : +0.2 cts</div>`)[0];
+                popup_76cb424cbb67fb40aedbea31213d77df.setContent(html_f336505bf09fd2f67c48109b28238a7f);
+            
+        
+
+        circle_marker_ab8c7cd885a79b62e1d3fda6db4cedbf.bindPopup(popup_76cb424cbb67fb40aedbea31213d77df)
+        ;
+
+        
+    
+    
+            circle_marker_ab8c7cd885a79b62e1d3fda6db4cedbf.bindTooltip(
+                `<div>
+                     Esso : +0.2 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ec347a3d63eff23df0464134f96576ab = L.circleMarker(
+                [43.569, 1.456],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#eb6834ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_7f3c9c5f1ec91e45f686af02f6c29efc = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_487bc08937c35dbaab127f216ebec5f2 = $(`<div id="html_487bc08937c35dbaab127f216ebec5f2" style="width: 100.0%; height: 100.0%;"><b>Avia</b><br>58 Route de Narbonne, TOULOUSE<br>Type de route : Route<br>Gazole 2025 : 1.698 €<br>SP95-E10 2025 : 1.772 €<br>Écart à la médiane : +8.5 cts</div>`)[0];
+                popup_7f3c9c5f1ec91e45f686af02f6c29efc.setContent(html_487bc08937c35dbaab127f216ebec5f2);
+            
+        
+
+        circle_marker_ec347a3d63eff23df0464134f96576ab.bindPopup(popup_7f3c9c5f1ec91e45f686af02f6c29efc)
+        ;
+
+        
+    
+    
+            circle_marker_ec347a3d63eff23df0464134f96576ab.bindTooltip(
+                `<div>
+                     Avia : +8.5 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_893295c836c2cd2e4b220f8a2b85ae5f = L.circleMarker(
+                [43.57413, 1.4736],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f4a582ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_456ac57b2b6eed0fb16666b6b5e2c7fd = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_eeb3322f9697791308af3cd5827c7809 = $(`<div id="html_eeb3322f9697791308af3cd5827c7809" style="width: 100.0%; height: 100.0%;"><b>Dyneff</b><br>170 Avenue de Lespinet, Toulouse<br>Type de route : Route<br>Gazole 2025 : 1.642 €<br>SP95-E10 2025 : 1.737 €<br>Écart à la médiane : +4.0 cts</div>`)[0];
+                popup_456ac57b2b6eed0fb16666b6b5e2c7fd.setContent(html_eeb3322f9697791308af3cd5827c7809);
+            
+        
+
+        circle_marker_893295c836c2cd2e4b220f8a2b85ae5f.bindPopup(popup_456ac57b2b6eed0fb16666b6b5e2c7fd)
+        ;
+
+        
+    
+    
+            circle_marker_893295c836c2cd2e4b220f8a2b85ae5f.bindTooltip(
+                `<div>
+                     Dyneff : +4.0 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_0def130d367541d63929b57b8330e4f9 = L.circleMarker(
+                [43.59, 1.455],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#eb6834ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_6343b7ecb18e97f7fa81586c840c13a6 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_d61043e8287db3ed7244eebce3d38990 = $(`<div id="html_d61043e8287db3ed7244eebce3d38990" style="width: 100.0%; height: 100.0%;"><b>Non identifiée</b><br>36 ALLEE DES DEMOISELLES, TOULOUSE<br>Type de route : Route<br>Gazole 2025 : 1.708 €<br>SP95-E10 2025 : 1.772 €<br>Écart à la médiane : +9.0 cts</div>`)[0];
+                popup_6343b7ecb18e97f7fa81586c840c13a6.setContent(html_d61043e8287db3ed7244eebce3d38990);
+            
+        
+
+        circle_marker_0def130d367541d63929b57b8330e4f9.bindPopup(popup_6343b7ecb18e97f7fa81586c840c13a6)
+        ;
+
+        
+    
+    
+            circle_marker_0def130d367541d63929b57b8330e4f9.bindTooltip(
+                `<div>
+                     Non identifiée : +9.0 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_083ef40d9c333c467a8386aefd462e92 = L.circleMarker(
+                [43.57505711018901, 1.4560275656588],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#eb6834ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_edfba2eb0e3ac730b9bc544f40985e7a = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_f88899b9b5607670fe7393796a8f1d34 = $(`<div id="html_f88899b9b5607670fe7393796a8f1d34" style="width: 100.0%; height: 100.0%;"><b>Avia</b><br>56 AVENUE DE RANGUEIL, TOULOUSE<br>Type de route : Route<br>Gazole 2025 : 1.716 €<br>SP95-E10 2025 : 1.790 €<br>Écart à la médiane : +10.3 cts</div>`)[0];
+                popup_edfba2eb0e3ac730b9bc544f40985e7a.setContent(html_f88899b9b5607670fe7393796a8f1d34);
+            
+        
+
+        circle_marker_083ef40d9c333c467a8386aefd462e92.bindPopup(popup_edfba2eb0e3ac730b9bc544f40985e7a)
+        ;
+
+        
+    
+    
+            circle_marker_083ef40d9c333c467a8386aefd462e92.bindTooltip(
+                `<div>
+                     Avia : +10.3 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_9de55ab8a01d7f41d2c78c0f0c4dc7ec = L.circleMarker(
+                [43.5065271232, 1.5558732657999998],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#86b6efff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_cd5909f1826474a27e60aa08c039d865 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_d0e40a93ed78a4678d8e334f7bc3b356 = $(`<div id="html_d0e40a93ed78a4678d8e334f7bc3b356" style="width: 100.0%; height: 100.0%;"><b>Non identifiée</b><br>ZA DE LA BALME, BELBERAUD<br>Type de route : Route<br>Gazole 2025 : 1.559 €<br>SP95-E10 2025 : 1.642 €<br>Écart à la médiane : -4.9 cts</div>`)[0];
+                popup_cd5909f1826474a27e60aa08c039d865.setContent(html_d0e40a93ed78a4678d8e334f7bc3b356);
+            
+        
+
+        circle_marker_9de55ab8a01d7f41d2c78c0f0c4dc7ec.bindPopup(popup_cd5909f1826474a27e60aa08c039d865)
+        ;
+
+        
+    
+    
+            circle_marker_9de55ab8a01d7f41d2c78c0f0c4dc7ec.bindTooltip(
+                `<div>
+                     Non identifiée : -4.9 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e137dfcc626bcbab3b8a1ce9ebc06ed1 = L.circleMarker(
+                [43.497, 1.518],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#86b6efff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_e721a692457248f8c165c0e18198dfb8 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_03f1a0649e2a2d29a3701e8e4ff22a41 = $(`<div id="html_03f1a0649e2a2d29a3701e8e4ff22a41" style="width: 100.0%; height: 100.0%;"><b>Non identifiée</b><br>Avenue de Lauragais - Lieu dit Condamine, Pompertuzat<br>Type de route : Route<br>Gazole 2025 : 1.586 €<br>SP95-E10 2025 : 1.656 €<br>Écart à la médiane : -2.9 cts</div>`)[0];
+                popup_e721a692457248f8c165c0e18198dfb8.setContent(html_03f1a0649e2a2d29a3701e8e4ff22a41);
+            
+        
+
+        circle_marker_e137dfcc626bcbab3b8a1ce9ebc06ed1.bindPopup(popup_e721a692457248f8c165c0e18198dfb8)
+        ;
+
+        
+    
+    
+            circle_marker_e137dfcc626bcbab3b8a1ce9ebc06ed1.bindTooltip(
+                `<div>
+                     Non identifiée : -2.9 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_a981493d3da87a71b2f6a0d7a5d9868e = L.circleMarker(
+                [43.602, 1.262],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e6e5e1ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_8d2a47a7ba4042fc2be948a400eaf17a = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_58a7d7bd408c54f4aea71445b45e04f8 = $(`<div id="html_58a7d7bd408c54f4aea71445b45e04f8" style="width: 100.0%; height: 100.0%;"><b>Système U</b><br>5 avenue de Lengel, LéGUEVIN<br>Type de route : Route<br>Gazole 2025 : 1.621 €<br>SP95-E10 2025 : 1.695 €<br>Écart à la médiane : +0.8 cts</div>`)[0];
+                popup_8d2a47a7ba4042fc2be948a400eaf17a.setContent(html_58a7d7bd408c54f4aea71445b45e04f8);
+            
+        
+
+        circle_marker_a981493d3da87a71b2f6a0d7a5d9868e.bindPopup(popup_8d2a47a7ba4042fc2be948a400eaf17a)
+        ;
+
+        
+    
+    
+            circle_marker_a981493d3da87a71b2f6a0d7a5d9868e.bindTooltip(
+                `<div>
+                     Système U : +0.8 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_746d96a2564f113ff4daa9938cea5164 = L.circleMarker(
+                [43.619, 1.468],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e6e5e1ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_915b3d7e632f99f99ca7540ae9938f8b = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_dc387a8266fe25f186aa55192f3db332 = $(`<div id="html_dc387a8266fe25f186aa55192f3db332" style="width: 100.0%; height: 100.0%;"><b>Esso</b><br>AVENUE YVES BRUNAUD, Toulouse<br>Type de route : Route<br>Gazole 2025 : 1.624 €<br>SP95-E10 2025 : 1.696 €<br>Écart à la médiane : +1.0 cts</div>`)[0];
+                popup_915b3d7e632f99f99ca7540ae9938f8b.setContent(html_dc387a8266fe25f186aa55192f3db332);
+            
+        
+
+        circle_marker_746d96a2564f113ff4daa9938cea5164.bindPopup(popup_915b3d7e632f99f99ca7540ae9938f8b)
+        ;
+
+        
+    
+    
+            circle_marker_746d96a2564f113ff4daa9938cea5164.bindTooltip(
+                `<div>
+                     Esso : +1.0 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e4c1ab2143fffc26feec3ec0f4b1262d = L.circleMarker(
+                [43.626, 1.459],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e6e5e1ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_19bb1c068cde88a13c18ec3cdbf5b4f6 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_b45f4aa9c422738a9d1f2f6e68e92873 = $(`<div id="html_b45f4aa9c422738a9d1f2f6e68e92873" style="width: 100.0%; height: 100.0%;"><b>Esso</b><br>231 FAUBOURG BONNEFOY, Toulouse<br>Type de route : Route<br>Gazole 2025 : 1.615 €<br>SP95-E10 2025 : 1.687 €<br>Écart à la médiane : +0.1 cts</div>`)[0];
+                popup_19bb1c068cde88a13c18ec3cdbf5b4f6.setContent(html_b45f4aa9c422738a9d1f2f6e68e92873);
+            
+        
+
+        circle_marker_e4c1ab2143fffc26feec3ec0f4b1262d.bindPopup(popup_19bb1c068cde88a13c18ec3cdbf5b4f6)
+        ;
+
+        
+    
+    
+            circle_marker_e4c1ab2143fffc26feec3ec0f4b1262d.bindTooltip(
+                `<div>
+                     Esso : +0.1 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_7363a4b48898188d120cf47654937a0a = L.circleMarker(
+                [43.606, 1.481],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#eb6834ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_37b6ab64c9374ff1fda4f77731a707f0 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_5fa95e27607cac3b82d037a9b00219ea = $(`<div id="html_5fa95e27607cac3b82d037a9b00219ea" style="width: 100.0%; height: 100.0%;"><b>TotalEnergies</b><br>151 AVENUE JEAN CHAUBET, TOULOUSE<br>Type de route : Route<br>Gazole 2025 : 1.723 €<br>SP95-E10 2025 : 1.780 €<br>Écart à la médiane : +10.1 cts</div>`)[0];
+                popup_37b6ab64c9374ff1fda4f77731a707f0.setContent(html_5fa95e27607cac3b82d037a9b00219ea);
+            
+        
+
+        circle_marker_7363a4b48898188d120cf47654937a0a.bindPopup(popup_37b6ab64c9374ff1fda4f77731a707f0)
+        ;
+
+        
+    
+    
+            circle_marker_7363a4b48898188d120cf47654937a0a.bindTooltip(
+                `<div>
+                     TotalEnergies : +10.1 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_1f2ab0d69f669dee52f3ae710dd158a2 = L.circleMarker(
+                [43.605, 1.479],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#eb6834ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_6fac918a39365bc9b4c558bc135eaf19 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_2100cac89e6e22e97ccaf26575c8accd = $(`<div id="html_2100cac89e6e22e97ccaf26575c8accd" style="width: 100.0%; height: 100.0%;"><b>Avia</b><br>144 Avenue Jean Chaubet, Toulouse<br>Type de route : Route<br>Gazole 2025 : 1.721 €<br>SP95-E10 2025 : 1.793 €<br>Écart à la médiane : +10.7 cts</div>`)[0];
+                popup_6fac918a39365bc9b4c558bc135eaf19.setContent(html_2100cac89e6e22e97ccaf26575c8accd);
+            
+        
+
+        circle_marker_1f2ab0d69f669dee52f3ae710dd158a2.bindPopup(popup_6fac918a39365bc9b4c558bc135eaf19)
+        ;
+
+        
+    
+    
+            circle_marker_1f2ab0d69f669dee52f3ae710dd158a2.bindTooltip(
+                `<div>
+                     Avia : +10.7 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_061b8b0c5a930ffaaf348bbd21588671 = L.circleMarker(
+                [43.598, 1.486],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f4a582ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_89675effdd0147ef273d917b4e159817 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_ddeba0351ce92f7bd7dd4bd86960ca1d = $(`<div id="html_ddeba0351ce92f7bd7dd4bd86960ca1d" style="width: 100.0%; height: 100.0%;"><b>Non identifiée</b><br>6 rue claudius Rougenet, Toulouse<br>Type de route : Route<br>Gazole 2025 : 1.650 €<br>SP95-E10 2025 : 1.720 €<br>Écart à la médiane : +3.5 cts</div>`)[0];
+                popup_89675effdd0147ef273d917b4e159817.setContent(html_ddeba0351ce92f7bd7dd4bd86960ca1d);
+            
+        
+
+        circle_marker_061b8b0c5a930ffaaf348bbd21588671.bindPopup(popup_89675effdd0147ef273d917b4e159817)
+        ;
+
+        
+    
+    
+            circle_marker_061b8b0c5a930ffaaf348bbd21588671.bindTooltip(
+                `<div>
+                     Non identifiée : +3.5 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_34009dd3fba2bf86378adc805fc4f954 = L.circleMarker(
+                [43.594384491655, 1.4889336316694],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#eb6834ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_0a93002c56c8674304a6b1fbf0fccd49 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_1898877ac2ff999b09cd9194deeecfcc = $(`<div id="html_1898877ac2ff999b09cd9194deeecfcc" style="width: 100.0%; height: 100.0%;"><b>Avia</b><br>228 AVENUE DE CASTRES, Toulouse<br>Type de route : Route<br>Gazole 2025 : 1.714 €<br>SP95-E10 2025 : 1.787 €<br>Écart à la médiane : +10.0 cts</div>`)[0];
+                popup_0a93002c56c8674304a6b1fbf0fccd49.setContent(html_1898877ac2ff999b09cd9194deeecfcc);
+            
+        
+
+        circle_marker_34009dd3fba2bf86378adc805fc4f954.bindPopup(popup_0a93002c56c8674304a6b1fbf0fccd49)
+        ;
+
+        
+    
+    
+            circle_marker_34009dd3fba2bf86378adc805fc4f954.bindTooltip(
+                `<div>
+                     Avia : +10.0 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_08c845aa1bdc6d8869d732e1cad91d9b = L.circleMarker(
+                [43.5357316, 1.47830373],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#86b6efff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_f0b8bd96888610cfe91e6056dc7fc041 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_039d588b5b3ecbd46c4112ee6f810171 = $(`<div id="html_039d588b5b3ecbd46c4112ee6f810171" style="width: 100.0%; height: 100.0%;"><b>Non identifiée</b><br>1 Rue Louis Braille, RAMONVILLE-SAINT-AGNE<br>Type de route : Route<br>Gazole 2025 : 1.581 €<br>SP95-E10 2025 : 1.652 €<br>Écart à la médiane : -3.4 cts</div>`)[0];
+                popup_f0b8bd96888610cfe91e6056dc7fc041.setContent(html_039d588b5b3ecbd46c4112ee6f810171);
+            
+        
+
+        circle_marker_08c845aa1bdc6d8869d732e1cad91d9b.bindPopup(popup_f0b8bd96888610cfe91e6056dc7fc041)
+        ;
+
+        
+    
+    
+            circle_marker_08c845aa1bdc6d8869d732e1cad91d9b.bindTooltip(
+                `<div>
+                     Non identifiée : -3.4 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_5440d5d3f5bf4fc07dc67dd87a1a7d58 = L.circleMarker(
+                [43.54027, 1.47921],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#eb6834ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_0387fe9c919dd7a0363d6cf675a7167f = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_9b3aa279c2390381fff1b3e411fa8da7 = $(`<div id="html_9b3aa279c2390381fff1b3e411fa8da7" style="width: 100.0%; height: 100.0%;"><b>TotalEnergies</b><br>98 AVENUE TOLOSANE, RAMONVILLE SAINT AGNE<br>Type de route : Route<br>Gazole 2025 : 1.699 €<br>SP95-E10 2025 : 1.763 €<br>Écart à la médiane : +8.1 cts</div>`)[0];
+                popup_0387fe9c919dd7a0363d6cf675a7167f.setContent(html_9b3aa279c2390381fff1b3e411fa8da7);
+            
+        
+
+        circle_marker_5440d5d3f5bf4fc07dc67dd87a1a7d58.bindPopup(popup_0387fe9c919dd7a0363d6cf675a7167f)
+        ;
+
+        
+    
+    
+            circle_marker_5440d5d3f5bf4fc07dc67dd87a1a7d58.bindTooltip(
+                `<div>
+                     TotalEnergies : +8.1 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ff99923de78670c5ff73920cd5c74af6 = L.circleMarker(
+                [43.546, 1.475],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#eb6834ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_db4b9c862761777655c8dc8ba934b126 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_4b6e27f299912d9336fcba78be5fa63c = $(`<div id="html_4b6e27f299912d9336fcba78be5fa63c" style="width: 100.0%; height: 100.0%;"><b>Non identifiée</b><br>Avenue Tolosane, Ramonville-Saint-Agne<br>Type de route : Route<br>Gazole 2025 : 1.734 €<br>SP95-E10 2025 : 1.801 €<br>Écart à la médiane : +11.7 cts</div>`)[0];
+                popup_db4b9c862761777655c8dc8ba934b126.setContent(html_4b6e27f299912d9336fcba78be5fa63c);
+            
+        
+
+        circle_marker_ff99923de78670c5ff73920cd5c74af6.bindPopup(popup_db4b9c862761777655c8dc8ba934b126)
+        ;
+
+        
+    
+    
+            circle_marker_ff99923de78670c5ff73920cd5c74af6.bindTooltip(
+                `<div>
+                     Non identifiée : +11.7 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_4c74fb24e845f951b7356ab4adc8a7c8 = L.circleMarker(
+                [43.565, 1.519],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e6e5e1ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_551073346527d6d26b62a7a8e3f27b4c = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_30ffc2bcef1300e7b5ff1291c3ca23c4 = $(`<div id="html_30ffc2bcef1300e7b5ff1291c3ca23c4" style="width: 100.0%; height: 100.0%;"><b>Non identifiée</b><br>Allée des Champs Pinsons, SAINT-ORENS-DE-GAMEVILLE<br>Type de route : Route<br>Gazole 2025 : 1.606 €<br>SP95-E10 2025 : 1.672 €<br>Écart à la médiane : -1.1 cts</div>`)[0];
+                popup_551073346527d6d26b62a7a8e3f27b4c.setContent(html_30ffc2bcef1300e7b5ff1291c3ca23c4);
+            
+        
+
+        circle_marker_4c74fb24e845f951b7356ab4adc8a7c8.bindPopup(popup_551073346527d6d26b62a7a8e3f27b4c)
+        ;
+
+        
+    
+    
+            circle_marker_4c74fb24e845f951b7356ab4adc8a7c8.bindTooltip(
+                `<div>
+                     Non identifiée : -1.1 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_4fd1c9632b0f4008d1d50bef2a74d295 = L.circleMarker(
+                [43.556, 1.531],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e6e5e1ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_203b5a5525d3999c0eb86ad9db1dd09c = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_c8ff1b44dfe5f268140280f535d0ca40 = $(`<div id="html_c8ff1b44dfe5f268140280f535d0ca40" style="width: 100.0%; height: 100.0%;"><b>Non identifiée</b><br>5 AV DE GAMEVILLE, Saint-Orens-de-Gameville<br>Type de route : Route<br>Gazole 2025 : 1.613 €<br>SP95-E10 2025 : 1.678 €<br>Écart à la médiane : -0.5 cts</div>`)[0];
+                popup_203b5a5525d3999c0eb86ad9db1dd09c.setContent(html_c8ff1b44dfe5f268140280f535d0ca40);
+            
+        
+
+        circle_marker_4fd1c9632b0f4008d1d50bef2a74d295.bindPopup(popup_203b5a5525d3999c0eb86ad9db1dd09c)
+        ;
+
+        
+    
+    
+            circle_marker_4fd1c9632b0f4008d1d50bef2a74d295.bindTooltip(
+                `<div>
+                     Non identifiée : -0.5 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_63c32e9c1d6217ebcdf8b7332d9d5496 = L.circleMarker(
+                [43.531, 1.535],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#eb6834ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_1ae48908f41284e65d7f1a043aabd444 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_6165d21a2a55eed79505a247cf42b879 = $(`<div id="html_6165d21a2a55eed79505a247cf42b879" style="width: 100.0%; height: 100.0%;"><b>TotalEnergies</b><br>CENTRE COMMERCIAL DE L'AUTAN, LABEGE<br>Type de route : Route<br>Gazole 2025 : 1.721 €<br>SP95-E10 2025 : 1.778 €<br>Écart à la médiane : +9.9 cts</div>`)[0];
+                popup_1ae48908f41284e65d7f1a043aabd444.setContent(html_6165d21a2a55eed79505a247cf42b879);
+            
+        
+
+        circle_marker_63c32e9c1d6217ebcdf8b7332d9d5496.bindPopup(popup_1ae48908f41284e65d7f1a043aabd444)
+        ;
+
+        
+    
+    
+            circle_marker_63c32e9c1d6217ebcdf8b7332d9d5496.bindTooltip(
+                `<div>
+                     TotalEnergies : +9.9 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_4c148a93c78a5f615fa9632a1d1b81b3 = L.circleMarker(
+                [43.551, 1.504],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e6e5e1ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_36c3caeb418431d5a24f77bdc9fa8c5e = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_36984d49c8de2bd25b43446816fe53b7 = $(`<div id="html_36984d49c8de2bd25b43446816fe53b7" style="width: 100.0%; height: 100.0%;"><b>Carrefour</b><br>Centre Commercial LABEGE 2, LABèGE<br>Type de route : Route<br>Gazole 2025 : 1.616 €<br>SP95-E10 2025 : 1.682 €<br>Écart à la médiane : -0.1 cts</div>`)[0];
+                popup_36c3caeb418431d5a24f77bdc9fa8c5e.setContent(html_36984d49c8de2bd25b43446816fe53b7);
+            
+        
+
+        circle_marker_4c148a93c78a5f615fa9632a1d1b81b3.bindPopup(popup_36c3caeb418431d5a24f77bdc9fa8c5e)
+        ;
+
+        
+    
+    
+            circle_marker_4c148a93c78a5f615fa9632a1d1b81b3.bindTooltip(
+                `<div>
+                     Carrefour : -0.1 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_35428399da33dada06511740ce5a6084 = L.circleMarker(
+                [43.6728204887, 1.28413626363],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#86b6efff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_e24a14d6d4d74fa1cc6ac2972aef5648 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_42b5eab4f4027adbe2d983cabf4f9805 = $(`<div id="html_42b5eab4f4027adbe2d983cabf4f9805" style="width: 100.0%; height: 100.0%;"><b>Carrefour</b><br>ROUTE DE TOULOUSE, MONDONVILLE<br>Type de route : Route<br>Gazole 2025 : 1.593 €<br>SP95-E10 2025 : 1.656 €<br>Écart à la médiane : -2.6 cts</div>`)[0];
+                popup_e24a14d6d4d74fa1cc6ac2972aef5648.setContent(html_42b5eab4f4027adbe2d983cabf4f9805);
+            
+        
+
+        circle_marker_35428399da33dada06511740ce5a6084.bindPopup(popup_e24a14d6d4d74fa1cc6ac2972aef5648)
+        ;
+
+        
+    
+    
+            circle_marker_35428399da33dada06511740ce5a6084.bindTooltip(
+                `<div>
+                     Carrefour : -2.6 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_95b1d0e7bc312c664d40cb10f8b38651 = L.circleMarker(
+                [43.626, 1.398],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e6e5e1ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_1ecd9822841cfe1192feb178912b59cb = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_39a7be299003dcb29e44487f0797b23c = $(`<div id="html_39a7be299003dcb29e44487f0797b23c" style="width: 100.0%; height: 100.0%;"><b>Esso</b><br>9 Avenue du Général Compans, Blagnac<br>Type de route : Route<br>Gazole 2025 : 1.613 €<br>SP95-E10 2025 : 1.680 €<br>Écart à la médiane : -0.3 cts</div>`)[0];
+                popup_1ecd9822841cfe1192feb178912b59cb.setContent(html_39a7be299003dcb29e44487f0797b23c);
+            
+        
+
+        circle_marker_95b1d0e7bc312c664d40cb10f8b38651.bindPopup(popup_1ecd9822841cfe1192feb178912b59cb)
+        ;
+
+        
+    
+    
+            circle_marker_95b1d0e7bc312c664d40cb10f8b38651.bindTooltip(
+                `<div>
+                     Esso : -0.3 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_628c38cbce5cef604b3bb1589cbcd38e = L.circleMarker(
+                [43.647, 1.368],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#86b6efff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_54960b33b6f8bb0a3ef99addf8d5bb08 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_c63666a761e38d526a8ad4e5eff53a82 = $(`<div id="html_c63666a761e38d526a8ad4e5eff53a82" style="width: 100.0%; height: 100.0%;"><b>E.Leclerc</b><br>2 Allée Émile Zola, Blagnac<br>Type de route : Route<br>Gazole 2025 : 1.577 €<br>SP95-E10 2025 : 1.650 €<br>Écart à la médiane : -3.7 cts</div>`)[0];
+                popup_54960b33b6f8bb0a3ef99addf8d5bb08.setContent(html_c63666a761e38d526a8ad4e5eff53a82);
+            
+        
+
+        circle_marker_628c38cbce5cef604b3bb1589cbcd38e.bindPopup(popup_54960b33b6f8bb0a3ef99addf8d5bb08)
+        ;
+
+        
+    
+    
+            circle_marker_628c38cbce5cef604b3bb1589cbcd38e.bindTooltip(
+                `<div>
+                     E.Leclerc : -3.7 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_3503d74e5a0b50f2a456225e0c023d61 = L.circleMarker(
+                [43.649, 1.337],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#86b6efff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_a5f074629b01034cc20be9df45d079b2 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_ccf888b7436434dbb80d6be428440087 = $(`<div id="html_ccf888b7436434dbb80d6be428440087" style="width: 100.0%; height: 100.0%;"><b>Non identifiée</b><br>Avenue Dewoitine, Cornebarrieu<br>Type de route : Route<br>Gazole 2025 : 1.574 €<br>SP95-E10 2025 : 1.645 €<br>Écart à la médiane : -4.1 cts</div>`)[0];
+                popup_a5f074629b01034cc20be9df45d079b2.setContent(html_ccf888b7436434dbb80d6be428440087);
+            
+        
+
+        circle_marker_3503d74e5a0b50f2a456225e0c023d61.bindPopup(popup_a5f074629b01034cc20be9df45d079b2)
+        ;
+
+        
+    
+    
+            circle_marker_3503d74e5a0b50f2a456225e0c023d61.bindTooltip(
+                `<div>
+                     Non identifiée : -4.1 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_53b67a7cdcf73929c7b592c9d3eb83b4 = L.circleMarker(
+                [43.668, 1.365],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#86b6efff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_dedd099f488a19bb97d453d2f5796ba7 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_354202f445bd3b8f7c47b4cebb5dc634 = $(`<div id="html_354202f445bd3b8f7c47b4cebb5dc634" style="width: 100.0%; height: 100.0%;"><b>Non identifiée</b><br>Avenue de Garossos, Beauzelle<br>Type de route : Route<br>Gazole 2025 : 1.593 €<br>SP95-E10 2025 : 1.661 €<br>Écart à la médiane : -2.3 cts</div>`)[0];
+                popup_dedd099f488a19bb97d453d2f5796ba7.setContent(html_354202f445bd3b8f7c47b4cebb5dc634);
+            
+        
+
+        circle_marker_53b67a7cdcf73929c7b592c9d3eb83b4.bindPopup(popup_dedd099f488a19bb97d453d2f5796ba7)
+        ;
+
+        
+    
+    
+            circle_marker_53b67a7cdcf73929c7b592c9d3eb83b4.bindTooltip(
+                `<div>
+                     Non identifiée : -2.3 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ba578b8654fec578e53484979308e752 = L.circleMarker(
+                [43.646, 1.385],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e6e5e1ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_1b4e29dcb9b3f6e7366fbe90fca6bdc9 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_82e4abc770895ec698307329505a474a = $(`<div id="html_82e4abc770895ec698307329505a474a" style="width: 100.0%; height: 100.0%;"><b>Non identifiée</b><br>120 ROUTE DE GRENADE, BLAGNAC<br>Type de route : Route<br>Gazole 2025 : 1.599 €<br>SP95-E10 2025 : 1.665 €<br>Écart à la médiane : -1.8 cts</div>`)[0];
+                popup_1b4e29dcb9b3f6e7366fbe90fca6bdc9.setContent(html_82e4abc770895ec698307329505a474a);
+            
+        
+
+        circle_marker_ba578b8654fec578e53484979308e752.bindPopup(popup_1b4e29dcb9b3f6e7366fbe90fca6bdc9)
+        ;
+
+        
+    
+    
+            circle_marker_ba578b8654fec578e53484979308e752.bindTooltip(
+                `<div>
+                     Non identifiée : -1.8 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ae26a682d94ecd31fb4b5463e6a66052 = L.circleMarker(
+                [43.641, 1.375],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e6e5e1ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_87ffca72824fa4756e591170ca332c50 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_547f006dacf54185e00dab8d05783593 = $(`<div id="html_547f006dacf54185e00dab8d05783593" style="width: 100.0%; height: 100.0%;"><b>TotalEnergies</b><br>RD 902, BLAGNAC<br>Type de route : Route<br>Gazole 2025 : 1.599 €<br>SP95-E10 2025 : 1.665 €<br>Écart à la médiane : -1.8 cts</div>`)[0];
+                popup_87ffca72824fa4756e591170ca332c50.setContent(html_547f006dacf54185e00dab8d05783593);
+            
+        
+
+        circle_marker_ae26a682d94ecd31fb4b5463e6a66052.bindPopup(popup_87ffca72824fa4756e591170ca332c50)
+        ;
+
+        
+    
+    
+            circle_marker_ae26a682d94ecd31fb4b5463e6a66052.bindTooltip(
+                `<div>
+                     TotalEnergies : -1.8 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_81c6502ab68e803ec09a2f3652132c16 = L.circleMarker(
+                [43.613, 1.33],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e6e5e1ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_976ac43b9d7dabc6c47a768e50442c49 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_7ebe4164b00329cb1fe2644560bc1f08 = $(`<div id="html_7ebe4164b00329cb1fe2644560bc1f08" style="width: 100.0%; height: 100.0%;"><b>Non identifiée</b><br>Chemin de l'Ormeau, Colomiers<br>Type de route : Route<br>Gazole 2025 : 1.614 €<br>SP95-E10 2025 : n.d.<br>Écart à la médiane : -0.0 cts</div>`)[0];
+                popup_976ac43b9d7dabc6c47a768e50442c49.setContent(html_7ebe4164b00329cb1fe2644560bc1f08);
+            
+        
+
+        circle_marker_81c6502ab68e803ec09a2f3652132c16.bindPopup(popup_976ac43b9d7dabc6c47a768e50442c49)
+        ;
+
+        
+    
+    
+            circle_marker_81c6502ab68e803ec09a2f3652132c16.bindTooltip(
+                `<div>
+                     Non identifiée : -0.0 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_59be76bff4c2240e24729065bf71615e = L.circleMarker(
+                [43.61, 1.353],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e6e5e1ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_44a043c67a991586be8bd6bbd55eac03 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_c0a6df3a1d074b661e37c7b3059bee5f = $(`<div id="html_c0a6df3a1d074b661e37c7b3059bee5f" style="width: 100.0%; height: 100.0%;"><b>Esso</b><br>2 Avenue Edouard Serres, Colomiers<br>Type de route : Route<br>Gazole 2025 : 1.626 €<br>SP95-E10 2025 : 1.693 €<br>Écart à la médiane : +0.9 cts</div>`)[0];
+                popup_44a043c67a991586be8bd6bbd55eac03.setContent(html_c0a6df3a1d074b661e37c7b3059bee5f);
+            
+        
+
+        circle_marker_59be76bff4c2240e24729065bf71615e.bindPopup(popup_44a043c67a991586be8bd6bbd55eac03)
+        ;
+
+        
+    
+    
+            circle_marker_59be76bff4c2240e24729065bf71615e.bindTooltip(
+                `<div>
+                     Esso : +0.9 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_87aa707caa21f0c19f5466678f3d3f6e = L.circleMarker(
+                [43.608, 1.336],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e6e5e1ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_8c23d95846ebf95e30a10b58b6b6b143 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_263a916c9a7f699452c7a4880ff41f4d = $(`<div id="html_263a916c9a7f699452c7a4880ff41f4d" style="width: 100.0%; height: 100.0%;"><b>TotalEnergies</b><br>BOULEVARD EUGENE MONTEL, COLOMIERS<br>Type de route : Route<br>Gazole 2025 : 1.620 €<br>SP95-E10 2025 : 1.688 €<br>Écart à la médiane : +0.4 cts</div>`)[0];
+                popup_8c23d95846ebf95e30a10b58b6b6b143.setContent(html_263a916c9a7f699452c7a4880ff41f4d);
+            
+        
+
+        circle_marker_87aa707caa21f0c19f5466678f3d3f6e.bindPopup(popup_8c23d95846ebf95e30a10b58b6b6b143)
+        ;
+
+        
+    
+    
+            circle_marker_87aa707caa21f0c19f5466678f3d3f6e.bindTooltip(
+                `<div>
+                     TotalEnergies : +0.4 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e73ea9f3f1188cbef0ce11e02a94492a = L.circleMarker(
+                [43.685319340343995, 1.4464724419821002],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#86b6efff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_55e33038eb3b7bae3f994e2d57dd3191 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_3ca42084ccda089f736e82b30cdb2627 = $(`<div id="html_3ca42084ccda089f736e82b30cdb2627" style="width: 100.0%; height: 100.0%;"><b>Intermarché</b><br>126 chemin de Buffebiau, CASTELGINEST<br>Type de route : Route<br>Gazole 2025 : 1.574 €<br>SP95-E10 2025 : 1.645 €<br>Écart à la médiane : -4.0 cts</div>`)[0];
+                popup_55e33038eb3b7bae3f994e2d57dd3191.setContent(html_3ca42084ccda089f736e82b30cdb2627);
+            
+        
+
+        circle_marker_e73ea9f3f1188cbef0ce11e02a94492a.bindPopup(popup_55e33038eb3b7bae3f994e2d57dd3191)
+        ;
+
+        
+    
+    
+            circle_marker_e73ea9f3f1188cbef0ce11e02a94492a.bindTooltip(
+                `<div>
+                     Intermarché : -4.0 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_a8fb7e2630828d8513f488ad8f4464bc = L.circleMarker(
+                [43.60785, 1.28404],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e6e5e1ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_99858147bc0018c86706aa9f3c3b3f2a = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_645f7119198255746fcb1c6fc84f3000 = $(`<div id="html_645f7119198255746fcb1c6fc84f3000" style="width: 100.0%; height: 100.0%;"><b>Carrefour</b><br>CD 65 Route de Toulouse, Pibrac<br>Type de route : Route<br>Gazole 2025 : 1.632 €<br>SP95-E10 2025 : 1.703 €<br>Écart à la médiane : +1.7 cts</div>`)[0];
+                popup_99858147bc0018c86706aa9f3c3b3f2a.setContent(html_645f7119198255746fcb1c6fc84f3000);
+            
+        
+
+        circle_marker_a8fb7e2630828d8513f488ad8f4464bc.bindPopup(popup_99858147bc0018c86706aa9f3c3b3f2a)
+        ;
+
+        
+    
+    
+            circle_marker_a8fb7e2630828d8513f488ad8f4464bc.bindTooltip(
+                `<div>
+                     Carrefour : +1.7 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e9781fdbedbefe2615a535dad3493729 = L.circleMarker(
+                [43.57, 1.309],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e6e5e1ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_6ccac1efe4a7d99ae416fadd35d3f990 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_716208ae8616774d3b531c77e5998cba = $(`<div id="html_716208ae8616774d3b531c77e5998cba" style="width: 100.0%; height: 100.0%;"><b>Intermarché</b><br>2 Rue Pierre Loti, Plaisance-du-Touch<br>Type de route : Route<br>Gazole 2025 : 1.613 €<br>SP95-E10 2025 : 1.677 €<br>Écart à la médiane : -0.5 cts</div>`)[0];
+                popup_6ccac1efe4a7d99ae416fadd35d3f990.setContent(html_716208ae8616774d3b531c77e5998cba);
+            
+        
+
+        circle_marker_e9781fdbedbefe2615a535dad3493729.bindPopup(popup_6ccac1efe4a7d99ae416fadd35d3f990)
+        ;
+
+        
+    
+    
+            circle_marker_e9781fdbedbefe2615a535dad3493729.bindTooltip(
+                `<div>
+                     Intermarché : -0.5 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f893f7024dde60484084b2fd139a3bed = L.circleMarker(
+                [43.68513, 1.32722],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e6e5e1ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_da7d4f396494df2433f44474843183d5 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_54ec932c6470ac09ca5ec9dba45673d2 = $(`<div id="html_54ec932c6470ac09ca5ec9dba45673d2" style="width: 100.0%; height: 100.0%;"><b>Non identifiée</b><br>Route de Seilh, AUSSONNE<br>Type de route : Route<br>Gazole 2025 : 1.624 €<br>SP95-E10 2025 : 1.710 €<br>Écart à la médiane : +1.7 cts</div>`)[0];
+                popup_da7d4f396494df2433f44474843183d5.setContent(html_54ec932c6470ac09ca5ec9dba45673d2);
+            
+        
+
+        circle_marker_f893f7024dde60484084b2fd139a3bed.bindPopup(popup_da7d4f396494df2433f44474843183d5)
+        ;
+
+        
+    
+    
+            circle_marker_f893f7024dde60484084b2fd139a3bed.bindTooltip(
+                `<div>
+                     Non identifiée : +1.7 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ebe322d4efc4c4a06d79ecc8ec744ee7 = L.circleMarker(
+                [43.65, 1.532],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e6e5e1ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_fc65755eec2469f26157bd8909e444d2 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_c78abe1ce6d58836b8ab578a5e17acc0 = $(`<div id="html_c78abe1ce6d58836b8ab578a5e17acc0" style="width: 100.0%; height: 100.0%;"><b>Non identifiée</b><br>CHEMIN DE SAINT JEAN, MONTRABE<br>Type de route : Route<br>Gazole 2025 : 1.604 €<br>SP95-E10 2025 : 1.682 €<br>Écart à la médiane : -0.7 cts</div>`)[0];
+                popup_fc65755eec2469f26157bd8909e444d2.setContent(html_c78abe1ce6d58836b8ab578a5e17acc0);
+            
+        
+
+        circle_marker_ebe322d4efc4c4a06d79ecc8ec744ee7.bindPopup(popup_fc65755eec2469f26157bd8909e444d2)
+        ;
+
+        
+    
+    
+            circle_marker_ebe322d4efc4c4a06d79ecc8ec744ee7.bindTooltip(
+                `<div>
+                     Non identifiée : -0.7 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_36457a7d2fee1171a4851ea482c09926 = L.circleMarker(
+                [43.481061536704004, 1.3854313384841002],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e6e5e1ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_13b40d4a49e9ece59b723185d4193b91 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_20685e640615d9489df03ddfbc631c3a = $(`<div id="html_20685e640615d9489df03ddfbc631c3a" style="width: 100.0%; height: 100.0%;"><b>Carrefour</b><br>21 CHEMIN DE LA CROISETTE, PINS JUSTARET<br>Type de route : Route<br>Gazole 2025 : 1.613 €<br>SP95-E10 2025 : n.d.<br>Écart à la médiane : -0.1 cts</div>`)[0];
+                popup_13b40d4a49e9ece59b723185d4193b91.setContent(html_20685e640615d9489df03ddfbc631c3a);
+            
+        
+
+        circle_marker_36457a7d2fee1171a4851ea482c09926.bindPopup(popup_13b40d4a49e9ece59b723185d4193b91)
+        ;
+
+        
+    
+    
+            circle_marker_36457a7d2fee1171a4851ea482c09926.bindTooltip(
+                `<div>
+                     Carrefour : -0.1 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_64dcf3489c8c6cf5247335806849fb13 = L.circleMarker(
+                [43.582, 1.275],
+                {"bubblingMouseEvents": true, "color": "#fcfcfb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e6e5e1ff", "fillOpacity": 0.95, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_6a041c2960e58e94639078e3c2dc259d);
+        
+    
+        var popup_8d55b0bf8678009dc7ac2b4b62c37776 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_a241fb032ed9ffb31865d4a98360f2ef = $(`<div id="html_a241fb032ed9ffb31865d4a98360f2ef" style="width: 100.0%; height: 100.0%;"><b>Non identifiée</b><br>Avenue des Capitouls, LA SALVETAT-SAINT-GILLES<br>Type de route : Route<br>Gazole 2025 : 1.627 €<br>SP95-E10 2025 : 1.687 €<br>Écart à la médiane : +0.7 cts</div>`)[0];
+                popup_8d55b0bf8678009dc7ac2b4b62c37776.setContent(html_a241fb032ed9ffb31865d4a98360f2ef);
+            
+        
+
+        circle_marker_64dcf3489c8c6cf5247335806849fb13.bindPopup(popup_8d55b0bf8678009dc7ac2b4b62c37776)
+        ;
+
+        
+    
+    
+            circle_marker_64dcf3489c8c6cf5247335806849fb13.bindTooltip(
+                `<div>
+                     Non identifiée : +0.7 cts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+    var color_map_120541bcfb4e2d040d2d6d98d12c74a4 = {};
+
+    
+    color_map_120541bcfb4e2d040d2d6d98d12c74a4.color = d3.scale.threshold()
+              .domain([-10.0, -9.959919839679358, -9.919839679358718, -9.879759519038076, -9.839679358717435, -9.799599198396793, -9.759519038076153, -9.719438877755511, -9.67935871743487, -9.639278557114228, -9.599198396793588, -9.559118236472946, -9.519038076152304, -9.478957915831664, -9.438877755511022, -9.39879759519038, -9.358717434869739, -9.318637274549099, -9.278557114228457, -9.238476953907815, -9.198396793587174, -9.158316633266534, -9.118236472945892, -9.07815631262525, -9.03807615230461, -8.997995991983968, -8.957915831663327, -8.917835671342685, -8.877755511022045, -8.837675350701403, -8.797595190380761, -8.75751503006012, -8.71743486973948, -8.677354709418838, -8.637274549098196, -8.597194388777556, -8.557114228456914, -8.517034068136272, -8.47695390781563, -8.43687374749499, -8.396793587174349, -8.356713426853707, -8.316633266533067, -8.276553106212425, -8.236472945891784, -8.196392785571142, -8.1563126252505, -8.11623246492986, -8.076152304609218, -8.036072144288577, -7.9959919839679365, -7.955911823647295, -7.915831663326653, -7.875751503006012, -7.835671342685371, -7.7955911823647295, -7.755511022044088, -7.715430861723447, -7.675350701402806, -7.635270541082164, -7.595190380761522, -7.555110220440882, -7.515030060120241, -7.474949899799599, -7.434869739478958, -7.394789579158317, -7.354709418837675, -7.314629258517034, -7.274549098196393, -7.234468937875752, -7.19438877755511, -7.154308617234468, -7.114228456913827, -7.074148296593187, -7.034068136272545, -6.993987975951904, -6.953907815631263, -6.913827655310621, -6.8737474949899795, -6.833667334669339, -6.793587174348698, -6.753507014028056, -6.713426853707414, -6.673346693386773, -6.6332665330661325, -6.593186372745491, -6.55310621242485, -6.513026052104209, -6.472945891783567, -6.432865731462925, -6.3927855711422845, -6.352705410821644, -6.312625250501002, -6.27254509018036, -6.232464929859719, -6.192384769539078, -6.152304609218437, -6.112224448897796, -6.072144288577155, -6.032064128256513, -5.991983967935872, -5.95190380761523, -5.9118236472945895, -5.871743486973948, -5.831663326653307, -5.791583166332665, -5.751503006012024, -5.7114228456913825, -5.671342685370742, -5.6312625250501, -5.591182364729459, -5.551102204408818, -5.511022044088176, -5.470941883767535, -5.430861723446894, -5.390781563126253, -5.350701402805611, -5.31062124248497, -5.270541082164328, -5.2304609218436875, -5.190380761523046, -5.150300601202405, -5.110220440881764, -5.070140280561122, -5.030060120240481, -4.98997995991984, -4.949899799599199, -4.909819639278557, -4.869739478957916, -4.829659318637274, -4.789579158316633, -4.749498997995992, -4.709418837675351, -4.669338677354709, -4.629258517034068, -4.589178356713427, -4.5490981963927855, -4.509018036072145, -4.468937875751503, -4.428857715430862, -4.38877755511022, -4.348697394789579, -4.3086172344689375, -4.268537074148297, -4.228456913827655, -4.188376753507014, -4.148296593186373, -4.108216432865731, -4.0681362725450905, -4.028056112224449, -3.987975951903808, -3.947895791583166, -3.907815631262525, -3.8677354709418834, -3.8276553106212425, -3.7875751503006008, -3.74749498997996, -3.707414829659319, -3.6673346693386772, -3.6272545090180364, -3.5871743486973946, -3.5470941883767537, -3.507014028056112, -3.466933867735471, -3.4268537074148293, -3.3867735470941884, -3.3466933867735467, -3.306613226452906, -3.266533066132265, -3.226452905811623, -3.1863727454909823, -3.1462925851703405, -3.1062124248496996, -3.066132264529058, -3.026052104208417, -2.985971943887775, -2.9458917835671343, -2.9058116232464926, -2.8657314629258517, -2.825651302605211, -2.785571142284569, -2.745490981963928, -2.7054108216432864, -2.6653306613226455, -2.6252505010020037, -2.585170340681363, -2.545090180360721, -2.50501002004008, -2.4649298597194385, -2.4248496993987976, -2.3847695390781567, -2.344689378757515, -2.304609218436874, -2.2645290581162323, -2.2244488977955914, -2.1843687374749496, -2.1442885771543088, -2.104208416833667, -2.064128256513026, -2.0240480961923843, -1.9839679358717444, -1.9438877755511026, -1.9038076152304608, -1.863727454909819, -1.823647294589179, -1.7835671342685373, -1.7434869739478955, -1.7034068136272538, -1.6633266533066138, -1.623246492985972, -1.5831663326653302, -1.5430861723446903, -1.5030060120240485, -1.4629258517034067, -1.422845691382765, -1.382765531062125, -1.3426853707414832, -1.3026052104208414, -1.2625250501001997, -1.2224448897795597, -1.182364729458918, -1.1422845691382761, -1.1022044088176361, -1.0621242484969944, -1.0220440881763526, -0.9819639278557108, -0.9418837675350709, -0.9018036072144291, -0.8617234468937873, -0.8216432865731456, -0.7815631262525056, -0.7414829659318638, -0.701402805611222, -0.661322645290582, -0.6212424849699403, -0.5811623246492985, -0.5410821643286567, -0.5010020040080168, -0.460921843687375, -0.4208416833667332, -0.38076152304609145, -0.34068136272545146, -0.3006012024048097, -0.26052104208416793, -0.22044088176352794, -0.18036072144288617, -0.1402805611222444, -0.10020040080160264, -0.06012024048096265, -0.020040080160320883, 0.020040080160320883, 0.06012024048096265, 0.10020040080160264, 0.1402805611222444, 0.18036072144288617, 0.22044088176352794, 0.26052104208416793, 0.3006012024048097, 0.34068136272545146, 0.38076152304609145, 0.4208416833667332, 0.460921843687375, 0.5010020040080168, 0.5410821643286567, 0.5811623246492985, 0.6212424849699403, 0.661322645290582, 0.701402805611222, 0.7414829659318638, 0.7815631262525056, 0.8216432865731456, 0.8617234468937873, 0.9018036072144291, 0.9418837675350709, 0.9819639278557108, 1.0220440881763526, 1.0621242484969944, 1.1022044088176361, 1.1422845691382761, 1.182364729458918, 1.2224448897795597, 1.2625250501001997, 1.3026052104208414, 1.3426853707414832, 1.382765531062125, 1.422845691382765, 1.4629258517034067, 1.5030060120240485, 1.5430861723446903, 1.5831663326653302, 1.623246492985972, 1.6633266533066138, 1.7034068136272538, 1.7434869739478955, 1.7835671342685373, 1.823647294589179, 1.863727454909819, 1.9038076152304608, 1.9438877755511026, 1.9839679358717444, 2.0240480961923843, 2.064128256513026, 2.104208416833668, 2.144288577154308, 2.1843687374749496, 2.2244488977955914, 2.264529058116233, 2.304609218436873, 2.344689378757515, 2.3847695390781567, 2.4248496993987985, 2.4649298597194385, 2.50501002004008, 2.545090180360722, 2.585170340681362, 2.6252505010020037, 2.6653306613226455, 2.7054108216432873, 2.7454909819639273, 2.785571142284569, 2.825651302605211, 2.8657314629258526, 2.9058116232464926, 2.9458917835671343, 2.985971943887776, 3.026052104208416, 3.066132264529058, 3.1062124248496996, 3.1462925851703414, 3.1863727454909814, 3.226452905811623, 3.266533066132265, 3.3066132264529067, 3.3466933867735467, 3.3867735470941884, 3.42685370741483, 3.46693386773547, 3.507014028056112, 3.5470941883767537, 3.5871743486973955, 3.6272545090180355, 3.6673346693386772, 3.707414829659319, 3.7474949899799608, 3.7875751503006008, 3.8276553106212425, 3.8677354709418843, 3.9078156312625243, 3.947895791583166, 3.987975951903808, 4.02805611222445, 4.06813627254509, 4.108216432865731, 4.148296593186373, 4.188376753507015, 4.228456913827655, 4.268537074148297, 4.308617234468938, 4.348697394789578, 4.38877755511022, 4.428857715430862, 4.468937875751504, 4.509018036072144, 4.5490981963927855, 4.589178356713427, 4.629258517034069, 4.669338677354709, 4.709418837675351, 4.7494989979959925, 4.7895791583166325, 4.829659318637274, 4.869739478957916, 4.909819639278558, 4.949899799599198, 4.98997995991984, 5.030060120240481, 5.070140280561123, 5.110220440881763, 5.150300601202405, 5.190380761523047, 5.230460921843687, 5.270541082164328, 5.31062124248497, 5.350701402805612, 5.390781563126252, 5.430861723446894, 5.470941883767535, 5.511022044088177, 5.551102204408817, 5.591182364729459, 5.631262525050101, 5.671342685370741, 5.7114228456913825, 5.751503006012024, 5.791583166332666, 5.831663326653306, 5.871743486973948, 5.9118236472945895, 5.951903807615231, 5.991983967935871, 6.032064128256511, 6.072144288577153, 6.112224448897795, 6.152304609218437, 6.192384769539078, 6.23246492985972, 6.272545090180362, 6.312625250501004, 6.352705410821642, 6.392785571142284, 6.432865731462925, 6.472945891783567, 6.513026052104209, 6.553106212424851, 6.5931863727454925, 6.633266533066131, 6.673346693386772, 6.713426853707414, 6.753507014028056, 6.793587174348698, 6.8336673346693395, 6.873747494989981, 6.9138276553106195, 6.953907815631261, 6.993987975951903, 7.034068136272545, 7.074148296593187, 7.114228456913828, 7.15430861723447, 7.194388777555112, 7.23446893787575, 7.274549098196392, 7.314629258517034, 7.354709418837675, 7.394789579158317, 7.434869739478959, 7.474949899799601, 7.515030060120239, 7.555110220440881, 7.595190380761522, 7.635270541082164, 7.675350701402806, 7.715430861723448, 7.7555110220440895, 7.795591182364728, 7.8356713426853695, 7.875751503006011, 7.915831663326653, 7.955911823647295, 7.9959919839679365, 8.036072144288578, 8.07615230460922, 8.116232464929858, 8.1563126252505, 8.196392785571142, 8.236472945891784, 8.276553106212425, 8.316633266533067, 8.356713426853709, 8.396793587174347, 8.436873747494989, 8.47695390781563, 8.517034068136272, 8.557114228456914, 8.597194388777556, 8.637274549098198, 8.677354709418836, 8.717434869739478, 8.75751503006012, 8.797595190380761, 8.837675350701403, 8.877755511022045, 8.917835671342687, 8.957915831663328, 8.997995991983966, 9.038076152304608, 9.07815631262525, 9.118236472945892, 9.158316633266534, 9.198396793587175, 9.238476953907817, 9.278557114228455, 9.318637274549097, 9.358717434869739, 9.39879759519038, 9.438877755511022, 9.478957915831664, 9.519038076152306, 9.559118236472944, 9.599198396793586, 9.639278557114228, 9.67935871743487, 9.719438877755511, 9.759519038076153, 9.799599198396795, 9.839679358717436, 9.879759519038075, 9.919839679358716, 9.959919839679358, 10.0])
+              .range(['#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#2a78d6ff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#86b6efff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#e6e5e1ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#f4a582ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff', '#eb6834ff']);
+    
+
+    color_map_120541bcfb4e2d040d2d6d98d12c74a4.x = d3.scale.linear()
+              .domain([-10.0, 10.0])
+              .range([0, 450 - 50]);
+
+    color_map_120541bcfb4e2d040d2d6d98d12c74a4.legend = L.control({position: 'topright'});
+    color_map_120541bcfb4e2d040d2d6d98d12c74a4.legend.onAdd = function (map) {var div = L.DomUtil.create('div', 'legend'); return div};
+    color_map_120541bcfb4e2d040d2d6d98d12c74a4.legend.addTo(map_6a041c2960e58e94639078e3c2dc259d);
+
+    color_map_120541bcfb4e2d040d2d6d98d12c74a4.xAxis = d3.svg.axis()
+        .scale(color_map_120541bcfb4e2d040d2d6d98d12c74a4.x)
+        .orient("top")
+        .tickSize(1)
+        .tickValues([-10.0, -6.0, -2.0, 2.0, 6.0, 10.0]);
+
+    color_map_120541bcfb4e2d040d2d6d98d12c74a4.svg = d3.select(".legend.leaflet-control").append("svg")
+        .attr("id", 'legend')
+        .attr("width", 450)
+        .attr("height", 40);
+
+    color_map_120541bcfb4e2d040d2d6d98d12c74a4.g = color_map_120541bcfb4e2d040d2d6d98d12c74a4.svg.append("g")
+        .attr("class", "key")
+        .attr("fill", "black")
+        .attr("transform", "translate(25,16)");
+
+    color_map_120541bcfb4e2d040d2d6d98d12c74a4.g.selectAll("rect")
+        .data(color_map_120541bcfb4e2d040d2d6d98d12c74a4.color.range().map(function(d, i) {
+          return {
+            x0: i ? color_map_120541bcfb4e2d040d2d6d98d12c74a4.x(color_map_120541bcfb4e2d040d2d6d98d12c74a4.color.domain()[i - 1]) : color_map_120541bcfb4e2d040d2d6d98d12c74a4.x.range()[0],
+            x1: i < color_map_120541bcfb4e2d040d2d6d98d12c74a4.color.domain().length ? color_map_120541bcfb4e2d040d2d6d98d12c74a4.x(color_map_120541bcfb4e2d040d2d6d98d12c74a4.color.domain()[i]) : color_map_120541bcfb4e2d040d2d6d98d12c74a4.x.range()[1],
+            z: d
+          };
+        }))
+      .enter().append("rect")
+        .attr("height", 40 - 30)
+        .attr("x", function(d) { return d.x0; })
+        .attr("width", function(d) { return d.x1 - d.x0; })
+        .style("fill", function(d) { return d.z; });
+
+    color_map_120541bcfb4e2d040d2d6d98d12c74a4.g.call(color_map_120541bcfb4e2d040d2d6d98d12c74a4.xAxis).append("text")
+        .attr("class", "caption")
+        .attr("y", 21)
+        .attr("fill", "black")
+        .text("\u00c9cart moyen \u00e0 la m\u00e9diane locale (cts/L, Gazole et SP95-E10)");
+</script>
+</html>
