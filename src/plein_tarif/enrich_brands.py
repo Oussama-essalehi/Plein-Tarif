@@ -9,7 +9,8 @@ OSM input, two interchangeable sources (config `brands.osm_source`):
 - `overpass`: one Overpass API query for France (default);
 - `pbf`: a Geofabrik-style .osm.pbf extract of France read with pyosmium (for networks where the
   Overpass API is not reachable).
-Both produce data/raw/osm/osm_fuel_fr.parquet with one row per OSM fuel station.
+Both produce data/raw/osm/osm_fuel_fr.parquet with one row per OSM fuel station. The environment variable
+PLEIN_TARIF_OSM_SOURCE=pbf overrides the config. After extraction the .pbf can be deleted.
 
 Outputs: data/processed/station_brands.parquet (separate table, ODbL), brand_match_report.json,
 brand_match_by_department.csv.
@@ -18,6 +19,7 @@ brand_match_by_department.csv.
 from __future__ import annotations
 
 import json
+import os
 import re
 import unicodedata
 
@@ -142,7 +144,8 @@ def download_osm() -> pd.DataFrame:
         return pd.read_parquet(out)
     out.parent.mkdir(parents=True, exist_ok=True)
     bcfg = cfg()["brands"]
-    if bcfg.get("osm_source", "overpass") == "pbf":
+    source = os.environ.get("PLEIN_TARIF_OSM_SOURCE", bcfg.get("osm_source", "overpass"))
+    if source == "pbf":
         from plein_tarif.download import fetch
 
         pbf = fetch(bcfg["pbf_url"], out.parent / "france-latest.osm.pbf", min_bytes=10_000_000, timeout=3600)
