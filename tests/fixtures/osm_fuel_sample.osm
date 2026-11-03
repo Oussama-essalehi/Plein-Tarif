@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="fixture">
+  <node id="1" lat="43.60000" lon="1.44000"><tag k="amenity" v="fuel"/><tag k="brand" v="TotalEnergies"/></node>
+  <node id="2" lat="43.61000" lon="1.45000"><tag k="amenity" v="fuel"/><tag k="name" v="Station E.Leclerc Drive"/></node>
+  <node id="3" lat="43.62000" lon="1.46000"><tag k="shop" v="bakery"/></node>
+  <node id="10" lat="43.63000" lon="1.47000"/>
+  <node id="11" lat="43.63010" lon="1.47000"/>
+  <node id="12" lat="43.63010" lon="1.47010"/>
+  <way id="100"><nd ref="10"/><nd ref="11"/><nd ref="12"/><nd ref="10"/><tag k="amenity" v="fuel"/><tag k="brand" v="Esso Express"/></way>
+</osm>
