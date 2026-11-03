@@ -1,0 +1,97 @@
+department,department_name,region,region_code,map_location,n_stations
+01,Ain,Auvergne-Rhône-Alpes,84,"Ain, France",128
+02,Aisne,Hauts-de-France,32,"Aisne, France",106
+03,Allier,Auvergne-Rhône-Alpes,84,"Allier, France",89
+04,Alpes-de-Haute-Provence,Provence-Alpes-Côte d'Azur,93,"Alpes-de-Haute-Provence, France",66
+05,Hautes-Alpes,Provence-Alpes-Côte d'Azur,93,"Hautes-Alpes, France",53
+06,Alpes-Maritimes,Provence-Alpes-Côte d'Azur,93,"Alpes-Maritimes, France",189
+07,Ardèche,Auvergne-Rhône-Alpes,84,"Ardèche, France",81
+08,Ardennes,Grand Est,44,"Ardennes, France",52
+09,Ariège,Occitanie,76,"Ariège, France",45
+10,Aube,Grand Est,44,"Aube, France",76
+11,Aude,Occitanie,76,"Aude, France",99
+12,Aveyron,Occitanie,76,"Aveyron, France",104
+13,Bouches-du-Rhône,Provence-Alpes-Côte d'Azur,93,"Bouches-du-Rhône, France",343
+14,Calvados,Normandie,28,"Calvados, France",142
+15,Cantal,Auvergne-Rhône-Alpes,84,"Cantal, France",62
+16,Charente,Nouvelle-Aquitaine,75,"Charente, France",71
+17,Charente-Maritime,Nouvelle-Aquitaine,75,"Charente-Maritime, France",133
+18,Cher,Centre-Val de Loire,24,"Cher, France",66
+19,Corrèze,Nouvelle-Aquitaine,75,"Corrèze, France",73
+21,Côte-d'Or,Bourgogne-Franche-Comté,27,"Côte-d'Or, France",148
+22,Côtes-d'Armor,Bretagne,53,"Côtes-d'Armor, France",132
+23,Creuse,Nouvelle-Aquitaine,75,"Creuse, France",39
+24,Dordogne,Nouvelle-Aquitaine,75,"Dordogne, France",113
+25,Doubs,Bourgogne-Franche-Comté,27,"Doubs, France",121
+26,Drôme,Auvergne-Rhône-Alpes,84,"Drôme, France",137
+27,Eure,Normandie,28,"Eure, France",111
+28,Eure-et-Loir,Centre-Val de Loire,24,"Eure-et-Loir, France",82
+29,Finistère,Bretagne,53,"Finistère, France",169
+2A,Corse-du-Sud,Corse,94,"Corse-du-Sud, France",66
+2B,Haute-Corse,Corse,94,"Haute-Corse, France",81
+30,Gard,Occitanie,76,"Gard, France",161
+31,Haute-Garonne,Occitanie,76,"Haute-Garonne, France",225
+32,Gers,Occitanie,76,"Gers, France",58
+33,Gironde,Nouvelle-Aquitaine,75,"Gironde, France",261
+34,Hérault,Occitanie,76,"Hérault, France",188
+35,Ille-et-Vilaine,Bretagne,53,"Ille-et-Vilaine, France",174
+36,Indre,Centre-Val de Loire,24,"Indre, France",53
+37,Indre-et-Loire,Centre-Val de Loire,24,"Indre-et-Loire, France",106
+38,Isère,Auvergne-Rhône-Alpes,84,"Isère, France",226
+39,Jura,Bourgogne-Franche-Comté,27,"Jura, France",84
+40,Landes,Nouvelle-Aquitaine,75,"Landes, France",122
+41,Loir-et-Cher,Centre-Val de Loire,24,"Loir-et-Cher, France",67
+42,Loire,Auvergne-Rhône-Alpes,84,"Loire, France",151
+43,Haute-Loire,Auvergne-Rhône-Alpes,84,"Haute-Loire, France",64
+44,Loire-Atlantique,Pays de la Loire,52,"Loire-Atlantique, France",194
+45,Loiret,Centre-Val de Loire,24,"Loiret, France",133
+46,Lot,Occitanie,76,"Lot, France",75
+47,Lot-et-Garonne,Nouvelle-Aquitaine,75,"Lot-et-Garonne, France",95
+48,Lozère,Occitanie,76,"Lozère, France",41
+49,Maine-et-Loire,Pays de la Loire,52,"Maine-et-Loire, France",117
+50,Manche,Normandie,28,"Manche, France",135
+51,Marne,Grand Est,44,"Marne, France",110
+52,Haute-Marne,Grand Est,44,"Haute-Marne, France",54
+53,Mayenne,Pays de la Loire,52,"Mayenne, France",60
+54,Meurthe-et-Moselle,Grand Est,44,"Meurthe-et-Moselle, France",112
+55,Meuse,Grand Est,44,"Meuse, France",40
+56,Morbihan,Bretagne,53,"Morbihan, France",157
+57,Moselle,Grand Est,44,"Moselle, France",149
+58,Nièvre,Bourgogne-Franche-Comté,27,"Nièvre, France",65
+59,Nord,Hauts-de-France,32,"Nord, France",293
+60,Oise,Hauts-de-France,32,"Oise, France",128
+61,Orne,Normandie,28,"Orne, France",75
+62,Pas-de-Calais,Hauts-de-France,32,"Pas-de-Calais, France",261
+63,Puy-de-Dôme,Auvergne-Rhône-Alpes,84,"Puy-de-Dôme, France",130
+64,Pyrénées-Atlantiques,Nouvelle-Aquitaine,75,"Pyrénées-Atlantiques, France",136
+65,Hautes-Pyrénées,Occitanie,76,"Hautes-Pyrénées, France",53
+66,Pyrénées-Orientales,Occitanie,76,"Pyrénées-Orientales, France",80
+67,Bas-Rhin,Grand Est,44,"Bas-Rhin, France",164
+68,Haut-Rhin,Grand Est,44,"Haut-Rhin, France",141
+69,Rhône,Auvergne-Rhône-Alpes,84,"Rhône, France",237
+70,Haute-Saône,Bourgogne-Franche-Comté,27,"Haute-Saône, France",68
+71,Saône-et-Loire,Bourgogne-Franche-Comté,27,"Saône-et-Loire, France",173
+72,Sarthe,Pays de la Loire,52,"Sarthe, France",110
+73,Savoie,Auvergne-Rhône-Alpes,84,"Savoie, France",110
+74,Haute-Savoie,Auvergne-Rhône-Alpes,84,"Haute-Savoie, France",155
+75,Paris,Île-de-France,11,"Paris, France",68
+76,Seine-Maritime,Normandie,28,"Seine-Maritime, France",197
+77,Seine-et-Marne,Île-de-France,11,"Seine-et-Marne, France",194
+78,Yvelines,Île-de-France,11,"Yvelines, France",159
+79,Deux-Sèvres,Nouvelle-Aquitaine,75,"Deux-Sèvres, France",86
+80,Somme,Hauts-de-France,32,"Somme, France",131
+81,Tarn,Occitanie,76,"Tarn, France",81
+82,Tarn-et-Garonne,Occitanie,76,"Tarn-et-Garonne, France",74
+83,Var,Provence-Alpes-Côte d'Azur,93,"Var, France",217
+84,Vaucluse,Provence-Alpes-Côte d'Azur,93,"Vaucluse, France",119
+85,Vendée,Pays de la Loire,52,"Vendée, France",135
+86,Vienne,Nouvelle-Aquitaine,75,"Vienne, France",91
+87,Haute-Vienne,Nouvelle-Aquitaine,75,"Haute-Vienne, France",97
+88,Vosges,Grand Est,44,"Vosges, France",97
+89,Yonne,Bourgogne-Franche-Comté,27,"Yonne, France",98
+90,Territoire de Belfort,Bourgogne-Franche-Comté,27,"Territoire de Belfort, France",19
+91,Essonne,Île-de-France,11,"Essonne, France",150
+92,Hauts-de-Seine,Île-de-France,11,"Hauts-de-Seine, France",86
+93,Seine-Saint-Denis,Île-de-France,11,"Seine-Saint-Denis, France",98
+94,Val-de-Marne,Île-de-France,11,"Val-de-Marne, France",93
+95,Val-d'Oise,Île-de-France,11,"Val-d'Oise, France",124

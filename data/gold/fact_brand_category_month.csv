@@ -912,7 +912,7 @@ month_date_key,year_month,brand_category,brand_category_label,road_type,fuel_key
 20200701,2020-07,unmatched,Non identifiée,Route,5,2425,67056,1.309,1.32614,0.43388,88925.934
 20200701,2020-07,unmatched,Non identifiée,Route,6,3033,81218,1.379,1.39817,0.47399,113556.872
 20200801,2020-08,independent_other,Indépendant / autre,Autoroute,1,12,285,1.414,1.3974,0.55494,398.258
-20200804,2020-08,independent_other,Indépendant / autre,Autoroute,2,1,26,1.399,1.40619,0.48163,36.561
+20200804,2020-08,independent_other,Indépendant / autre,Autoroute,2,1,26,1.399,1.40619,0.48162,36.561
 20200801,2020-08,independent_other,Indépendant / autre,Autoroute,3,2,46,0.799,0.76346,0.51791,35.119
 20200801,2020-08,independent_other,Indépendant / autre,Autoroute,4,2,62,0.984,0.984,0.70465,61.008
 20200801,2020-08,independent_other,Indépendant / autre,Autoroute,5,11,271,1.489,1.47915,0.56126,400.849
@@ -2017,7 +2017,7 @@ month_date_key,year_month,brand_category,brand_category_label,road_type,fuel_key
 20220601,2022-06,unmatched,Non identifiée,Route,6,3051,88899,2.174,2.17748,1.27347,193575.523
 20220701,2022-07,independent_other,Indépendant / autre,Autoroute,1,13,403,2.079,2.08205,1.27754,839.066
 20220701,2022-07,independent_other,Indépendant / autre,Autoroute,2,3,68,2.098,2.06754,1.18275,140.593
-20220701,2022-07,independent_other,Indépendant / autre,Autoroute,3,3,72,0.969,0.95513,0.82764,68.769
+20220701,2022-07,independent_other,Indépendant / autre,Autoroute,3,3,72,0.969,0.95512,0.82764,68.769
 20220701,2022-07,independent_other,Indépendant / autre,Autoroute,4,5,106,1.004,0.99075,0.86028,105.02
 20220701,2022-07,independent_other,Indépendant / autre,Autoroute,5,12,345,2.074,2.0577,1.19455,709.905
 20220701,2022-07,independent_other,Indépendant / autre,Autoroute,6,12,370,2.141,2.14482,1.24715,793.585
@@ -2162,7 +2162,7 @@ month_date_key,year_month,brand_category,brand_category_label,road_type,fuel_key
 20221001,2022-10,independent_other,Indépendant / autre,Autoroute,1,13,403,2.009,2.01352,1.32043,811.447
 20221001,2022-10,independent_other,Indépendant / autre,Autoroute,2,1,31,1.854,1.995,1.2223,61.845
 20221001,2022-10,independent_other,Indépendant / autre,Autoroute,3,4,105,0.849,0.83011,0.82346,87.162
-20221001,2022-10,independent_other,Indépendant / autre,Autoroute,4,2,62,0.992,0.992,0.96132,61.504
+20221001,2022-10,independent_other,Indépendant / autre,Autoroute,4,2,62,0.992,0.992,0.96131,61.504
 20221001,2022-10,independent_other,Indépendant / autre,Autoroute,5,12,372,1.729,1.76265,1.04868,655.706
 20221001,2022-10,independent_other,Indépendant / autre,Autoroute,6,12,372,1.839,1.87305,1.12068,696.776
 20221001,2022-10,independent_other,Indépendant / autre,Route,1,356,10049,1.97,1.96946,1.29445,19791.056
@@ -2550,7 +2550,7 @@ month_date_key,year_month,brand_category,brand_category_label,road_type,fuel_key
 20230601,2023-06,independent_other,Indépendant / autre,Autoroute,5,13,362,1.989,1.99613,0.99324,722.6
 20230601,2023-06,independent_other,Indépendant / autre,Autoroute,6,13,345,2.116,2.12052,1.0769,731.58
 20230601,2023-06,independent_other,Indépendant / autre,Route,1,340,8049,1.699,1.71202,0.82905,13780.022
-20230601,2023-06,independent_other,Indépendant / autre,Route,2,217,4892,1.899,1.90641,0.91743,9326.164
+20230601,2023-06,independent_other,Indépendant / autre,Route,2,217,4892,1.899,1.90641,0.91744,9326.164
 20230601,2023-06,independent_other,Indépendant / autre,Route,3,77,1603,1.148,1.14729,0.83778,1839.111
 20230601,2023-06,independent_other,Indépendant / autre,Route,4,10,218,0.998,1.0205,0.74989,222.469
 20230601,2023-06,independent_other,Indépendant / autre,Route,5,154,3666,1.849,1.86151,0.88053,6824.294
@@ -3458,7 +3458,7 @@ month_date_key,year_month,brand_category,brand_category_label,road_type,fuel_key
 20250101,2025-01,independent_other,Indépendant / autre,Autoroute,1,13,381,1.8,1.82024,0.90937,693.511
 20250101,2025-01,independent_other,Indépendant / autre,Autoroute,2,1,22,1.798,1.81023,0.81832,39.825
 20250101,2025-01,independent_other,Indépendant / autre,Autoroute,3,7,195,0.919,0.92464,0.65223,180.304
-20250101,2025-01,independent_other,Indépendant / autre,Autoroute,4,4,124,1.146,1.14225,0.83652,141.639
+20250101,2025-01,independent_other,Indépendant / autre,Autoroute,4,4,124,1.146,1.14225,0.83653,141.639
 20250101,2025-01,independent_other,Indépendant / autre,Autoroute,5,12,346,1.869,1.91557,0.92611,662.787
 20250101,2025-01,independent_other,Indépendant / autre,Autoroute,6,12,349,1.956,2.01001,0.98481,701.495
 20250101,2025-01,independent_other,Indépendant / autre,Route,1,360,9188,1.719,1.72656,0.84008,15863.673
@@ -3983,7 +3983,7 @@ month_date_key,year_month,brand_category,brand_category_label,road_type,fuel_key
 20251201,2025-12,independent_other,Indépendant / autre,Autoroute,1,12,372,1.659,1.71715,0.82346,638.781
 20251201,2025-12,independent_other,Indépendant / autre,Autoroute,2,1,31,1.709,1.69806,0.72486,52.64
 20251201,2025-12,independent_other,Indépendant / autre,Autoroute,3,6,186,0.838,0.84665,0.58724,157.477
-20251201,2025-12,independent_other,Indépendant / autre,Autoroute,4,4,124,1.1135,1.1195,0.81757,138.818
+20251201,2025-12,independent_other,Indépendant / autre,Autoroute,4,4,124,1.1135,1.1195,0.81756,138.818
 20251201,2025-12,independent_other,Indépendant / autre,Autoroute,5,11,341,1.767,1.80958,0.83778,617.067
 20251201,2025-12,independent_other,Indépendant / autre,Autoroute,6,11,332,1.858,1.91627,0.90669,636.202
 20251201,2025-12,independent_other,Indépendant / autre,Route,1,365,9678,1.625,1.63089,0.75866,15783.785

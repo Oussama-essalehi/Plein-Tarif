@@ -3,12 +3,13 @@
 Format: UTF-8, comma separator, '.' decimal separator, ISO dates (yyyy-mm-dd), one header row.
 The daily station panel (~70 million rows) is NOT exported; Power BI gets aggregates sized for a laptop:
 
-  dim_date, dim_fuel, dim_station, dim_market      dimensions (dim_market: date x fuel)
+  dim_date, dim_fuel, dim_station, dim_department, dim_market   dimensions (dim_market: date x fuel)
   fact_national_daily                              national daily averages by fuel (+ Brent, taxes)
   fact_department_month                            monthly statistics by department x fuel
   fact_brand_category_month                        monthly statistics by brand category x road type x fuel
-  fact_station_year                                station x year x fuel averages, gap to the department median
-                                                   and to the cheapest station within 5 km (savings simulator)
+  fact_station_year                                station x year x fuel averages, gap to the department median,
+                                                   to the cheapest station within 5 km (savings simulator) and,
+                                                   for motorway stations, to regular stations within 10 km
   fact_rockets_feathers                            cumulative responses (rise / fall), both estimation samples
   dim_event                                        discount periods and annotations
 A README.md with the column list is written next to the files.
@@ -18,7 +19,7 @@ from __future__ import annotations
 
 import pandas as pd
 
-from plein_tarif.analyze import tables_dir
+from plein_tarif.analyze import department_names, tables_dir
 from plein_tarif.config import cfg, events, get_logger, path
 from plein_tarif.model import connect_db
 
@@ -81,16 +82,23 @@ QUERIES: dict[str, str] = {
         dept_day AS (
             SELECT s.department, p.date_key, p.fuel_key, median(p.price_ttc) AS dept_median
             FROM fact_price_daily p JOIN dim_station s USING (station_key) GROUP BY ALL
+        ),
+        motorway AS (
+            SELECT d.year, v.station_key, v.fuel_key, median(v.gap) AS premium
+            FROM v_motorway_gap_daily v JOIN dim_date d USING (date_key)
+            GROUP BY ALL HAVING count(*) >= getvariable('min_days')
         )
-        SELECT d.year, p.station_key, p.fuel_key, count(*) AS n_days,
+        SELECT d.year, CAST(d.year AS INTEGER) * 10000 + 101 AS year_date_key, p.station_key, p.fuel_key, count(*) AS n_days,
                round(avg(p.price_ttc), 5) AS price_ttc_mean, round(avg(p.price_ht), 5) AS price_ht_mean,
                round(100 * avg(p.price_ttc - dd.dept_median), 3) AS gap_vs_department_median_cts,
-               round(100 * avg(p.price_ttc - c.cheapest_5km), 3) AS gap_vs_cheapest_5km_cts
+               round(100 * avg(p.price_ttc - c.cheapest_5km), 3) AS gap_vs_cheapest_5km_cts,
+               round(100 * any_value(mw.premium), 3) AS motorway_premium_10km_cts
         FROM fact_price_daily p
         JOIN dim_date d USING (date_key)
         JOIN dim_station s USING (station_key)
         JOIN dept_day dd ON dd.department = s.department AND dd.date_key = p.date_key AND dd.fuel_key = p.fuel_key
         LEFT JOIN cheapest c ON c.station_key = p.station_key AND c.date_key = p.date_key AND c.fuel_key = p.fuel_key
+        LEFT JOIN motorway mw ON mw.year = d.year AND mw.station_key = p.station_key AND mw.fuel_key = p.fuel_key
         GROUP BY d.year, p.station_key, p.fuel_key
         ORDER BY 1, 2, 3""",
 }
@@ -102,6 +110,19 @@ def export_table(con, name: str, sql: str) -> int:
     n = con.execute(f"SELECT count(*) FROM read_csv_auto('{out.as_posix()}')").fetchone()[0]
     log.info("gold %-28s %10s rows  %6.1f MB", name, f"{n:,}", out.stat().st_size / 1e6)
     return n
+
+
+def export_departments(con) -> pd.DataFrame:
+    """One row per department with its name, region and a geocoding-friendly location for map visuals."""
+    names = department_names()
+    df = con.execute("""SELECT department, any_value(region) AS region, any_value(region_code) AS region_code,
+                               count(*) AS n_stations
+                        FROM dim_station GROUP BY department ORDER BY department""").df()
+    df["department_name"] = df["department"].map(names)
+    df["map_location"] = df["department_name"] + ", France"
+    df = df[["department", "department_name", "region", "region_code", "map_location", "n_stations"]]
+    df.to_csv(path("gold") / "dim_department.csv", index=False)
+    return df
 
 
 def export_events() -> pd.DataFrame:
@@ -146,6 +167,7 @@ the minimum-sample rule ({min_stations} stations, {min_days} days).
 
 GRAINS = {
     "dim_date": "one row per day", "dim_fuel": "one row per fuel", "dim_station": "one row per station",
+    "dim_department": "one row per department",
     "dim_market": "day x fuel", "dim_event": "one row per event", "fact_national_daily": "day x fuel",
     "fact_department_month": "month x department x fuel", "fact_brand_category_month": "month x brand category x road type x fuel",
     "fact_station_year": "year x station x fuel", "fact_rockets_feathers": "sample x fuel x direction x horizon (weeks)",
@@ -155,6 +177,7 @@ GRAINS = {
 def main() -> None:
     con = connect_db()
     counts = {name: export_table(con, name, sql) for name, sql in QUERIES.items()}
+    counts["dim_department"] = len(export_departments(con))
     con.close()
     counts["dim_event"] = len(export_events())
     counts["fact_rockets_feathers"] = len(export_rockets_feathers())
