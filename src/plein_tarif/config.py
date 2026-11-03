@@ -66,5 +66,8 @@ def duck(database: str = ":memory:", read_only: bool = False):
     import duckdb
 
     con = duckdb.connect(database, read_only=read_only)
-    con.execute("SET enable_progress_bar = false")
+    try:
+        con.execute("SET enable_progress_bar = false")
+    except duckdb.Error:   # inside Jupyter without ipywidgets the setting cannot be changed
+        pass
     return con
