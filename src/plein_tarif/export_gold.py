@@ -100,7 +100,7 @@ QUERIES: dict[str, str] = {
         LEFT JOIN cheapest c ON c.station_key = p.station_key AND c.date_key = p.date_key AND c.fuel_key = p.fuel_key
         LEFT JOIN motorway mw ON mw.year = d.year AND mw.station_key = p.station_key AND mw.fuel_key = p.fuel_key
         GROUP BY d.year, p.station_key, p.fuel_key
-        ORDER BY 1, 2, 3""",
+        ORDER BY d.year, p.station_key, p.fuel_key""",
 }
 
 

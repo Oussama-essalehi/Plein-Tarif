@@ -34,7 +34,7 @@ SELECT dept.fuel_code, dept.department, dept.region, round(dept.median_ttc, 4) A
        RANK() OVER (PARTITION BY dept.fuel_code ORDER BY dept.median_ttc) AS rank_cheapest,
        dept.n_stations, dept.n_days
 FROM dept JOIN national n USING (fuel_code)
-ORDER BY dept.fuel_code, rank_cheapest;
+ORDER BY dept.fuel_code, rank_cheapest, dept.department;
 
 
 -- name: q1_department_spread
@@ -161,7 +161,7 @@ JOIN dim_station s USING (station_key)
 WHERE d.year = getvariable('analysis_year') AND f.is_main_fuel
 GROUP BY ALL
 HAVING count(*) >= getvariable('min_days')
-ORDER BY f.fuel_code, median_premium_cts DESC;
+ORDER BY f.fuel_code, median_premium_cts DESC, s.station_id;
 
 
 -- name: q3_brand_category
@@ -428,7 +428,7 @@ SELECT p.department,
 FROM prices p JOIN st USING (station_key, department) CROSS JOIN national
 GROUP BY p.department
 HAVING count(DISTINCT p.station_key) >= getvariable('min_stations')
-ORDER BY gazole_gap_vs_national_cts DESC;
+ORDER BY gazole_gap_vs_national_cts DESC, p.department;
 
 
 -- name: check_national_monthly

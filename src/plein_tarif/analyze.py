@@ -44,7 +44,7 @@ def run_queries(con) -> dict[str, pd.DataFrame]:
     results = {}
     for name, sql in load_queries().items():
         df = con.execute(sql).df()
-        df.to_csv(out / f"{name}.csv", index=False)
+        df.round(6).to_csv(out / f"{name}.csv", index=False)   # 6 decimals: no floating-point noise between runs
         results[name] = df
         log.info("query %-32s %6d rows", name, len(df))
     return results
@@ -81,7 +81,8 @@ def station_year_table(con, year: int) -> pd.DataFrame:
         JOIN dim_date d USING (date_key) JOIN dim_station s USING (station_key) JOIN dim_fuel f USING (fuel_key)
         WHERE d.year = ? AND f.is_main_fuel
         GROUP BY ALL
-        HAVING count(*) >= getvariable('min_days')""", [year]).df()
+        HAVING count(*) >= getvariable('min_days')
+        ORDER BY s.station_key, f.fuel_code""", [year]).df()
 
 
 def grouped_ci(st: pd.DataFrame, group: str, a: dict) -> pd.DataFrame:
@@ -165,6 +166,7 @@ def quality_checks(con, q: dict[str, pd.DataFrame]) -> dict:
                       on=["year_month", "fuel_code"])
     cmp_["gap_mean_cts"] = 100 * (cmp_["ttc_ours"] - cmp_["ttc_official"])
     cmp_["gap_median_cts"] = 100 * (cmp_["ttc_median_ours"] - cmp_["ttc_official"])
+    cmp_ = cmp_.sort_values(["year_month", "fuel_code"]).reset_index(drop=True)
     cmp_[["year_month", "fuel_code", "ttc_ours", "ttc_median_ours", "ttc_official", "gap_mean_cts",
           "gap_median_cts"]].round(4).to_csv(tables_dir() / "official_comparison_monthly.csv", index=False)
     out["official_monthly_comparison"] = (
@@ -400,7 +402,7 @@ def main() -> None:
     tdir = tables_dir()
 
     st = station_year_table(con, year)
-    st.to_csv(tdir / "station_year_main_fuels.csv", index=False)
+    st.round(6).to_csv(tdir / "station_year_main_fuels.csv", index=False)
     dept = grouped_ci(st, "department", a)
     dept.to_csv(tdir / "department_median_ci.csv", index=False)
     reg = grouped_ci(st, "region", a)
@@ -424,7 +426,8 @@ def main() -> None:
         fig_brand_categories(cat[cat["brand_category"] != "unmatched"], year)
         fig_brand_local(q["q3_brand_local_gap"], year)
     fig_weekday(q["q7_weekday_changes"])
-    fig_savings(con, year).to_csv(tdir / "savings_focus_city_by_station.csv", index=False)
+    fig_savings(con, year).sort_values(["fuel_code", "station_id"]).to_csv(
+        tdir / "savings_focus_city_by_station.csv", index=False)
     con.close()
 
 
