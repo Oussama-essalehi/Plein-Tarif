@@ -1,0 +1,247 @@
+/// Table des mesures DAX (dossiers d'affichage : Prix, Marché, Écarts, Échantillon, Simulateur, Rockets & Feathers).
+table _Mesures
+	lineageTag: 81529ffb-a503-570c-acc6-edd98b8fb5c3
+
+	/// Nombre minimal de stations pour publier une statistique (config.yaml : min_stations).
+	measure 'Seuil Stations' = 10
+		formatString: 0
+		displayFolder: Échantillon
+		lineageTag: 72db736f-3c37-5c5d-80bf-0658c4713c12
+
+	/// Nombre minimal de jours pour publier une statistique (config.yaml : min_days).
+	measure 'Seuil Jours' = 30
+		formatString: 0
+		displayFolder: Échantillon
+		lineageTag: 1f8d19a1-c087-5e84-8e5e-e4d4d23ff612
+
+	/// Nombre de stations distinctes ayant au moins [Seuil Jours] jours de prix sur les années sélectionnées (respecte les filtres géographiques, enseigne et carburant).
+	measure 'Nb Stations' =
+			CALCULATE (
+			    DISTINCTCOUNT ( fact_station_year[station_key] ),
+			    REMOVEFILTERS ( dim_date ), TREATAS ( VALUES ( dim_date[year] ), fact_station_year[year] ),
+			    KEEPFILTERS ( FILTER ( ALL ( fact_station_year[n_days] ), fact_station_year[n_days] >= [Seuil Jours] ) )
+			)
+		formatString: #,0
+		displayFolder: Échantillon
+		lineageTag: f6f9b701-46c1-521f-a715-23aac8b4498b
+
+	/// Nombre de jours couverts par les données mensuelles dans le contexte (somme sur les mois du maximum de jours observés).
+	measure 'Nb Jours' =
+			SUMX (
+			    VALUES ( dim_date[year_month] ),
+			    CALCULATE ( MAX ( fact_department_month[n_days] ) )
+			)
+		formatString: #,0
+		displayFolder: Échantillon
+		lineageTag: 4afee0fb-1e59-5a62-9312-a4f1b27eba18
+
+	/// VRAI si le groupe compte au moins [Seuil Stations] stations et [Seuil Jours] jours (ou toute la période si elle est plus courte). Les statistiques renvoient BLANK sinon.
+	measure 'Échantillon Suffisant' =
+			VAR joursPeriode = COUNTROWS ( dim_date )
+			RETURN
+			    [Nb Stations] >= [Seuil Stations]
+			        && [Nb Jours] >= MIN ( [Seuil Jours], joursPeriode )
+		formatString: """Oui"";""Oui"";""Non"""
+		displayFolder: Échantillon
+		lineageTag: e9292de7-6ece-5853-a11d-9e21a729d7f9
+
+	/// Prix moyen à la pompe (TTC, net de la remise 2022) sur les stations-jours du contexte, pondéré par le nombre de stations-jours. BLANK sous le seuil d'échantillon.
+	measure 'Prix Moyen TTC' =
+			IF (
+			    [Échantillon Suffisant],
+			    DIVIDE ( SUM ( fact_department_month[price_ttc_sum] ), SUM ( fact_department_month[n_station_days] ) )
+			)
+		formatString: #,0.000 "€"
+		displayFolder: Prix
+		lineageTag: 8502be02-f9ff-5d17-82c9-13527145535e
+
+	/// Médiane, sur les stations, du prix moyen annuel TTC (chaque station compte une fois). À utiliser au niveau année. BLANK sous le seuil d'échantillon.
+	measure 'Prix Médian TTC' =
+			IF (
+			    [Échantillon Suffisant],
+			    CALCULATE (
+			        MEDIAN ( fact_station_year[price_ttc_mean] ),
+			        REMOVEFILTERS ( dim_date ), TREATAS ( VALUES ( dim_date[year] ), fact_station_year[year] ),
+			        KEEPFILTERS ( FILTER ( ALL ( fact_station_year[n_days] ), fact_station_year[n_days] >= [Seuil Jours] ) )
+			    )
+			)
+		formatString: #,0.000 "€"
+		displayFolder: Prix
+		lineageTag: 43b1e864-ae49-5b32-ac36-7a02f2435683
+
+	/// Prix moyen hors taxes du distributeur (avant accise, TVA et remise de l'État), pondéré par les stations-jours. BLANK sous le seuil d'échantillon.
+	measure 'Prix Moyen HT' =
+			IF (
+			    [Échantillon Suffisant],
+			    DIVIDE (
+			        SUMX ( fact_department_month, fact_department_month[price_ht_mean] * fact_department_month[n_station_days] ),
+			        SUM ( fact_department_month[n_station_days] )
+			    )
+			)
+		formatString: #,0.000 "€"
+		displayFolder: Prix
+		lineageTag: 27f573b8-8c91-57ca-8e3a-7f28b09945ed
+
+	/// Moyenne nationale quotidienne du prix TTC (métropole + Corse), moyennée sur les jours du contexte. Ne réagit pas aux filtres géographiques.
+	measure 'Prix National TTC' = AVERAGE ( fact_national_daily[price_ttc_mean] )
+		formatString: #,0.000 "€"
+		displayFolder: Prix
+		lineageTag: 03448666-19e5-522c-bc68-075276f376a9
+
+	/// Moyenne nationale quotidienne du prix hors taxes du distributeur (remise 2022 réintégrée).
+	measure 'Prix National HT' = AVERAGE ( fact_national_daily[price_ht_mean] )
+		formatString: #,0.000 "€"
+		displayFolder: Prix
+		lineageTag: 003eded1-c2e7-5f52-9f19-3d07a45cd843
+
+	/// Cours du Brent converti en euros par litre (USD/baril ÷ EUR/USD ÷ 158,987), moyenne sur les jours du contexte.
+	measure 'Brent €/L' = AVERAGE ( dim_market[brent_eur_l] )
+		formatString: #,0.000 "€"
+		displayFolder: Marché
+		lineageTag: ad134f87-f065-5cfb-a915-0550cb1c3f96
+
+	/// Part de l'accise (taux métropole) et de la TVA dans le prix national TTC.
+	measure 'Part Taxes %' =
+			VAR ttc = [Prix National TTC]
+			VAR tva = AVERAGE ( dim_market[vat] )
+			VAR accise = AVERAGE ( dim_market[excise] )
+			RETURN
+			    DIVIDE ( accise + ttc * tva / ( 1 + tva ), ttc )
+		formatString: 0.0 %
+		displayFolder: Marché
+		lineageTag: 86e734c8-33d9-512e-93b2-f50ef46e609d
+
+	/// [Prix Moyen TTC] sur la même période un an plus tôt.
+	measure 'Prix N-1' = CALCULATE ( [Prix Moyen TTC], SAMEPERIODLASTYEAR ( dim_date[date] ) )
+		formatString: #,0.000 "€"
+		displayFolder: Prix
+		lineageTag: 9bfb9410-afe3-5daf-8444-181b92da25c5
+
+	/// Variation de [Prix Moyen TTC] par rapport à la même période de l'année précédente.
+	measure 'Évolution Prix %' = DIVIDE ( [Prix Moyen TTC] - [Prix N-1], [Prix N-1] )
+		formatString: +0.0 %;-0.0 %;0.0 %
+		displayFolder: Prix
+		lineageTag: 2ff36a33-b7a6-52b8-8162-cf5422ff4f0d
+
+	/// [Prix Médian TTC] sans aucun filtre géographique ni d'enseigne (référence nationale).
+	measure 'Médiane Nationale TTC' = CALCULATE ( [Prix Médian TTC], REMOVEFILTERS ( dim_department ), REMOVEFILTERS ( dim_station ) )
+		formatString: #,0.000 "€"
+		displayFolder: Écarts
+		lineageTag: 746b508b-32a5-5a92-b759-fcd94ce165c4
+
+	/// Écart en centimes par litre entre la médiane du contexte (département, région, enseigne...) et la médiane nationale.
+	measure 'Écart vs Médiane Nationale (cts)' =
+			VAR m = [Prix Médian TTC]
+			RETURN
+			    IF ( NOT ISBLANK ( m ), 100 * ( m - [Médiane Nationale TTC] ) )
+		formatString: +0.0" cts";-0.0" cts";0.0" cts"
+		displayFolder: Écarts
+		lineageTag: 3f38566e-0911-585f-8ac3-dd0dbdd2b03a
+
+	/// Médiane, sur les stations d'autoroute, de leur écart quotidien médian aux stations hors autoroute à moins de 10 km le même jour (comparaison appariée). BLANK sous [Seuil Stations].
+	measure 'Prime Autoroute (cts)' =
+			VAR n =
+			    CALCULATE (
+			        COUNTROWS ( fact_station_year ),
+			        REMOVEFILTERS ( dim_date ), TREATAS ( VALUES ( dim_date[year] ), fact_station_year[year] ),
+			        NOT ISBLANK ( fact_station_year[motorway_premium_10km_cts] )
+			    )
+			RETURN
+			    IF (
+			        n >= [Seuil Stations],
+			        CALCULATE ( MEDIAN ( fact_station_year[motorway_premium_10km_cts] ), REMOVEFILTERS ( dim_date ), TREATAS ( VALUES ( dim_date[year] ), fact_station_year[year] ) )
+			    )
+		formatString: +0.0" cts";-0.0" cts";0.0" cts"
+		displayFolder: Écarts
+		lineageTag: d41f121c-4da7-5492-9f8b-82bb5bb8db4e
+
+	/// Écart moyen (cts/L) des stations du contexte à la médiane de leur département le même jour : neutralise l'effet géographique pour comparer les enseignes. BLANK sous [Seuil Stations].
+	measure 'Écart Enseigne (cts)' =
+			IF (
+			    [Nb Stations] >= [Seuil Stations],
+			    CALCULATE ( AVERAGE ( fact_station_year[gap_vs_department_median_cts] ), REMOVEFILTERS ( dim_date ), TREATAS ( VALUES ( dim_date[year] ), fact_station_year[year] ), KEEPFILTERS ( FILTER ( ALL ( fact_station_year[n_days] ), fact_station_year[n_days] >= [Seuil Jours] ) ) )
+			)
+		formatString: +0.0" cts";-0.0" cts";0.0" cts"
+		displayFolder: Écarts
+		lineageTag: 6584ae5a-08f3-5a26-a693-18e015ab68b4
+
+	/// Rang du département par [Prix Médian TTC] parmi les départements sélectionnés (1 = le moins cher).
+	measure 'Rang Département' =
+			IF (
+			    HASONEVALUE ( dim_department[department] ) && NOT ISBLANK ( [Prix Médian TTC] ),
+			    RANKX (
+			        FILTER ( ALLSELECTED ( dim_department[department] ), NOT ISBLANK ( [Prix Médian TTC] ) ),
+			        [Prix Médian TTC],
+			        ,
+			        ASC,
+			        DENSE
+			    )
+			)
+		formatString: 0
+		displayFolder: Écarts
+		lineageTag: 9c78aecc-7a40-53a1-ad80-163a153aa367
+
+	/// Prix moyen annuel TTC d'une station (sans seuil d'échantillon : valeur individuelle).
+	measure 'Prix Station TTC' = CALCULATE ( AVERAGE ( fact_station_year[price_ttc_mean] ), REMOVEFILTERS ( dim_date ), TREATAS ( VALUES ( dim_date[year] ), fact_station_year[year] ) )
+		formatString: #,0.000 "€"
+		displayFolder: Simulateur
+		lineageTag: f9514928-d9f4-556c-b6df-78a2ff028019
+
+	/// Écart moyen (cts/L) entre le prix de la station et celui de la station la moins chère à moins de 5 km le même jour. Pour un groupe de stations : BLANK sous [Seuil Stations].
+	measure 'Écart au Moins Cher 5 km (cts)' =
+			VAR v =
+			    CALCULATE ( AVERAGE ( fact_station_year[gap_vs_cheapest_5km_cts] ), REMOVEFILTERS ( dim_date ), TREATAS ( VALUES ( dim_date[year] ), fact_station_year[year] ), KEEPFILTERS ( FILTER ( ALL ( fact_station_year[n_days] ), fact_station_year[n_days] >= [Seuil Jours] ) ) )
+			RETURN
+			    IF ( HASONEVALUE ( dim_station[station_key] ) || [Nb Stations] >= [Seuil Stations], v )
+		formatString: +0.0" cts";-0.0" cts";0.0" cts"
+		displayFolder: Simulateur
+		lineageTag: 1c6ef3dc-3527-5093-ae2b-61bd61317808
+
+	/// Consommation annuelle du conducteur type : Km par an × Conso L/100 ÷ 100.
+	measure 'Litres par an' = [Valeur Km par an] * [Valeur Conso L/100] / 100
+		formatString: #,0
+		displayFolder: Simulateur
+		lineageTag: 1d68d154-de05-59a7-98c4-164a86fa06b4
+
+	/// Économie annuelle en euros en faisant le plein à la station la moins chère à moins de 5 km : écart (€/L) × litres par an.
+	measure 'Économie Annuelle €' = DIVIDE ( [Écart au Moins Cher 5 km (cts)], 100 ) * [Litres par an]
+		formatString: #,0 "€"
+		displayFolder: Simulateur
+		lineageTag: 62ce72fb-9b12-5593-b5c1-2a2167ad687e
+
+	/// Réponse cumulée du prix HT (cts/L) à un mouvement de 1 ct/L du Brent, h semaines après.
+	measure 'Réponse Cumulée (cts)' = AVERAGE ( fact_rockets_feathers[cumulative_response] )
+		formatString: 0.00
+		displayFolder: Rockets & Feathers
+		lineageTag: f257b806-a322-55a9-ba5f-914e68ca8c89
+
+	/// Borne basse de l'intervalle de confiance à 95 %.
+	measure 'IC Bas (cts)' = AVERAGE ( fact_rockets_feathers[ci_low] )
+		formatString: 0.00
+		displayFolder: Rockets & Feathers
+		lineageTag: 1bac0563-3ef5-5412-9593-c890866a4a99
+
+	/// Borne haute de l'intervalle de confiance à 95 %.
+	measure 'IC Haut (cts)' = AVERAGE ( fact_rockets_feathers[ci_high] )
+		formatString: 0.00
+		displayFolder: Rockets & Feathers
+		lineageTag: 089f5e30-b113-5c54-92cf-2742285e5633
+
+	column Colonne
+		dataType: string
+		isHidden
+		lineageTag: 9175bf10-5518-5ed3-ac68-0e6ba9623794
+		summarizeBy: none
+		sourceColumn: Colonne
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _Mesures = m
+		mode: import
+		source =
+				let
+				    Source = #table(type table [Colonne = text], {})
+				in
+				    Source
+
+	annotation PBI_ResultType = Table

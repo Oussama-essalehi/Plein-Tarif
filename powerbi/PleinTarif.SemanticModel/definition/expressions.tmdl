@@ -1,0 +1,6 @@
+/// Dossier absolu contenant les CSV de data/gold (terminé par une barre oblique inverse).
+expression DataFolder = "C:\plein-tarif\data\gold\" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 4ca710d0-4344-501e-90bc-90b9b57d3048
+
+	annotation PBI_ResultType = Text
+

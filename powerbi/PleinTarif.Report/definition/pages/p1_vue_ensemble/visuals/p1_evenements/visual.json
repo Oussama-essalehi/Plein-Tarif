@@ -1,0 +1,88 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "p1_evenements",
+  "position": {
+    "x": 895,
+    "y": 195,
+    "z": 10000,
+    "height": 505,
+    "width": 365,
+    "tabOrder": 10000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_event"
+                    }
+                  },
+                  "Property": "label"
+                }
+              },
+              "queryRef": "dim_event.label",
+              "nativeQueryRef": "label"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_event"
+                    }
+                  },
+                  "Property": "start_date"
+                }
+              },
+              "queryRef": "dim_event.start_date",
+              "nativeQueryRef": "start_date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_event"
+                    }
+                  },
+                  "Property": "end_date"
+                }
+              },
+              "queryRef": "dim_event.end_date",
+              "nativeQueryRef": "end_date"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Événements et remise carburant'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

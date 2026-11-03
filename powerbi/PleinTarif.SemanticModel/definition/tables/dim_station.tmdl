@@ -1,0 +1,210 @@
+/// Points de vente (métropole + Corse) avec enseigne OpenStreetMap (ODbL) quand elle a pu être rattachée.
+table dim_station
+	lineageTag: 9905098f-db27-52aa-a94e-9c1ba2d473f8
+
+	column station_key
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: 953facfc-fba1-5149-8ab6-7a48f98b1a2c
+		summarizeBy: none
+		sourceColumn: station_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column station_id
+		dataType: int64
+		formatString: #,0
+		lineageTag: 30312731-d6fa-5cea-b8d5-ace04be28636
+		summarizeBy: none
+		sourceColumn: station_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column lat
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 76218225-1fd0-5656-8a25-f74c2825a556
+		summarizeBy: none
+		sourceColumn: lat
+		dataCategory: Latitude
+
+		annotation SummarizationSetBy = Automatic
+
+	column lon
+		dataType: double
+		formatString: #,0.00
+		lineageTag: a5aca862-8aad-564a-9177-7c7ee39dc5ec
+		summarizeBy: none
+		sourceColumn: lon
+		dataCategory: Longitude
+
+		annotation SummarizationSetBy = Automatic
+
+	column address
+		dataType: string
+		lineageTag: f73922cd-a94e-5936-bdc7-a4df0bf201bb
+		summarizeBy: none
+		sourceColumn: address
+
+		annotation SummarizationSetBy = Automatic
+
+	column postcode
+		dataType: string
+		lineageTag: 2770d8d3-39a3-5689-84b0-043b971c7da2
+		summarizeBy: none
+		sourceColumn: postcode
+
+		annotation SummarizationSetBy = Automatic
+
+	column city
+		dataType: string
+		lineageTag: 3bad84d1-7eb1-5b23-bb27-39f042af57b1
+		summarizeBy: none
+		sourceColumn: city
+
+		annotation SummarizationSetBy = Automatic
+
+	column city_std
+		dataType: string
+		lineageTag: fd885ed0-5957-5c47-9376-2946a51d0f2e
+		summarizeBy: none
+		sourceColumn: city_std
+
+		annotation SummarizationSetBy = Automatic
+
+	column department
+		dataType: string
+		lineageTag: a05c4f41-0d24-59d3-8627-b5ddf3d1f1c6
+		summarizeBy: none
+		sourceColumn: department
+
+		annotation SummarizationSetBy = Automatic
+
+	column region_code
+		dataType: string
+		lineageTag: 21777b81-4d66-55c6-a225-aae59e70e2e3
+		summarizeBy: none
+		sourceColumn: region_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column region
+		dataType: string
+		lineageTag: e750e790-feb4-5290-b575-3ee898535c29
+		summarizeBy: none
+		sourceColumn: region
+
+		annotation SummarizationSetBy = Automatic
+
+	column zone
+		dataType: string
+		lineageTag: 2e15e87e-8977-568b-a131-c983ad167231
+		summarizeBy: none
+		sourceColumn: zone
+
+		annotation SummarizationSetBy = Automatic
+
+	column tax_zone
+		dataType: string
+		lineageTag: f7799973-8dd3-55b2-8456-60b291153617
+		summarizeBy: none
+		sourceColumn: tax_zone
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_motorway
+		dataType: boolean
+		lineageTag: 1875ea4d-b45a-5123-8310-f2bf81e8f02f
+		summarizeBy: none
+		sourceColumn: is_motorway
+
+		annotation SummarizationSetBy = Automatic
+
+	column road_type
+		dataType: string
+		lineageTag: d510cd56-4091-53a1-bdd8-ce1f08945a11
+		summarizeBy: none
+		sourceColumn: road_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column automate_24_24
+		dataType: boolean
+		lineageTag: 3afaca33-0e99-5777-afd5-ba8edc44d487
+		summarizeBy: none
+		sourceColumn: automate_24_24
+
+		annotation SummarizationSetBy = Automatic
+
+	column brand
+		dataType: string
+		lineageTag: 78233518-4167-5b46-9539-781e40d4eba0
+		summarizeBy: none
+		sourceColumn: brand
+
+		annotation SummarizationSetBy = Automatic
+
+	column brand_category
+		dataType: string
+		lineageTag: 9fc4497a-cab2-51da-8002-a16c82423c3b
+		summarizeBy: none
+		sourceColumn: brand_category
+
+		annotation SummarizationSetBy = Automatic
+
+	column brand_category_label
+		dataType: string
+		lineageTag: 2975771e-dda1-5348-a5e5-bf0135322110
+		summarizeBy: none
+		sourceColumn: brand_category_label
+
+		annotation SummarizationSetBy = Automatic
+
+	column osm_match_distance_m
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 118fba8c-ae78-5503-98af-bafa2b9dd527
+		summarizeBy: none
+		sourceColumn: osm_match_distance_m
+
+		annotation SummarizationSetBy = Automatic
+
+	column brand_ambiguous
+		dataType: boolean
+		lineageTag: 7eccaae4-ab0d-5e78-8c25-9368ed928f6b
+		summarizeBy: none
+		sourceColumn: brand_ambiguous
+
+		annotation SummarizationSetBy = Automatic
+
+	column first_year
+		dataType: int64
+		formatString: #,0
+		lineageTag: 89e3d9af-ae4f-54a0-9541-3c17462dd00e
+		summarizeBy: none
+		sourceColumn: first_year
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_year
+		dataType: int64
+		formatString: #,0
+		lineageTag: e69f4d02-366d-54c3-9b4a-07b5bb189d80
+		summarizeBy: none
+		sourceColumn: last_year
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_station = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "dim_station.csv"), [Delimiter=",", Columns=23, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    // culture en-US: the CSV files use '.' as decimal separator whatever the Windows locale
+				    Typed = Table.TransformColumnTypes(Promoted, {{"station_key", Int64.Type}, {"station_id", Int64.Type}, {"lat", type number}, {"lon", type number}, {"address", type text}, {"postcode", type text}, {"city", type text}, {"city_std", type text}, {"department", type text}, {"region_code", type text}, {"region", type text}, {"zone", type text}, {"tax_zone", type text}, {"is_motorway", type logical}, {"road_type", type text}, {"automate_24_24", type logical}, {"brand", type text}, {"brand_category", type text}, {"brand_category_label", type text}, {"osm_match_distance_m", type number}, {"brand_ambiguous", type logical}, {"first_year", Int64.Type}, {"last_year", Int64.Type}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table

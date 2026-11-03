@@ -1,0 +1,124 @@
+/// Statistiques mensuelles par type d'enseigne, type de route et carburant.
+table fact_brand_category_month
+	lineageTag: d72b3e8e-7a72-5591-8ca9-d94818d15fc5
+
+	column month_date_key
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: 1dee52b3-38ca-54be-8768-fbf78baf19f0
+		summarizeBy: none
+		sourceColumn: month_date_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column year_month
+		dataType: string
+		lineageTag: 9c48dff9-c96f-583b-973c-786dd12bbc46
+		summarizeBy: none
+		sourceColumn: year_month
+
+		annotation SummarizationSetBy = Automatic
+
+	column brand_category
+		dataType: string
+		lineageTag: f26d2766-1f57-5260-add6-f6e83d935bb2
+		summarizeBy: none
+		sourceColumn: brand_category
+
+		annotation SummarizationSetBy = Automatic
+
+	column brand_category_label
+		dataType: string
+		lineageTag: 24a41afa-e872-57fa-a753-d53941dbdd97
+		summarizeBy: none
+		sourceColumn: brand_category_label
+
+		annotation SummarizationSetBy = Automatic
+
+	column road_type
+		dataType: string
+		lineageTag: 56cc49d4-30fe-5094-8512-3959f6800220
+		summarizeBy: none
+		sourceColumn: road_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column fuel_key
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: 559e381b-b7c1-58a3-9ad0-3209e667a1a5
+		summarizeBy: none
+		sourceColumn: fuel_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column n_stations
+		dataType: int64
+		formatString: #,0
+		lineageTag: cda05fdc-920e-5067-910b-1c7b48ccb7c7
+		summarizeBy: none
+		sourceColumn: n_stations
+
+		annotation SummarizationSetBy = Automatic
+
+	column n_station_days
+		dataType: int64
+		formatString: #,0
+		isHidden
+		lineageTag: 69786752-85a1-5d9f-814c-6bf48c27ec20
+		summarizeBy: none
+		sourceColumn: n_station_days
+
+		annotation SummarizationSetBy = Automatic
+
+	column price_ttc_median
+		dataType: double
+		formatString: #,0.000
+		lineageTag: e74a5df4-040d-55b7-8540-0464446d5680
+		summarizeBy: none
+		sourceColumn: price_ttc_median
+
+		annotation SummarizationSetBy = Automatic
+
+	column price_ttc_mean
+		dataType: double
+		formatString: #,0.000
+		lineageTag: 044db01a-1e72-5737-80a8-41dfdcad329e
+		summarizeBy: none
+		sourceColumn: price_ttc_mean
+
+		annotation SummarizationSetBy = Automatic
+
+	column price_ht_mean
+		dataType: double
+		formatString: #,0.000
+		lineageTag: 52d19f50-26ff-5022-828c-7a5b9232b684
+		summarizeBy: none
+		sourceColumn: price_ht_mean
+
+		annotation SummarizationSetBy = Automatic
+
+	column price_ttc_sum
+		dataType: double
+		formatString: #,0.000
+		isHidden
+		lineageTag: 50ed081e-57d9-53db-a3c8-2d412cdfd525
+		summarizeBy: none
+		sourceColumn: price_ttc_sum
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_brand_category_month = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "fact_brand_category_month.csv"), [Delimiter=",", Columns=12, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    // culture en-US: the CSV files use '.' as decimal separator whatever the Windows locale
+				    Typed = Table.TransformColumnTypes(Promoted, {{"month_date_key", Int64.Type}, {"year_month", type text}, {"brand_category", type text}, {"brand_category_label", type text}, {"road_type", type text}, {"fuel_key", Int64.Type}, {"n_stations", Int64.Type}, {"n_station_days", Int64.Type}, {"price_ttc_median", type number}, {"price_ttc_mean", type number}, {"price_ht_mean", type number}, {"price_ttc_sum", type number}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table

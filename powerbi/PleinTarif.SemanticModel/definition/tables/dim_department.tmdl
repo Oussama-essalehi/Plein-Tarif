@@ -1,0 +1,66 @@
+/// Départements, régions et libellé géographique pour les cartes.
+table dim_department
+	lineageTag: bc62f7e4-bda0-584c-88b5-c87b879548c8
+
+	column department
+		dataType: string
+		lineageTag: 4b71d077-ecaf-5139-99df-1eb08739060f
+		summarizeBy: none
+		sourceColumn: department
+
+		annotation SummarizationSetBy = Automatic
+
+	column department_name
+		dataType: string
+		lineageTag: 4bc934ab-c86f-5f0b-aa78-0c4990e299a8
+		summarizeBy: none
+		sourceColumn: department_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column region
+		dataType: string
+		lineageTag: c7f5de81-e5a7-5615-906e-f1db19e25df2
+		summarizeBy: none
+		sourceColumn: region
+
+		annotation SummarizationSetBy = Automatic
+
+	column region_code
+		dataType: string
+		lineageTag: d6ee7c56-21bc-5c95-a8db-7e149370a5a5
+		summarizeBy: none
+		sourceColumn: region_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column map_location
+		dataType: string
+		lineageTag: ef9f2ce7-7942-59a7-9994-1e92354a99b1
+		summarizeBy: none
+		sourceColumn: map_location
+		dataCategory: StateOrProvince
+
+		annotation SummarizationSetBy = Automatic
+
+	column n_stations
+		dataType: int64
+		formatString: #,0
+		lineageTag: 33c723cc-27a1-5bdf-9e02-ac72321a26bf
+		summarizeBy: none
+		sourceColumn: n_stations
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_department = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "dim_department.csv"), [Delimiter=",", Columns=6, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    // culture en-US: the CSV files use '.' as decimal separator whatever the Windows locale
+				    Typed = Table.TransformColumnTypes(Promoted, {{"department", type text}, {"department_name", type text}, {"region", type text}, {"region_code", type text}, {"map_location", type text}, {"n_stations", Int64.Type}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
