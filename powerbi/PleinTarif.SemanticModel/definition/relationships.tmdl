@@ -1,0 +1,55 @@
+relationship ba3bb1cb-79a8-541e-b9a4-f22f82e99a5c
+	fromColumn: fact_national_daily.date_key
+	toColumn: dim_date.date_key
+
+relationship 13abec9b-ec01-59e4-9ad5-e9070c97a25a
+	fromColumn: fact_national_daily.fuel_key
+	toColumn: dim_fuel.fuel_key
+
+relationship b704afa3-64bd-58ab-bba1-3b3c359ca966
+	fromColumn: dim_market.date_key
+	toColumn: dim_date.date_key
+
+relationship 48a90b91-d4e9-5f68-b840-b16e0d277da8
+	fromColumn: dim_market.fuel_key
+	toColumn: dim_fuel.fuel_key
+
+relationship d9eba12c-a6cf-5c79-a4cf-f7959a894d94
+	fromColumn: fact_department_month.month_date_key
+	toColumn: dim_date.date_key
+
+relationship da99a036-8afa-59d9-8fe8-6ec9c5a99ce7
+	fromColumn: fact_department_month.fuel_key
+	toColumn: dim_fuel.fuel_key
+
+relationship e651f8b2-f097-5523-88cc-3d3af15270da
+	fromColumn: fact_department_month.department
+	toColumn: dim_department.department
+
+relationship 17754685-955e-50a5-96e0-d69d9fbb0a84
+	fromColumn: fact_brand_category_month.month_date_key
+	toColumn: dim_date.date_key
+
+relationship a54f8891-d650-5ace-ba37-180903ded63f
+	fromColumn: fact_brand_category_month.fuel_key
+	toColumn: dim_fuel.fuel_key
+
+relationship 0478e24e-8e69-5ba9-b7eb-f5fd5627b3f1
+	fromColumn: fact_station_year.year_date_key
+	toColumn: dim_date.date_key
+
+relationship 35b3940b-d3c5-58a6-ba39-bdb6b6449ec9
+	fromColumn: fact_station_year.station_key
+	toColumn: dim_station.station_key
+
+relationship b49fbc16-75b2-5855-8c73-a3ef0238429f
+	fromColumn: fact_station_year.fuel_key
+	toColumn: dim_fuel.fuel_key
+
+relationship b1f72e69-6357-5893-8aef-cc64f78f5d82
+	fromColumn: dim_station.department
+	toColumn: dim_department.department
+
+relationship 58248b3c-d925-5d2e-9c99-a1f87e4d4f3d
+	fromColumn: fact_rockets_feathers.fuel_key
+	toColumn: dim_fuel.fuel_key

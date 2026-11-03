@@ -1,0 +1,86 @@
+/// Réponses cumulées du prix HT à une hausse / baisse de 1 ct/L du Brent (modèle ADL asymétrique).
+table fact_rockets_feathers
+	lineageTag: 395b6c93-c95d-5c3e-b604-2e5a665f6e80
+
+	column fuel_key
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: 5c3bd73b-4312-5a9e-b4c0-c15ae8ee528a
+		summarizeBy: none
+		sourceColumn: fuel_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column fuel_code
+		dataType: string
+		lineageTag: 9d3e7393-126a-5d1d-bdc3-68754c1c7b89
+		summarizeBy: none
+		sourceColumn: fuel_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column horizon_weeks
+		dataType: int64
+		formatString: #,0
+		lineageTag: 417a307a-0a21-5c0a-b0cd-2e5e4f610f5e
+		summarizeBy: none
+		sourceColumn: horizon_weeks
+
+		annotation SummarizationSetBy = Automatic
+
+	column direction
+		dataType: string
+		lineageTag: 8742dbee-5bd6-5fb7-826f-eec023041b52
+		summarizeBy: none
+		sourceColumn: direction
+
+		annotation SummarizationSetBy = Automatic
+
+	column cumulative_response
+		dataType: double
+		formatString: #,0.000
+		lineageTag: 11234337-e3ee-591b-bde3-dd438cfacd23
+		summarizeBy: none
+		sourceColumn: cumulative_response
+
+		annotation SummarizationSetBy = Automatic
+
+	column ci_low
+		dataType: double
+		formatString: #,0.000
+		lineageTag: f48cff2a-f05b-54af-847c-ef7c6db782c5
+		summarizeBy: none
+		sourceColumn: ci_low
+
+		annotation SummarizationSetBy = Automatic
+
+	column ci_high
+		dataType: double
+		formatString: #,0.000
+		lineageTag: 47db2fea-c6a6-5bf8-9e36-61e511619c78
+		summarizeBy: none
+		sourceColumn: ci_high
+
+		annotation SummarizationSetBy = Automatic
+
+	column sample
+		dataType: string
+		lineageTag: 96824ffb-2fbc-5681-bccf-aa95fa6f97b5
+		summarizeBy: none
+		sourceColumn: sample
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_rockets_feathers = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "fact_rockets_feathers.csv"), [Delimiter=",", Columns=8, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    // culture en-US: the CSV files use '.' as decimal separator whatever the Windows locale
+				    Typed = Table.TransformColumnTypes(Promoted, {{"fuel_key", Int64.Type}, {"fuel_code", type text}, {"horizon_weeks", Int64.Type}, {"direction", type text}, {"cumulative_response", type number}, {"ci_low", type number}, {"ci_high", type number}, {"sample", type text}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table

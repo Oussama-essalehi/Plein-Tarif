@@ -1,0 +1,28 @@
+/// Paramètre de simulation : consommation en litres aux 100 km (4 à 12).
+table 'Conso L/100'
+	lineageTag: 9b7d029f-6faf-536c-8695-b2c9ab3f7c26
+
+	measure 'Valeur Conso L/100' = SELECTEDVALUE ( 'Conso L/100'[Conso L/100], 6 )
+		formatString: 0.0
+		lineageTag: 978a1af3-737c-5a4c-aa0a-38bb565aa675
+
+	column 'Conso L/100'
+		dataType: double
+		formatString: 0.0
+		lineageTag: 5bdfc6d0-b59c-528a-b312-ec593e5a7a36
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition 'Conso L/100' = calculated
+		mode: import
+		source = GENERATESERIES ( 4, 12, 0.5 )
+
+	annotation PBI_Id = 308f22a36162536fb84129853b04511d

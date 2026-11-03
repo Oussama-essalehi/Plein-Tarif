@@ -1,0 +1,81 @@
+/// Moyenne et médiane nationales quotidiennes par carburant (TTC et HT).
+table fact_national_daily
+	lineageTag: 766bd752-f1c1-5134-a3c7-6a65892c53d5
+
+	column date_key
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: dbb21981-d0fa-520c-af6c-54672f351171
+		summarizeBy: none
+		sourceColumn: date_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column fuel_key
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: 713f006a-2adf-5238-8122-ef40eebb8d8c
+		summarizeBy: none
+		sourceColumn: fuel_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column n_stations
+		dataType: int64
+		formatString: #,0
+		lineageTag: d2c0f77f-ffcc-5dc3-b191-ebc73d906330
+		summarizeBy: none
+		sourceColumn: n_stations
+
+		annotation SummarizationSetBy = Automatic
+
+	column price_ttc_mean
+		dataType: double
+		formatString: #,0.000
+		lineageTag: 704bb732-16f8-5e9d-9df1-cbbda7951562
+		summarizeBy: none
+		sourceColumn: price_ttc_mean
+
+		annotation SummarizationSetBy = Automatic
+
+	column price_ttc_median
+		dataType: double
+		formatString: #,0.000
+		lineageTag: b088942f-d16f-5423-9497-5077dcddf45a
+		summarizeBy: none
+		sourceColumn: price_ttc_median
+
+		annotation SummarizationSetBy = Automatic
+
+	column price_ht_mean
+		dataType: double
+		formatString: #,0.000
+		lineageTag: 656a659f-c0a2-5154-aa2f-3cc6fe544690
+		summarizeBy: none
+		sourceColumn: price_ht_mean
+
+		annotation SummarizationSetBy = Automatic
+
+	column price_ht_median
+		dataType: double
+		formatString: #,0.000
+		lineageTag: 58e28de6-d550-5b53-8853-96e6be1b7535
+		summarizeBy: none
+		sourceColumn: price_ht_median
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_national_daily = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "fact_national_daily.csv"), [Delimiter=",", Columns=7, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    // culture en-US: the CSV files use '.' as decimal separator whatever the Windows locale
+				    Typed = Table.TransformColumnTypes(Promoted, {{"date_key", Int64.Type}, {"fuel_key", Int64.Type}, {"n_stations", Int64.Type}, {"price_ttc_mean", type number}, {"price_ttc_median", type number}, {"price_ht_mean", type number}, {"price_ht_median", type number}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table

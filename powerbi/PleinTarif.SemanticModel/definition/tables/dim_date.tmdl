@@ -1,0 +1,165 @@
+/// Calendrier quotidien 2019-2025 (jours fériés, remise carburant en vigueur, événements). Table de dates.
+table dim_date
+	lineageTag: cee67665-6224-5765-bf53-37dc4e994bbf
+	dataCategory: Time
+
+	column date_key
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: 72f07bba-e51c-5999-ba46-f6e6acc51fcc
+		summarizeBy: none
+		sourceColumn: date_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column date
+		dataType: dateTime
+		isKey
+		formatString: dd/mm/yyyy
+		lineageTag: beb4d518-42b0-539a-83b5-d3ba3d0416db
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation SummarizationSetBy = Automatic
+
+	column year
+		dataType: int64
+		formatString: 0
+		lineageTag: 9da30bc7-6bed-512b-9093-836b3e10d721
+		summarizeBy: none
+		sourceColumn: year
+
+		annotation SummarizationSetBy = Automatic
+
+	column quarter
+		dataType: int64
+		formatString: #,0
+		lineageTag: 847a5a34-7ce2-5246-80f7-55bb0262bd76
+		summarizeBy: none
+		sourceColumn: quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column month
+		dataType: int64
+		formatString: 0
+		lineageTag: f5f2abea-e44f-509f-a8c2-7884ed554c79
+		summarizeBy: none
+		sourceColumn: month
+
+		annotation SummarizationSetBy = Automatic
+
+	column month_name
+		dataType: string
+		lineageTag: 66ebc525-743e-5b50-aab0-d31befb0da59
+		summarizeBy: none
+		sourceColumn: month_name
+		sortByColumn: month
+
+		annotation SummarizationSetBy = Automatic
+
+	column year_month
+		dataType: string
+		lineageTag: fa4d58df-4406-50ff-a896-705cf550ded0
+		summarizeBy: none
+		sourceColumn: year_month
+
+		annotation SummarizationSetBy = Automatic
+
+	column iso_week
+		dataType: int64
+		formatString: #,0
+		lineageTag: 924109ab-3531-5e28-926e-1cc0f8b90540
+		summarizeBy: none
+		sourceColumn: iso_week
+
+		annotation SummarizationSetBy = Automatic
+
+	column weekday_num
+		dataType: int64
+		formatString: #,0
+		lineageTag: 495244e3-670a-54ea-88e5-b7bae38f988f
+		summarizeBy: none
+		sourceColumn: weekday_num
+
+		annotation SummarizationSetBy = Automatic
+
+	column weekday_name
+		dataType: string
+		lineageTag: 82de25ba-afb1-5324-a47d-672bf4912246
+		summarizeBy: none
+		sourceColumn: weekday_name
+		sortByColumn: weekday_num
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_weekend
+		dataType: boolean
+		lineageTag: 61c5bc58-9f32-5eca-a670-9636d964fa96
+		summarizeBy: none
+		sourceColumn: is_weekend
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_holiday
+		dataType: boolean
+		lineageTag: 663dfb39-43d4-5950-a8d0-720c45e11684
+		summarizeBy: none
+		sourceColumn: is_holiday
+
+		annotation SummarizationSetBy = Automatic
+
+	column holiday_name
+		dataType: string
+		lineageTag: 96f5f2a8-9ef5-5744-ac56-6e52c58e3ebf
+		summarizeBy: none
+		sourceColumn: holiday_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_day_before_holiday_or_weekend
+		dataType: boolean
+		lineageTag: f0eab64b-9c12-5c7b-b1cb-20c1075180c8
+		summarizeBy: none
+		sourceColumn: is_day_before_holiday_or_weekend
+
+		annotation SummarizationSetBy = Automatic
+
+	column discount_ht
+		dataType: double
+		formatString: #,0.000
+		lineageTag: 077bcf70-f47d-5ef4-b328-cfe82673ac0b
+		summarizeBy: none
+		sourceColumn: discount_ht
+
+		annotation SummarizationSetBy = Automatic
+
+	column discount_label
+		dataType: string
+		lineageTag: 6cc24562-4e43-5945-9288-ac5598f55fcd
+		summarizeBy: none
+		sourceColumn: discount_label
+
+		annotation SummarizationSetBy = Automatic
+
+	column event_label
+		dataType: string
+		lineageTag: 954bb4ea-cd29-57b7-afc2-5d7b18a2d9ab
+		summarizeBy: none
+		sourceColumn: event_label
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_date = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "dim_date.csv"), [Delimiter=",", Columns=17, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    // culture en-US: the CSV files use '.' as decimal separator whatever the Windows locale
+				    Typed = Table.TransformColumnTypes(Promoted, {{"date_key", Int64.Type}, {"date", type date}, {"year", Int64.Type}, {"quarter", Int64.Type}, {"month", Int64.Type}, {"month_name", type text}, {"year_month", type text}, {"iso_week", Int64.Type}, {"weekday_num", Int64.Type}, {"weekday_name", type text}, {"is_weekend", type logical}, {"is_holiday", type logical}, {"holiday_name", type text}, {"is_day_before_holiday_or_weekend", type logical}, {"discount_ht", type number}, {"discount_label", type text}, {"event_label", type text}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table

@@ -1,0 +1,26 @@
+model Model
+	culture: fr-FR
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: fr-FR
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_QueryOrder = ["DataFolder","dim_date","dim_fuel","dim_station","dim_department","dim_market","dim_event","fact_national_daily","fact_department_month","fact_brand_category_month","fact_station_year","fact_rockets_feathers","_Mesures"]
+
+ref table dim_date
+ref table dim_fuel
+ref table dim_station
+ref table dim_department
+ref table dim_market
+ref table dim_event
+ref table fact_national_daily
+ref table fact_department_month
+ref table fact_brand_category_month
+ref table fact_station_year
+ref table fact_rockets_feathers
+ref table _Mesures
+ref table 'Km par an'
+ref table 'Conso L/100'

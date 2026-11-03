@@ -1,0 +1,60 @@
+/// Carburants : Gazole et SP95-E10 (principaux), SP98, SP95, E85, GPLc.
+table dim_fuel
+	lineageTag: b2b3f5d3-08ae-5dd7-b66d-31e9ce9d62be
+
+	column fuel_key
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: 9e830989-1302-5497-92d7-17a62dcebcb2
+		summarizeBy: none
+		sourceColumn: fuel_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column fuel_code
+		dataType: string
+		lineageTag: c83b81db-0d8f-5b48-b63e-eb37b04590e9
+		summarizeBy: none
+		sourceColumn: fuel_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column fuel_label
+		dataType: string
+		lineageTag: 8d92727c-47fa-5b36-b362-b7657964230a
+		summarizeBy: none
+		sourceColumn: fuel_label
+		sortByColumn: display_order
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_main_fuel
+		dataType: boolean
+		lineageTag: 3a8071ae-293d-58a0-883d-d16386ba9144
+		summarizeBy: none
+		sourceColumn: is_main_fuel
+
+		annotation SummarizationSetBy = Automatic
+
+	column display_order
+		dataType: int64
+		formatString: #,0
+		lineageTag: 4e5887c3-7bb6-5e05-a0e2-aff0b5df5ba4
+		summarizeBy: none
+		sourceColumn: display_order
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_fuel = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "dim_fuel.csv"), [Delimiter=",", Columns=5, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    // culture en-US: the CSV files use '.' as decimal separator whatever the Windows locale
+				    Typed = Table.TransformColumnTypes(Promoted, {{"fuel_key", Int64.Type}, {"fuel_code", type text}, {"fuel_label", type text}, {"is_main_fuel", type logical}, {"display_order", Int64.Type}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table

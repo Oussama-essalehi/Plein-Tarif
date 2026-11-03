@@ -1,0 +1,64 @@
+{
+  "name": "Plein Tarif",
+  "dataColors": [
+    "#EB6834",
+    "#1BAF7A",
+    "#2A78D6",
+    "#EDA100",
+    "#E87BA4",
+    "#008300",
+    "#6250D6",
+    "#E34948"
+  ],
+  "foreground": "#0B0B0B",
+  "foregroundNeutralSecondary": "#52514E",
+  "foregroundNeutralTertiary": "#8A8984",
+  "background": "#FCFCFB",
+  "backgroundLight": "#F3F2EF",
+  "backgroundNeutral": "#E6E5E1",
+  "tableAccent": "#2A78D6",
+  "good": "#1BAF7A",
+  "neutral": "#EDA100",
+  "bad": "#E34948",
+  "maximum": "#0D366B",
+  "center": "#6DA7EC",
+  "minimum": "#CDE2FB",
+  "null": "#E6E5E1",
+  "hyperlink": "#256ABF",
+  "visitedHyperlink": "#184F95",
+  "textClasses": {
+    "callout": { "fontSize": 28, "fontFace": "Segoe UI Semibold", "color": "#0B0B0B" },
+    "title": { "fontSize": 13, "fontFace": "Segoe UI Semibold", "color": "#0B0B0B" },
+    "header": { "fontSize": 12, "fontFace": "Segoe UI Semibold", "color": "#0B0B0B" },
+    "label": { "fontSize": 10, "fontFace": "Segoe UI", "color": "#52514E" }
+  },
+  "visualStyles": {
+    "*": {
+      "*": {
+        "title": [{ "show": true, "fontColor": { "solid": { "color": "#0B0B0B" } }, "fontSize": 13, "alignment": "left" }],
+        "background": [{ "show": true, "color": { "solid": { "color": "#FFFFFF" } }, "transparency": 0 }],
+        "border": [{ "show": true, "color": { "solid": { "color": "#E6E5E1" } }, "radius": 6 }],
+        "dropShadow": [{ "show": false }],
+        "valueAxis": [{ "gridlineColor": { "solid": { "color": "#E6E5E1" } }, "gridlineThickness": 1 }],
+        "categoryAxis": [{ "gridlineShow": false }]
+      }
+    },
+    "page": {
+      "*": {
+        "background": [{ "color": { "solid": { "color": "#FCFCFB" } }, "transparency": 0 }]
+      }
+    },
+    "lineChart": {
+      "*": {
+        "lineStyles": [{ "strokeWidth": 2 }],
+        "legend": [{ "show": true, "position": "Top" }]
+      }
+    },
+    "card": {
+      "*": {
+        "labels": [{ "fontSize": 24, "color": { "solid": { "color": "#0B0B0B" } } }],
+        "categoryLabels": [{ "show": false }]
+      }
+    }
+  }
+}

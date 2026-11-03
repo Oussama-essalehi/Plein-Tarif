@@ -1,0 +1,15 @@
+event_key,event_type,label,start_date,end_date,amount_ht,amount_ttc
+1,remise_etat,Remise 18 cts,2022-04-01,2022-08-31,0.15,0.18
+2,remise_etat,Remise 30 cts,2022-09-01,2022-11-15,0.25,0.3
+3,remise_etat,Remise 10 cts,2022-11-16,2022-12-31,0.0833,0.1
+4,remise_totalenergies,TotalEnergies -20 cts,2022-09-01,2022-11-15,,0.2
+5,remise_totalenergies,TotalEnergies -10 cts,2022-11-16,2022-12-31,,0.1
+6,annotation,1er confinement,2020-03-17,2020-05-11,,
+7,annotation,2e confinement,2020-10-30,2020-12-15,,
+8,annotation,3e confinement,2021-04-03,2021-05-03,,
+9,annotation,Invasion de l'Ukraine,2022-02-24,2022-02-24,,
+10,annotation,Début remise carburant,2022-04-01,2022-04-01,,
+11,annotation,Remise 30 cts + TotalEnergies 20 cts,2022-09-01,2022-09-01,,
+12,annotation,Grèves des raffineries,2022-10-01,2022-10-31,,
+13,annotation,Fin remise carburant,2023-01-01,2023-01-01,,
+14,annotation,Fin modulation régionale TICPE,2025-08-01,2025-08-01,,

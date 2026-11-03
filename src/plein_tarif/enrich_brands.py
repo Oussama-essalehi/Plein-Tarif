@@ -163,6 +163,8 @@ def download_osm() -> pd.DataFrame:
 
         pbf = fetch(bcfg["pbf_url"], out.parent / "france-latest.osm.pbf", min_bytes=10_000_000, timeout=3600)
         df = read_pbf(pbf)
+        if not bcfg.get("keep_pbf", False):
+            pbf.unlink()   # ~6 GB, only the extracted fuel stations are kept
     else:
         df = download_overpass(cfg()["sources"]["overpass_url"])
     df.to_parquet(out, index=False)

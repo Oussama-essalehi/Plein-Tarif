@@ -1,0 +1,102 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "p4_evenements",
+  "position": {
+    "x": 660,
+    "y": 515,
+    "z": 5000,
+    "height": 185,
+    "width": 600,
+    "tabOrder": 5000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_event"
+                    }
+                  },
+                  "Property": "label"
+                }
+              },
+              "queryRef": "dim_event.label",
+              "nativeQueryRef": "label"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_event"
+                    }
+                  },
+                  "Property": "start_date"
+                }
+              },
+              "queryRef": "dim_event.start_date",
+              "nativeQueryRef": "start_date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_event"
+                    }
+                  },
+                  "Property": "end_date"
+                }
+              },
+              "queryRef": "dim_event.end_date",
+              "nativeQueryRef": "end_date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_event"
+                    }
+                  },
+                  "Property": "amount_ttc"
+                }
+              },
+              "queryRef": "dim_event.amount_ttc",
+              "nativeQueryRef": "amount_ttc"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Remise carburant et événements'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}
