@@ -46,7 +46,10 @@ cleaning:
   min_records_for_unit_detection: 1000
 
 panel:
-  max_staleness_days: 7   # carry the last known price forward for at most N days
+  max_staleness_days: 14  # carry the last known price forward for at most N days
+  # 14 rather than 7: with 7 days the panel loses 6-31% of the stations that reported in the previous 30 days,
+  # mostly stations whose price is stable (they send no update). See data/processed/panel_coverage.csv.
+  coverage_check_days: [7, 14, 30]
 
 geography:
   # Approximate bounding boxes (lat_min, lat_max, lon_min, lon_max)

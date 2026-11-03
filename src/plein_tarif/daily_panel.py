@@ -17,6 +17,7 @@ import json
 import shutil
 
 import duckdb
+import pandas as pd
 
 from plein_tarif.config import cfg, duck, get_logger, path
 
@@ -69,6 +70,30 @@ def build_changes(con: duckdb.DuckDBPyConnection, prices: str) -> None:
         ORDER BY station_id, fuel, ts""")
 
 
+def coverage_table(con: duckdb.DuckDBPyConnection, prices: str, start: str, end: str, windows: list[int]) -> pd.DataFrame:
+    """Stations with a record in the last N days, relative to the widest window, on the 1st of each quarter.
+
+    Shows how many active stations a given forward-fill limit keeps in the panel.
+    """
+    widest = max(windows)
+    rows = []
+    for d in pd.date_range(start, end, freq="QS"):
+        if d == pd.Timestamp(start):
+            continue
+        ds = d.strftime("%Y-%m-%d")
+        cols = ", ".join(f"count(DISTINCT station_id) FILTER (WHERE ts >= DATE '{ds}' - INTERVAL {w} DAY) AS d{w}"
+                         for w in windows)
+        r = con.execute(f"""SELECT fuel, {cols} FROM {prices}
+                            WHERE ts < DATE '{ds}' AND ts >= DATE '{ds}' - INTERVAL {widest} DAY
+                              AND fuel IN ('Gazole', 'E10') GROUP BY fuel""").df()
+        r.insert(0, "date", ds)
+        rows.append(r)
+    out = pd.concat(rows, ignore_index=True)
+    for w in windows:
+        out[f"share_{w}d"] = (out[f"d{w}"] / out[f"d{widest}"]).round(3)
+    return out
+
+
 def main() -> None:
     period, n = cfg()["period"], cfg()["panel"]["max_staleness_days"]
     start, end = f"{period['start_year']}-01-01", f"{period['end_year']}-12-31"
@@ -94,6 +119,10 @@ def main() -> None:
         "price_changes": con.execute("SELECT count(*) FROM price_changes").fetchone()[0],
         "rows_by_fuel": dict(con.execute("SELECT fuel, count(*) FROM panel GROUP BY fuel ORDER BY 2 DESC").fetchall()),
     }
+    cov = coverage_table(con, prices, start, end, cfg()["panel"]["coverage_check_days"])
+    cov.to_csv(out / "panel_coverage.csv", index=False)
+    stats["coverage_share_min_mean"] = {c: [float(cov[c].min()), round(float(cov[c].mean()), 3)]
+                                        for c in cov.columns if c.startswith("share_")}
     (out / "panel_report.json").write_text(json.dumps(stats, indent=2, default=str))
     log.info("panel: %s", stats)
 
