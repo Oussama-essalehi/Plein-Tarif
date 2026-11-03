@@ -290,7 +290,8 @@ ORDER BY event_date, fuel_code;
 
 -- name: q6_savings_focus_city
 -- Q6 Shopping around. In the focus city, for every station and day: gap between the station's price and
--- the cheapest station within 5 km (itself included). Yearly savings = mean gap x litres per year.
+-- the cheapest station within 5 km (itself included), averaged per station; yearly savings = mean gap over
+-- stations x litres per year.
 WITH city AS (
     SELECT station_key FROM dim_station WHERE city_std = getvariable('focus_city')
 ),
@@ -304,23 +305,28 @@ cheapest AS (
     WHERE d.year = getvariable('analysis_year')
     GROUP BY ALL
 ),
-gaps AS (
-    SELECT f.fuel_code, p.station_key, p.price_ttc, ch.cheapest_nearby, p.price_ttc - ch.cheapest_nearby AS gap
+per_station AS (
+    -- one value per station (each station counts once, as in the Power BI simulator)
+    SELECT f.fuel_code, p.station_key, avg(p.price_ttc) AS price_ttc, avg(ch.cheapest_nearby) AS cheapest_nearby,
+           avg(p.price_ttc - ch.cheapest_nearby) AS gap
     FROM fact_price_daily p
     JOIN cheapest ch USING (station_key, date_key, fuel_key)
     JOIN dim_fuel f USING (fuel_key)
     WHERE f.is_main_fuel
+    GROUP BY ALL
+    HAVING count(*) >= getvariable('min_days')
 )
 SELECT fuel_code,
-       count(DISTINCT station_key)                       AS n_stations,
+       count(*)                                          AS n_stations,
        round(avg(price_ttc), 4)                          AS mean_price,
        round(avg(cheapest_nearby), 4)                    AS mean_cheapest_within_5km,
        round(100 * avg(gap), 2)                          AS mean_gap_cts,
        round(avg(gap) * getvariable('litres_per_year'), 0) AS yearly_savings_eur,
+       round(median(gap) * getvariable('litres_per_year'), 0) AS yearly_savings_median_eur,
        round(quantile_cont(gap, 0.9) * getvariable('litres_per_year'), 0) AS yearly_savings_p90_eur
-FROM gaps
+FROM per_station
 GROUP BY fuel_code
-HAVING count(DISTINCT station_key) >= getvariable('min_stations')
+HAVING count(*) >= getvariable('min_stations')
 ORDER BY fuel_code;
 
 
