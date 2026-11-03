@@ -59,3 +59,12 @@ def get_logger(name: str) -> logging.Logger:
             datefmt="%H:%M:%S",
         )
     return logging.getLogger(name)
+
+
+def duck(database: str = ":memory:", read_only: bool = False):
+    """DuckDB connection with the progress bar disabled (clean logs)."""
+    import duckdb
+
+    con = duckdb.connect(database, read_only=read_only)
+    con.execute("SET enable_progress_bar = false")
+    return con
