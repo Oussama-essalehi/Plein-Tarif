@@ -61,6 +61,7 @@ BRAND_RULES: list[tuple[str, str, str]] = [
     ("Dyneff", "oil_company", r"\bdyneff\b"),
     ("Q8", "oil_company", r"\bq8\b"),
     ("AS24", "independent_other", r"\bas ?24\b"),
+    ("Indépendant / sans enseigne", "independent_other", r"^independa?n[td]e?s?$|^sans enseigne$|^station service$"),
 ]
 CATEGORY_LABELS = {"supermarket": "Grande distribution", "oil_company": "Pétrolier",
                    "independent_other": "Indépendant / autre", "unmatched": "Non identifiée"}
@@ -110,29 +111,41 @@ def download_overpass(url: str, timeout: int = 900) -> pd.DataFrame:
 
 
 def read_pbf(pbf_path) -> pd.DataFrame:
-    """amenity=fuel nodes and ways (centroid of the way's nodes) from an .osm.pbf extract."""
+    """amenity=fuel nodes and ways (centroid of the way's nodes) from an .osm.pbf extract.
+
+    Two passes keep memory low on a whole-country extract: (1) tagged fuel nodes and ways, without
+    locations; (2) only the nodes referenced by those ways, selected by id inside libosmium.
+    """
     import osmium
 
-    rows = []
+    rows, ways = [], []
     fp = (osmium.FileProcessor(str(pbf_path))
-          .with_locations()
           .with_filter(osmium.filter.EntityFilter(osmium.osm.NODE | osmium.osm.WAY))
           .with_filter(osmium.filter.TagFilter(("amenity", "fuel"))))
     for obj in fp:
-        tags = obj.tags
+        tags = {"brand": obj.tags.get("brand"), "name": obj.tags.get("name"), "operator": obj.tags.get("operator")}
         if obj.is_node():
-            lat, lon, kind = obj.location.lat, obj.location.lon, "node"
+            rows.append({"osm_type": "node", "osm_id": obj.id, "lat": obj.location.lat,
+                         "lon": obj.location.lon, **tags})
         else:
-            nodes = list(obj.nodes)
-            if len(nodes) > 1 and nodes[0].ref == nodes[-1].ref:   # closed way: do not count the first node twice
-                nodes = nodes[:-1]
-            pts = [(n.lat, n.lon) for n in nodes if n.location.valid()]
-            if not pts:
-                continue
-            lat, lon = float(np.mean([p[0] for p in pts])), float(np.mean([p[1] for p in pts]))
-            kind = "way"
-        rows.append({"osm_type": kind, "osm_id": obj.id, "lat": lat, "lon": lon,
-                     "brand": tags.get("brand"), "name": tags.get("name"), "operator": tags.get("operator")})
+            refs = [n.ref for n in obj.nodes]
+            if len(refs) > 1 and refs[0] == refs[-1]:   # closed way: do not count the first node twice
+                refs = refs[:-1]
+            ways.append((obj.id, refs, tags))
+    needed = {r for _, refs, _ in ways for r in refs}
+    coords: dict[int, tuple[float, float]] = {}
+    if needed:
+        fp2 = (osmium.FileProcessor(str(pbf_path), osmium.osm.NODE)
+               .with_filter(osmium.filter.IdFilter(needed)))
+        for n in fp2:
+            if n.is_node() and n.location.valid():
+                coords[n.id] = (n.location.lat, n.location.lon)
+    for way_id, refs, tags in ways:
+        pts = [coords[r] for r in refs if r in coords]
+        if not pts:
+            continue
+        rows.append({"osm_type": "way", "osm_id": way_id, "lat": float(np.mean([p[0] for p in pts])),
+                     "lon": float(np.mean([p[1] for p in pts])), **tags})
     return _osm_frame(rows)
 
 
@@ -230,6 +243,17 @@ def main() -> None:
         "top_brands": r["brand"].value_counts().head(20).to_dict(),
         "department_match_rate_min": by_dept.nsmallest(5, "match_rate").to_dict("records"),
     }
+    # Sensitivity of the match rate to the radius (stations active in the last year vs all)
+    nearest = match_stations(active, osm, radius_m=1e9)
+    last_year = (pd.read_parquet(path("processed") / "prices_clean.parquet", columns=["station_id", "ts"])
+                   .groupby("station_id")["ts"].max().dt.year)
+    nearest = nearest[nearest["station_id"].isin(with_prices)]
+    is_active = nearest["station_id"].map(last_year).eq(cfg()["period"]["end_year"])
+    sens = pd.DataFrame([{"radius_m": r, "match_rate_all": round(float((nearest["match_distance_m"] <= r).mean()), 3),
+                          "match_rate_active_last_year": round(float((nearest.loc[is_active, "match_distance_m"] <= r).mean()), 3)}
+                         for r in (25, 50, 75, 100, 150, 200, 300, 500)])
+    sens.to_csv(path("processed") / "brand_match_radius_sensitivity.csv", index=False)
+    report["match_rate_active_last_year"] = round(float(r.loc[r["station_id"].map(last_year).eq(cfg()["period"]["end_year"]), "matched"].mean()), 4)
     (path("processed") / "brand_match_report.json").write_text(json.dumps(report, indent=2, ensure_ascii=False))
     log.info("brand match: %s / %s (%.1f%%), ambiguous %s", report["matched"], report["stations_with_prices_and_coords"],
              100 * report["match_rate"], report["ambiguous"])
