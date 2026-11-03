@@ -1,0 +1,5 @@
+fuel_code,is_day_before_holiday_or_weekend,n_changes,changes_per_day,share_increases,mean_change_cts
+E10,False,3771216,1777.0,0.5486,0.217
+E10,True,1101329,2532.0,0.4588,-0.592
+Gazole,False,4808995,2266.0,0.5363,0.206
+Gazole,True,1428988,3285.0,0.4459,-0.563

@@ -1,0 +1,57 @@
+year,fuel_code,brand_category,category_label,median_ttc,mean_ht,n_stations,gap_vs_supermarket_cts
+2019,E10,supermarket,Grande distribution,1.458,0.5434,1865,0.0
+2019,E10,unmatched,Non identifiée,1.47,0.5629,2534,1.2
+2019,E10,independent_other,Indépendant / autre,1.489,0.5756,121,3.1
+2019,E10,oil_company,Pétrolier,1.512,0.5886,1748,5.4
+2020,E10,supermarket,Grande distribution,1.293,0.4236,1961,0.0
+2020,E10,unmatched,Non identifiée,1.309,0.4434,2585,1.6
+2020,E10,independent_other,Indépendant / autre,1.331,0.4612,133,3.8
+2020,E10,oil_company,Pétrolier,1.362,0.4707,1796,6.9
+2021,E10,supermarket,Grande distribution,1.509,0.5844,2090,0.0
+2021,E10,unmatched,Non identifiée,1.529,0.6038,2657,2.0
+2021,E10,independent_other,Indépendant / autre,1.546,0.6198,145,3.7
+2021,E10,oil_company,Pétrolier,1.569,0.6347,1838,6.0
+2022,E10,supermarket,Grande distribution,1.729,0.9185,2197,0.0
+2022,E10,unmatched,Non identifiée,1.747,0.9296,2750,1.8
+2022,E10,oil_company,Pétrolier,1.787,0.9448,1879,5.8
+2022,E10,independent_other,Indépendant / autre,1.799,0.9685,162,7.0
+2023,E10,supermarket,Grande distribution,1.83,0.8558,2271,0.0
+2023,E10,unmatched,Non identifiée,1.853,0.8763,2799,2.3
+2023,E10,independent_other,Indépendant / autre,1.879,0.8987,185,4.9
+2023,E10,oil_company,Pétrolier,1.903,0.9153,1876,7.3
+2024,E10,supermarket,Grande distribution,1.759,0.7937,2407,0.0
+2024,E10,unmatched,Non identifiée,1.779,0.8131,2827,2.0
+2024,E10,independent_other,Indépendant / autre,1.799,0.8315,192,4.0
+2024,E10,oil_company,Pétrolier,1.819,0.8468,1893,6.0
+2025,E10,supermarket,Grande distribution,1.658,0.7141,2413,0.0
+2025,E10,unmatched,Non identifiée,1.673,0.7346,2746,1.5
+2025,E10,independent_other,Indépendant / autre,1.709,0.7547,208,5.1
+2025,E10,oil_company,Pétrolier,1.739,0.7739,1961,8.1
+2019,Gazole,supermarket,Grande distribution,1.42,0.5754,2677,0.0
+2019,Gazole,unmatched,Non identifiée,1.435,0.5947,3865,1.5
+2019,Gazole,independent_other,Indépendant / autre,1.46,0.6238,328,4.0
+2019,Gazole,oil_company,Pétrolier,1.479,0.625,2325,5.9
+2020,Gazole,supermarket,Grande distribution,1.209,0.4259,2743,0.0
+2020,Gazole,unmatched,Non identifiée,1.229,0.4467,3855,2.0
+2020,Gazole,independent_other,Indépendant / autre,1.268,0.4816,342,5.9
+2020,Gazole,oil_company,Pétrolier,1.289,0.4798,2361,8.0
+2021,Gazole,supermarket,Grande distribution,1.401,0.5687,2772,0.0
+2021,Gazole,unmatched,Non identifiée,1.42,0.5889,3789,1.9
+2021,Gazole,independent_other,Indépendant / autre,1.456,0.6225,357,5.5
+2021,Gazole,oil_company,Pétrolier,1.479,0.6251,2401,7.8
+2022,Gazole,supermarket,Grande distribution,1.848,1.0567,2805,0.0
+2022,Gazole,unmatched,Non identifiée,1.859,1.0705,3757,1.1
+2022,Gazole,oil_company,Pétrolier,1.878,1.0896,2437,3.0
+2022,Gazole,independent_other,Indépendant / autre,1.899,1.1209,373,5.1
+2023,Gazole,supermarket,Grande distribution,1.789,0.8768,2866,0.0
+2023,Gazole,unmatched,Non identifiée,1.809,0.8986,3716,2.0
+2023,Gazole,independent_other,Indépendant / autre,1.84,0.9289,379,5.1
+2023,Gazole,oil_company,Pétrolier,1.863,0.9383,2427,7.4
+2024,Gazole,supermarket,Grande distribution,1.672,0.7874,2979,0.0
+2024,Gazole,unmatched,Non identifiée,1.699,0.8092,3665,2.7
+2024,Gazole,independent_other,Indépendant / autre,1.719,0.8365,375,4.7
+2024,Gazole,oil_company,Pétrolier,1.747,0.8471,2415,7.5
+2025,Gazole,supermarket,Grande distribution,1.599,0.7233,2948,0.0
+2025,Gazole,unmatched,Non identifiée,1.619,0.7457,3534,2.0
+2025,Gazole,independent_other,Indépendant / autre,1.64,0.7704,389,4.1
+2025,Gazole,oil_company,Pétrolier,1.679,0.7892,2478,8.0
