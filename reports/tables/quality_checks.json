@@ -1,18 +1,18 @@
 {
   "national_mean_gazole": {
     "2019-06": {
-      "sql": 1.43967,
-      "pandas": 1.43967,
+      "sql": 1.44189,
+      "pandas": 1.44189,
       "abs_diff": 0.0
     },
     "2022-06": {
-      "sql": 2.09695,
-      "pandas": 2.09695,
+      "sql": 2.09764,
+      "pandas": 2.09764,
       "abs_diff": 0.0
     },
     "2025-06": {
-      "sql": 1.61715,
-      "pandas": 1.61715,
+      "sql": 1.61419,
+      "pandas": 1.61419,
       "abs_diff": 0.0
     }
   },
@@ -31,50 +31,50 @@
   "official_monthly_comparison": {
     "E10": {
       "months": 72,
-      "mean_gap_cts": 1.276,
-      "min_gap_cts": 0.224,
-      "max_gap_cts": 2.922,
-      "mean_gap_median_cts": -0.898,
+      "mean_gap_cts": 1.315,
+      "min_gap_cts": -0.027,
+      "max_gap_cts": 3.117,
+      "mean_gap_median_cts": -0.823,
       "correlation": 1.0
     },
     "E85": {
       "months": 72,
-      "mean_gap_cts": 2.031,
-      "min_gap_cts": -0.744,
-      "max_gap_cts": 3.592,
-      "mean_gap_median_cts": 0.928,
+      "mean_gap_cts": 1.831,
+      "min_gap_cts": -1.12,
+      "max_gap_cts": 3.283,
+      "mean_gap_median_cts": 0.632,
       "correlation": 0.999
     },
     "GPLc": {
       "months": 72,
-      "mean_gap_cts": 2.075,
-      "min_gap_cts": 0.389,
-      "max_gap_cts": 3.784,
-      "mean_gap_median_cts": 1.159,
+      "mean_gap_cts": 2.038,
+      "min_gap_cts": 0.543,
+      "max_gap_cts": 3.541,
+      "mean_gap_median_cts": 1.068,
       "correlation": 0.997
     },
     "Gazole": {
       "months": 72,
-      "mean_gap_cts": 1.905,
-      "min_gap_cts": 0.544,
-      "max_gap_cts": 3.504,
-      "mean_gap_median_cts": -0.307,
+      "mean_gap_cts": 2.068,
+      "min_gap_cts": 0.412,
+      "max_gap_cts": 3.592,
+      "mean_gap_median_cts": -0.086,
       "correlation": 1.0
     },
     "SP95": {
       "months": 72,
-      "mean_gap_cts": 1.497,
-      "min_gap_cts": 0.174,
-      "max_gap_cts": 3.159,
-      "mean_gap_median_cts": 0.42,
-      "correlation": 1.0
+      "mean_gap_cts": 1.885,
+      "min_gap_cts": 0.332,
+      "max_gap_cts": 4.003,
+      "mean_gap_median_cts": 0.713,
+      "correlation": 0.999
     },
     "SP98": {
       "months": 72,
-      "mean_gap_cts": 1.215,
-      "min_gap_cts": 0.333,
-      "max_gap_cts": 2.3,
-      "mean_gap_median_cts": -1.193,
+      "mean_gap_cts": 1.221,
+      "min_gap_cts": -0.05,
+      "max_gap_cts": 2.565,
+      "mean_gap_median_cts": -1.121,
       "correlation": 1.0
     }
   },

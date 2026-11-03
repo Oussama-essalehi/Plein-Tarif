@@ -1,28 +1,28 @@
 region,fuel_code,median_ttc,mean_ht,n_stations,is_total
-France (métropole + Corse),E10,1.688,0.749,7775,1
-Bretagne,E10,1.646,0.7142,425,0
-Pays de la Loire,E10,1.649,0.7261,433,0
-Nouvelle-Aquitaine,E10,1.662,0.7343,886,0
-Hauts-de-France,E10,1.667,0.7338,650,0
-Normandie,E10,1.669,0.735,420,0
-Centre-Val de Loire,E10,1.672,0.7475,346,0
-Grand Est,E10,1.688,0.7495,705,0
-Bourgogne-Franche-Comté,E10,1.689,0.7568,466,0
-Occitanie,E10,1.689,0.7511,914,0
-Provence-Alpes-Côte d'Azur,E10,1.699,0.7583,699,0
-Auvergne-Rhône-Alpes,E10,1.704,0.7679,1035,0
-Île-de-France,E10,1.739,0.776,793,0
-France (métropole + Corse),Gazole,1.629,0.7582,9800,1
-Bretagne,Gazole,1.598,0.7286,547,0
-Pays de la Loire,Gazole,1.599,0.7407,549,0
-Nouvelle-Aquitaine,Gazole,1.611,0.7473,1138,0
-Normandie,Gazole,1.615,0.7452,570,0
-Hauts-de-France,Gazole,1.616,0.7467,802,0
-Centre-Val de Loire,Gazole,1.619,0.7578,452,0
-Occitanie,Gazole,1.62,0.7529,1107,0
-Provence-Alpes-Côte d'Azur,Gazole,1.631,0.762,803,0
-Grand Est,Gazole,1.635,0.7625,858,0
-Auvergne-Rhône-Alpes,Gazole,1.639,0.7688,1342,0
-Bourgogne-Franche-Comté,Gazole,1.639,0.7654,668,0
-Île-de-France,Gazole,1.688,0.7836,842,0
-Corse,Gazole,1.75,0.9496,122,0
+France (métropole + Corse),E10,1.688,0.7487,7806,1
+Bretagne,E10,1.647,0.7144,426,0
+Pays de la Loire,E10,1.649,0.7262,437,0
+Nouvelle-Aquitaine,E10,1.664,0.7346,888,0
+Hauts-de-France,E10,1.667,0.7339,653,0
+Normandie,E10,1.669,0.7349,425,0
+Centre-Val de Loire,E10,1.671,0.7468,346,0
+Grand Est,E10,1.688,0.7492,706,0
+Occitanie,E10,1.689,0.7511,918,0
+Bourgogne-Franche-Comté,E10,1.69,0.7568,470,0
+Provence-Alpes-Côte d'Azur,E10,1.699,0.758,701,0
+Auvergne-Rhône-Alpes,E10,1.7,0.767,1037,0
+Île-de-France,E10,1.739,0.7758,796,0
+France (métropole + Corse),Gazole,1.629,0.759,9849,1
+Bretagne,Gazole,1.599,0.7297,547,0
+Pays de la Loire,Gazole,1.601,0.7419,553,0
+Nouvelle-Aquitaine,Gazole,1.615,0.7487,1142,0
+Normandie,Gazole,1.616,0.7459,577,0
+Hauts-de-France,Gazole,1.617,0.7471,807,0
+Centre-Val de Loire,Gazole,1.619,0.758,454,0
+Occitanie,Gazole,1.622,0.7537,1114,0
+Provence-Alpes-Côte d'Azur,Gazole,1.632,0.7623,807,0
+Grand Est,Gazole,1.638,0.7629,862,0
+Auvergne-Rhône-Alpes,Gazole,1.639,0.7689,1347,0
+Bourgogne-Franche-Comté,Gazole,1.639,0.7659,673,0
+Île-de-France,Gazole,1.687,0.7833,844,0
+Corse,Gazole,1.752,0.9512,122,0
