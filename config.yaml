@@ -17,10 +17,12 @@ paths:
 sources:
   prices_yearly_url: "https://donnees.roulez-eco.fr/opendata/annee/{year}"   # linked from prix-carburants.gouv.fr/rubrique/opendata
   brent_url: "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DCOILBRENTEU"
-  eurusd_url: "https://data-api.ecb.europa.eu/service/data/EXR/D.USD.EUR.SP00.A?format=csvdata&startPeriod={start}&endPeriod={end}"
+  eurusd_url: "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DEXUSEU"     # USD per EUR (Fed H.10)
+  eurusd_fallback_url: "https://data-api.ecb.europa.eu/service/data/EXR/D.USD.EUR.SP00.A?format=csvdata&startPeriod={start}&endPeriod={end}"
   departments_geojson_url: "https://raw.githubusercontent.com/gregoiredavid/france-geojson/master/departements-version-simplifiee.geojson"
   official_weekly_prices_url: "https://www.ecologie.gouv.fr/sites/default/files/documents/Prix%20HTT%20et%20TTC%20depuis%20janvier%202020_0.xlsx"
   refining_margin_url: "https://www.ecologie.gouv.fr/sites/default/files/documents/Historique%20de%20la%20marge%20brute%20de%20raffinage%20sur%20Brent%20depuis%202015%20%28moyennes%20mensuelles%29.xlsx"
+  tax_guide_url: "https://www.ecologie.gouv.fr/sites/default/files/documents/Guide%202026%20sur%20fiscalit%C3%A9%20des%20%C3%A9nergies.pdf"
   overpass_url: "https://overpass-api.de/api/interpreter"
 
 fuels:
@@ -62,6 +64,8 @@ geography:
   big_cities: [Paris, Marseille, Lyon, Toulouse, Nice, Nantes, Montpellier, Strasbourg, Bordeaux, Lille, Rennes, Reims]
 
 brands:
+  osm_source: overpass    # overpass | pbf (use pbf where the Overpass API is not reachable)
+  pbf_url: "https://download.openstreetmap.fr/extracts/europe/france-latest.osm.pbf"   # ~5.9 GB
   match_radius_m: 75
   ambiguity_ratio: 1.5    # a match is "ambiguous" when the 2nd candidate is within 1.5x the 1st distance
 

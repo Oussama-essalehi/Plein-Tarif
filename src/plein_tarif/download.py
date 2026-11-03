@@ -3,7 +3,7 @@
 Sources (all checked before writing this module):
 - yearly price archives, prix-carburants.gouv.fr open data (Licence Ouverte), one ZIP of XML per year;
 - Brent crude oil, daily, FRED series DCOILBRENTEU (USD per barrel);
-- EUR/USD reference rate, daily, ECB Data Portal (USD per EUR);
+- EUR/USD, daily, FRED series DEXUSEU (USD per EUR, Federal Reserve H.10); ECB Data Portal as fallback;
 - French departments GeoJSON (gregoiredavid/france-geojson, IGN Admin Express, Licence Ouverte);
 - Ministry weekly average prices HTT/TTC and monthly refining margin (ecologie.gouv.fr), used for checks.
 OpenStreetMap stations are downloaded by `enrich_brands.download_osm()`.
@@ -21,7 +21,7 @@ from tqdm import tqdm
 from plein_tarif.config import cfg, get_logger, path, years
 
 log = get_logger(__name__)
-USER_AGENT = "plein-tarif/1.0 (open data analysis project)"
+# Default requests headers are used: FRED stalls requests carrying an unknown custom User-Agent.
 
 
 def fetch(url: str, dest: Path, *, retries: int = 4, timeout: int = 120, min_bytes: int = 100) -> Path:
@@ -33,7 +33,7 @@ def fetch(url: str, dest: Path, *, retries: int = 4, timeout: int = 120, min_byt
     tmp = dest.with_suffix(dest.suffix + ".part")
     for attempt in range(retries + 1):
         try:
-            with requests.get(url, stream=True, timeout=timeout, headers={"User-Agent": USER_AGENT}) as r:
+            with requests.get(url, stream=True, timeout=timeout) as r:
                 r.raise_for_status()
                 total = int(r.headers.get("content-length", 0)) or None
                 with open(tmp, "wb") as fh, tqdm(total=total, unit="B", unit_scale=True,
@@ -71,12 +71,17 @@ def download_prices() -> list[Path]:
 
 
 def download_market() -> None:
-    """Brent (FRED) and EUR/USD (ECB) daily series, with one year of margin on each side."""
+    """Brent and EUR/USD daily series (FRED); the ECB is used for EUR/USD if FRED fails."""
     src = cfg()["sources"]
     start, end = cfg()["period"]["start_year"] - 1, cfg()["period"]["end_year"] + 1
     raw = path("raw") / "market"
     fetch(src["brent_url"], raw / "brent_fred.csv")
-    fetch(src["eurusd_url"].format(start=f"{start}-01-01", end=f"{end}-12-31"), raw / "eurusd_ecb.csv")
+    try:
+        fetch(src["eurusd_url"], raw / "eurusd_fred.csv", retries=2, timeout=60)
+    except Exception as exc:
+        log.warning("FRED EUR/USD failed (%s), falling back to the ECB", exc)
+        fetch(src["eurusd_fallback_url"].format(start=f"{start}-01-01", end=f"{end}-12-31"),
+              raw / "eurusd_ecb.csv", retries=2, timeout=60)
 
 
 def download_reference() -> None:
@@ -85,6 +90,7 @@ def download_reference() -> None:
     fetch(src["departments_geojson_url"], path("raw") / "geo" / "departements.geojson")
     fetch(src["official_weekly_prices_url"], path("raw") / "official" / "prix_htt_ttc_hebdo.xlsx")
     fetch(src["refining_margin_url"], path("raw") / "official" / "marge_raffinage.xlsx")
+    fetch(src["tax_guide_url"], path("raw") / "official" / "guide_fiscalite_2026.pdf", min_bytes=100_000)
 
 
 def main() -> None:
