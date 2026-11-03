@@ -1,0 +1,88 @@
+# Taxes on road fuels in mainland France and Corsica, 2019-2025.
+#
+# TICPE (renamed "accise sur les énergies" when the CIBS replaced the Code des douanes on 2022-01-01)
+# is a fixed amount per litre. VAT applies on top of (pre-tax price + excise).
+#
+# Units: every rate below is in EUR per litre. The CIBS publishes rates in EUR/MWh; they are converted
+# with the official coefficients (GJ per hectolitre) from Annex 3 of the ministry's tax guide:
+#   EUR/l = EUR/MWh * (GJ/hl / 3.6) / 100
+#   gazole 3.6 GJ/hl -> 1 MWh/hl ; essences (SP95, SP98, E10) 3.2 GJ/hl -> 0.8889 MWh/hl ; E85 2.38 GJ/hl
+#   GPLc is taxed per 100 kg (4.6 GJ/100 kg) -> needs a density, see gplc_density_kg_per_l.
+#
+# Main source (read and checked): Ministère de la Transition écologique, "Guide 2026 sur la fiscalité
+# des énergies", sections 1.1 (tarifs normaux), 1.2 (modulations régionales) and Annex 3.
+#   https://www.ecologie.gouv.fr/sites/default/files/documents/Guide%202026%20sur%20fiscalit%C3%A9%20des%20%C3%A9nergies.pdf
+# Key quotes:
+#   "à la suite du mouvement social de l'automne 2018, le Gouvernement a décidé de maintenir les tarifs
+#    de l'accise sur les énergies aux niveaux de 2018" -> national rates frozen from 2019 to 31 July 2025.
+#   Table 1.1: Gazoles 59,40 (2022 -> 31/07/2025) then 60,75 EUR/MWh from 1 Aug 2025;
+#              Essences 76,826 then 77,647 EUR/MWh; GPL carburant 16,208 EUR/MWh.
+#   Particular tariffs: SP95-E10 74,576 then 75,397 EUR/MWh; E85 17,894 EUR/MWh.
+# Legal basis (not fetched: legifrance.gouv.fr refuses automated requests): CIBS art. L312-35, L312-39,
+# L312-40, L312-41, L312-83, L312-84; Code des douanes art. 265 for 2019-2021 (same frozen rates in EUR/hl).
+
+sources:
+  guide: "https://www.ecologie.gouv.fr/sites/default/files/documents/Guide%202026%20sur%20fiscalit%C3%A9%20des%20%C3%A9nergies.pdf"
+  validation_series: "https://www.ecologie.gouv.fr/sites/default/files/documents/Prix%20HTT%20et%20TTC%20depuis%20janvier%202020_0.xlsx"
+
+vat:
+  mainland: 0.20          # guide, TVA section: "le taux de TVA sur les produits pétroliers est de 20% sur le continent"
+  corsica: 0.13           # guide, TVA section: "Le taux de TVA sur les produits pétroliers est réduit à 13% en Corse"
+  source: "Guide 2026 sur la fiscalité des énergies, I.2 (TVA)"
+
+# National excise rates (EUR/litre), by validity period.
+excise_national:
+  - valid_from: 2019-01-01
+    valid_to: 2025-07-31
+    Gazole: 0.5940        # 59,40 EUR/MWh * 1.0      = 59,40 EUR/hl
+    SP95: 0.6829          # 76,826 EUR/MWh * 0.8889  = 68,29 EUR/hl
+    SP98: 0.6829          # same fiscal category (essences)
+    E10: 0.6629           # 74,576 EUR/MWh * 0.8889  = 66,29 EUR/hl
+    E85: 0.1183           # 17,894 EUR/MWh * 0.6611  = 11,83 EUR/hl
+    GPLc_per_100kg: 20.71 # 16,208 EUR/MWh * 1.2778  = 20,71 EUR/100 kg
+    source: "Guide 2026, table 1.1 and Annex 3 (rates unchanged since 2018)"
+  - valid_from: 2025-08-01
+    valid_to: 2025-12-31
+    Gazole: 0.6075        # 60,75 EUR/MWh: regional majoration folded into the national rate
+    SP95: 0.6902          # 77,647 EUR/MWh * 0.8889 = 69,02 EUR/hl
+    SP98: 0.6902
+    E10: 0.6702           # 75,397 EUR/MWh * 0.8889 = 67,02 EUR/hl
+    E85: 0.1183
+    GPLc_per_100kg: 20.71
+    source: "Guide 2026, table 1.1 (column 'À compter du 1er août 2025 (sauf en Corse)')"
+
+# Regional majoration (Grenelle), applicable to gazole and essences until 31 July 2025.
+# Caps: 1,35 EUR/MWh gazole (0.0135 EUR/l), 0,821 EUR/MWh essences (0.0073 EUR/l).
+# Assumption: every mainland region applied the cap. The ministry's own table for August 2025 calls the
+# capped rate "tarif autres régions", and the assumption is checked against the excise implied by the
+# official weekly HTT/TTC series (see docs/methodology.md, "Taxes" section).
+regional_majoration:
+  valid_to: 2025-07-31
+  gazole: 0.0135
+  essences: 0.0073        # SP95, SP98, E10
+  applies_to_corsica: false   # guide section 1.2: modulation "que la collectivité de Corse n'avait pas appliqué"
+  source: "Guide 2026, section 1.2, CIBS L312-39"
+
+# Additional Île-de-France majoration (Île-de-France Mobilités), 2017 -> 31 Dec 2025.
+idf_majoration:
+  valid_to: 2025-12-31
+  gazole: 0.0189          # 1,89 EUR/MWh
+  essences: 0.0102        # 1,148 EUR/MWh * 0.8889
+  departments: ["75", "77", "78", "91", "92", "93", "94", "95"]
+  assumption: "cap applied"
+  source: "Guide 2026, section 1.2, CIBS L312-40"
+
+# Corsica: reduced rate on unleaded petrol (EU implementing decision 2019/372).
+corsica_minoration:
+  essences: 0.0100        # 1,125 EUR/MWh * 0.8889
+  source: "Guide 2026, section 1.2, CIBS L312-41"
+
+# GPLc is taxed per 100 kg. LPG density at 15 °C is about 0.51-0.58 kg/l depending on the butane/propane mix;
+# 0.55 kg/l is used, and the result is checked against the official weekly series in docs/methodology.md.
+gplc_density_kg_per_l: 0.55
+
+# Overseas departments: no TICPE (a separate regional tax applies) and no VAT on petroleum products;
+# prices there are administratively capped. They are excluded from all comparisons.
+overseas:
+  handled: excluded
+  source: "Guide 2026, I.2: 'La TVA n'est pas applicable sur les produits pétroliers en Outre-mer'"

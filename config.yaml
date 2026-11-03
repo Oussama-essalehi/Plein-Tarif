@@ -1,0 +1,81 @@
+# Plein Tarif — project configuration
+# Every pipeline step reads this file; change a value here and re-run `python run.py all`.
+
+period:
+  start_year: 2019
+  end_year: 2025          # latest complete year
+
+paths:
+  raw: data/raw
+  parsed: data/parsed
+  processed: data/processed
+  gold: data/gold
+  duckdb: data/plein_tarif.duckdb
+  figures: reports/figures
+  maps: reports/maps
+
+sources:
+  prices_yearly_url: "https://donnees.roulez-eco.fr/opendata/annee/{year}"   # linked from prix-carburants.gouv.fr/rubrique/opendata
+  brent_url: "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DCOILBRENTEU"
+  eurusd_url: "https://data-api.ecb.europa.eu/service/data/EXR/D.USD.EUR.SP00.A?format=csvdata&startPeriod={start}&endPeriod={end}"
+  departments_geojson_url: "https://raw.githubusercontent.com/gregoiredavid/france-geojson/master/departements-version-simplifiee.geojson"
+  official_weekly_prices_url: "https://www.ecologie.gouv.fr/sites/default/files/documents/Prix%20HTT%20et%20TTC%20depuis%20janvier%202020_0.xlsx"
+  refining_margin_url: "https://www.ecologie.gouv.fr/sites/default/files/documents/Historique%20de%20la%20marge%20brute%20de%20raffinage%20sur%20Brent%20depuis%202015%20%28moyennes%20mensuelles%29.xlsx"
+  overpass_url: "https://overpass-api.de/api/interpreter"
+
+fuels:
+  main: [Gazole, E10]
+  secondary: [SP98, SP95, E85, GPLc]
+  labels:                 # display names used in charts and Power BI
+    Gazole: Gazole
+    E10: SP95-E10
+    SP98: SP98
+    SP95: SP95
+    E85: E85
+    GPLc: GPLc
+
+cleaning:
+  hard_min_eur: 0.30      # below this a price per litre is impossible
+  hard_max_eur: 4.00      # above this a price per litre is impossible (e.g. 9.999 typos)
+  mad_k: 5.0              # drop prices more than k * MAD from the same day's national median (per fuel)
+  mad_floor_eur: 0.02     # lower bound on the MAD so that very calm days do not flag normal prices
+  min_records_for_unit_detection: 1000
+
+panel:
+  max_staleness_days: 7   # carry the last known price forward for at most N days
+
+geography:
+  # Approximate bounding boxes (lat_min, lat_max, lon_min, lon_max)
+  bbox:
+    mainland: [41.30, 51.20, -5.30, 9.70]
+    corsica: [41.30, 43.10, 8.50, 9.60]
+    guadeloupe: [15.80, 16.55, -61.85, -61.00]
+    martinique: [14.35, 14.90, -61.25, -60.80]
+    guyane: [2.10, 5.80, -54.60, -51.60]
+    reunion: [-21.40, -20.85, 55.20, 55.85]
+    mayotte: [-13.05, -12.60, 45.00, 45.35]
+  focus_city: Toulouse
+  focus_city_center: [43.6045, 1.4440]
+  focus_city_radius_km: 15
+  big_cities: [Paris, Marseille, Lyon, Toulouse, Nice, Nantes, Montpellier, Strasbourg, Bordeaux, Lille, Rennes, Reims]
+
+brands:
+  match_radius_m: 75
+  ambiguity_ratio: 1.5    # a match is "ambiguous" when the 2nd candidate is within 1.5x the 1st distance
+
+analysis:
+  min_stations: 10        # minimum stations per group for any published statistic
+  min_days: 30            # minimum days per group for any published statistic
+  bootstrap_reps: 1000
+  random_seed: 42
+  motorway_neighbour_km: 10
+  savings_radius_km: 5
+  km_per_year: 15000
+  litres_per_100km: 6.0
+  rockets_feathers:
+    frequency: W-FRI      # weekly averages (week ending Friday)
+    max_lag: 8            # maximum lag considered (weeks); the final k is chosen by BIC
+    ar_lags: 1            # lags of the dependent variable
+    horizon: 8            # weeks for cumulative response functions
+    hac_maxlags: 4        # Newey-West bandwidth
+  event_window_days: 14

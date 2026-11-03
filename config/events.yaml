@@ -1,0 +1,106 @@
+# Key events for the analysis and chart annotations.
+# Each entry gives its source. "checked" = page read while building the project;
+# "reference" = official text identified but not fetched (legifrance.gouv.fr refuses automated requests).
+
+# 2022 state discount at the pump ("remise carburant"), mainland France.
+# The discount was deducted at the till by every station and the prices reported to prix-carburants.gouv.fr
+# are the prices displayed at the pump, i.e. NET of the discount. To get the distributor's own pre-tax price,
+# the HT amount of the discount is added back: price_ht = price_ttc / (1 + VAT) - excise + discount_ht.
+discount_periods:
+  - start: 2022-04-01
+    end: 2022-08-31
+    amount_ht: 0.15
+    amount_ttc_mainland: 0.18
+    label: "Remise 18 cts"
+    sources:
+      - url: "https://www.lafinancepourtous.com/2022/11/14/baisse-de-la-remise-carburant-le-16-novembre-2022/"
+        status: checked
+        quote: "0,18 €/litre d'avril au 31 août 2022"
+      - url: "https://www.info.gouv.fr/actualite/15-centimes-en-moins-par-litre-de-carburant-des-le-1er-avril"
+        status: reference
+      - ref: "Décret n° 2022-423 du 25 mars 2022 (15 c€ HT, 1 April - 31 July), extended to 31 August by décret n° 2022-1042 (July 2022)"
+        status: reference
+  - start: 2022-09-01
+    end: 2022-11-15
+    amount_ht: 0.25
+    amount_ttc_mainland: 0.30
+    label: "Remise 30 cts"
+    sources:
+      - url: "https://www.ecologie.gouv.fr/prix-des-carburants-remise-30-centimes-litre"
+        status: checked
+        quote: "Une aide de 30 centimes d'euros TTC (25 centimes d'euros HT) du 1er septembre au 31 octobre"
+      - url: "https://www.lafinancepourtous.com/2022/11/14/baisse-de-la-remise-carburant-le-16-novembre-2022/"
+        status: checked
+        quote: "septembre au 15 novembre (montant de la remise initialement prévu jusqu'au 31 octobre)"
+      - url: "https://www.info.gouv.fr/actualite/la-remise-carburant-prolongee-jusqua-mi-novembre"
+        status: reference
+  - start: 2022-11-16
+    end: 2022-12-31
+    amount_ht: 0.0833
+    amount_ttc_mainland: 0.10
+    label: "Remise 10 cts"
+    sources:
+      - url: "https://www.lafinancepourtous.com/2022/11/14/baisse-de-la-remise-carburant-le-16-novembre-2022/"
+        status: checked
+        quote: "0,10 €/litre du 16 novembre au 31 décembre 2022"
+      - url: "https://www.ecologie.gouv.fr/prix-des-carburants-remise-30-centimes-litre"
+        status: checked
+        quote: "10 centimes d'euros TTC (8,33 centimes d'euros HT)"
+
+# Corsica (VAT 13%): same HT amounts, so the TTC equivalent is HT * 1.13 (e.g. 28,25 cts for 25 cts HT),
+# as stated on the ecologie.gouv.fr page above.
+
+# TotalEnergies' own rebate, on top of the state discount, at its French stations (company decision,
+# applied at the pump). Only relevant for brand comparisons in 2022.
+company_rebates:
+  - brand: TotalEnergies
+    start: 2022-09-01
+    end: 2022-11-15
+    amount_ttc: 0.20
+    sources:
+      - url: "https://www.lafinancepourtous.com/2022/11/14/baisse-de-la-remise-carburant-le-16-novembre-2022/"
+        status: checked
+        quote: "La remise supplémentaire pratiquée par les stations-services de Total Energie, diminue également le 16 novembre, de 0,20 €/litre à 0,10 €/litre"
+      - url: "https://totalenergies.com/fr/node/19816"
+        status: reference
+  - brand: TotalEnergies
+    start: 2022-11-16
+    end: 2022-12-31
+    amount_ttc: 0.10
+    sources:
+      - url: "https://www.lafinancepourtous.com/2022/11/14/baisse-de-la-remise-carburant-le-16-novembre-2022/"
+        status: checked
+
+# Events used to annotate charts (dates only; not used in computations).
+annotations:
+  - date: 2020-03-17
+    end: 2020-05-11
+    label: "1er confinement"
+    source: "Décret n° 2020-260 du 16 mars 2020 (reference)"
+  - date: 2020-10-30
+    end: 2020-12-15
+    label: "2e confinement"
+    source: "Décret n° 2020-1310 du 29 octobre 2020 (reference)"
+  - date: 2021-04-03
+    end: 2021-05-03
+    label: "3e confinement"
+    source: "Décret n° 2021-384 du 2 avril 2021 (reference)"
+  - date: 2022-02-24
+    label: "Invasion de l'Ukraine"
+    source: "Public record"
+  - date: 2022-04-01
+    label: "Début remise carburant"
+    source: "see discount_periods"
+  - date: 2022-09-01
+    label: "Remise 30 cts + TotalEnergies 20 cts"
+    source: "see discount_periods"
+  - date: 2022-10-01
+    end: 2022-10-31
+    label: "Grèves des raffineries"
+    source: "info.gouv.fr, 'La remise carburant prolongée jusqu'à mi-novembre' (extension justified by supply difficulties) (reference)"
+  - date: 2023-01-01
+    label: "Fin remise carburant"
+    source: "see discount_periods"
+  - date: 2025-08-01
+    label: "Fin modulation régionale TICPE"
+    source: "Guide 2026 sur la fiscalité des énergies, section 1.2 (checked)"
