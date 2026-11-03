@@ -1,0 +1,31 @@
+fuel_code,brand,brand_category,mean_local_gap_cts,median_local_gap_cts,n_stations,rank_cheapest
+E10,E.Leclerc,supermarket,-3.35,-2.1,399,1
+E10,Système U,supermarket,-3.25,-1.0,295,2
+E10,Intermarché,supermarket,-2.75,-1.1,637,3
+E10,Auchan,supermarket,-2.68,-1.4,160,4
+E10,Netto,supermarket,-2.34,-1.05,49,5
+E10,Carrefour,supermarket,-1.41,-0.5,396,6
+E10,Match,supermarket,-1.24,-0.15,20,7
+E10,Non identifiée,unmatched,-0.34,-0.2,2244,8
+E10,Indépendant / sans enseigne,independent_other,0.82,0.4,102,9
+E10,Esso,oil_company,1.33,0.8,399,10
+E10,BP,oil_company,3.81,3.1,53,11
+E10,Dyneff,oil_company,3.94,4.15,22,12
+E10,TotalEnergies,oil_company,4.33,4.6,1114,13
+E10,Avia,oil_company,6.59,7.0,156,14
+E10,Agip / Eni,oil_company,9.24,9.7,92,15
+Gazole,Système U,supermarket,-3.58,-1.45,371,1
+Gazole,E.Leclerc,supermarket,-3.46,-2.2,434,2
+Gazole,Intermarché,supermarket,-3.09,-1.55,747,3
+Gazole,Auchan,supermarket,-2.28,-1.45,167,4
+Gazole,Netto,supermarket,-2.04,-1.0,57,5
+Gazole,Carrefour,supermarket,-1.68,-0.65,644,6
+Gazole,Non identifiée,unmatched,-0.26,-0.3,2960,7
+Gazole,Vito,independent_other,0.21,0.0,30,8
+Gazole,Indépendant / sans enseigne,independent_other,1.15,0.7,185,9
+Gazole,Esso,oil_company,1.27,0.65,435,10
+Gazole,Dyneff,oil_company,3.88,3.8,38,11
+Gazole,BP,oil_company,4.15,3.85,56,12
+Gazole,TotalEnergies,oil_company,5.43,7.0,1379,13
+Gazole,Avia,oil_company,6.31,6.4,272,14
+Gazole,Agip / Eni,oil_company,9.19,9.7,101,15

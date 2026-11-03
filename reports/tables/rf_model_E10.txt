@@ -1,0 +1,31 @@
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                  price   R-squared:                       0.664
+Model:                            OLS   Adj. R-squared:                  0.657
+Method:                 Least Squares   F-statistic:                     84.45
+Date:                Tue, 03 Nov 2026   Prob (F-statistic):           5.29e-71
+Time:                        13:58:09   Log-Likelihood:                -518.34
+No. Observations:                 354   AIC:                             1053.
+Df Residuals:                     346   BIC:                             1084.
+Df Model:                           7                                         
+Covariance Type:                  HAC                                         
+==============================================================================
+                 coef    std err          z      P>|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+const          0.0488      0.083      0.585      0.558      -0.115       0.212
+up_0           0.5400      0.126      4.281      0.000       0.293       0.787
+down_0         0.3011      0.076      3.960      0.000       0.152       0.450
+up_1           0.3528      0.098      3.608      0.000       0.161       0.545
+down_1         0.2905      0.075      3.862      0.000       0.143       0.438
+up_2          -0.3329      0.119     -2.802      0.005      -0.566      -0.100
+down_2         0.0064      0.069      0.093      0.926      -0.129       0.142
+ar_1           0.4512      0.064      7.002      0.000       0.325       0.577
+==============================================================================
+Omnibus:                       35.412   Durbin-Watson:                   1.914
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):              189.175
+Skew:                           0.005   Prob(JB):                     8.34e-42
+Kurtosis:                       6.581   Cond. No.                         4.03
+==============================================================================
+
+Notes:
+[1] Standard Errors are heteroscedasticity and autocorrelation robust (HAC) using 4 lags and without small sample correction

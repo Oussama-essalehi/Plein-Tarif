@@ -440,3 +440,21 @@ FROM fact_price_daily p JOIN dim_date d USING (date_key) JOIN dim_fuel f USING (
 JOIN dim_station s USING (station_key)
 WHERE f.fuel_code = 'Gazole' AND d.year = getvariable('analysis_year') AND s.department IN ('31', '75')
 GROUP BY s.department ORDER BY s.department;
+
+
+-- name: q7_weekday_price_level
+-- Q7 Weekday effect, in money terms. Is the national average price lower on some weekdays? Daily national
+-- mean minus its centred 7-day moving average (removes the trend), averaged by weekday.
+WITH d AS (
+    SELECT n.date, n.fuel_code, n.price_ttc_mean,
+           avg(n.price_ttc_mean) OVER (PARTITION BY n.fuel_code ORDER BY n.date
+                                       ROWS BETWEEN 3 PRECEDING AND 3 FOLLOWING) AS centred_7d
+    FROM v_national_daily n
+    WHERE n.fuel_code IN ('Gazole', 'E10')
+)
+SELECT d.fuel_code, dd.weekday_num, dd.weekday_name AS weekday,
+       round(100 * avg(d.price_ttc_mean - d.centred_7d), 3) AS mean_gap_vs_week_cts,
+       count(*) AS n_days
+FROM d JOIN dim_date dd ON dd.date = d.date
+GROUP BY ALL
+ORDER BY d.fuel_code, dd.weekday_num;
